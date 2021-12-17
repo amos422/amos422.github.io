@@ -154,6 +154,344 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-javafx_region" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/16/javafx_region/">javafx - Region</a>
+    </h1>
+  
+
+        
+        <a href="/2021/12/16/javafx_region/" class="archive-article-date">
+  	<time datetime="2021-12-16T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>javafx Region类 是所有布局窗体的基类（如Pane等等），所有继承Region类的布局类会共享Region类的属性和特征。</p>
+<p>JavaFX Region类周围的类层次结构如下所示：</p>
+<img src="https://s2.loli.net/2021/12/17/nuI42wMYRiK8Ta7.png" alt="image.png" style="zoom: 50%;" />
+
+<p>Axis,Chart,Control,Pane都有很多的子类，而这些子类又是Region间接的子类，所有他们有与Region相同的属性和特征：</p>
+<ul>
+<li>BackGround</li>
+<li>Content Area</li>
+<li>Padding</li>
+<li>Borders</li>
+<li>Margin</li>
+<li>Region Insets</li>
+</ul>
+<p>##关系图：</p>
+<img src="https://s2.loli.net/2021/12/17/RJtU7VDBdehZNsf.png" alt="image.png" style="zoom: 50%;" />
+
+<p>Content Area 是布局容器所在的地方；</p>
+<p>Padding是Content Area 和border 之间的空间；</p>
+<p>border是围绕在Content Area 加上 Padding 之外的 一条线（类似）</p>
+<p>Margin是在一个Region和其他组件之间的空间</p>
+<h3 id="setPadding"><a href="#setPadding" class="headerlink" title="setPadding"></a><strong>setPadding</strong></h3><p>我们可以使用setPadding 方法为Region类及其子类设置内填充，比如HBox：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HBox hBox = new HBox(new Label(&quot;hello Pane&quot;));</span><br><span class="line"></span><br><span class="line">hBox.setPadding(new Insets(10));</span><br></pre></td></tr></table></figure>
+
+<h3 id="setBorder"><a href="#setBorder" class="headerlink" title="setBorder"></a>setBorder</h3><p>我们可以使用标准画笔画一个border也可以使用border image，border image 可以用来画一个图片边框，但是画笔边框是更加常用的。</p>
+<p>设置画笔边框</p>
+<p>以下是一个用Region子类Pane做的一个设置画笔边框的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Pane pane = new Pane();</span><br><span class="line"></span><br><span class="line">StrokeType strokeType = StrokeType.INSIDE;</span><br><span class="line">StrokeLineJoin strokeLinejoin = StrokeLineJoin.MITER;</span><br><span class="line">StrokeLineCap strokeLineCap = StrokeLineCap.BUTT;</span><br><span class="line">double miterLimit = 0;</span><br><span class="line">double dashOffset = 0;</span><br><span class="line">List&lt;Double&gt; dashArray = null;</span><br><span class="line"></span><br><span class="line">BorderStrokeStyle borderStrokeStyle =</span><br><span class="line">       new BorderStrokeStyle(</span><br><span class="line">            strokeType,</span><br><span class="line">            strokeLineJoin,</span><br><span class="line">            strokeLineCap,</span><br><span class="line">            miterLimit,</span><br><span class="line">            dashOffset,</span><br><span class="line">            dashArray</span><br><span class="line">       );</span><br><span class="line">       </span><br><span class="line">BorderStroke borderStroke =</span><br><span class="line">          new BorderStroke(</span><br><span class="line">             Color.valueOf(&quot;08ff80&quot;),</span><br><span class="line">             borderStrokeStyle,</span><br><span class="line">             new CornerRadii(0),</span><br><span class="line">             new BorderWidths(8)</span><br><span class="line">          );</span><br><span class="line">Border border = new Border(borderStroke);</span><br><span class="line"></span><br><span class="line">pane.setBorder(border);</span><br><span class="line">       </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="setBackground"><a href="#setBackground" class="headerlink" title="setBackground"></a>setBackground</h3><p>我们可以使用Backgound类为Region及其子类设置背景，设置背景填充或者背景图片。</p>
+<p>设置背景填充：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Pane pane = new Pane();</span><br><span class="line"></span><br><span class="line">BackgroundFill backgroundFill = </span><br><span class="line">          new BackgroundFill(</span><br><span class="line">            Color.valueOf(&quot;#ff00ff&quot;),</span><br><span class="line">            new CornerRadii(10),</span><br><span class="line">            new Insets(10)</span><br><span class="line">          )</span><br><span class="line">          </span><br><span class="line">Background background = </span><br><span class="line">          new Background(backgroundFill);</span><br><span class="line">          </span><br><span class="line">pane.setBackground(background);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>BackgroundFill 构造函数中的CornerRadii实例用于设置背景填充角的半径（如果需要圆角）。如果不需要可以把 拐角半径 设置为0； Insets实例用于设置Region边缘和背景填充之间的内部填充；</p>
+<p>设置背景图片：</p>
+<p>我们也可以使用图片作为Region及其子类的背景</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Pane pane = new Pane();</span><br><span class="line"></span><br><span class="line">String filePath = &quot;data/background.jpg&quot;;</span><br><span class="line">Image image = null;</span><br><span class="line">try&#123;</span><br><span class="line"> image = new Image(new FileInputStream(filePath));</span><br><span class="line">&#125;catch(FileNotFoundException e)&#123;</span><br><span class="line">  e.printStackTeace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BackgroundImage backgroundimage = </span><br><span class="line">         new BackgroundImage(</span><br><span class="line">            image,</span><br><span class="line">            BackgroundRepeat.NO_REPEAT,//repeat x</span><br><span class="line">            BackgroundRepeat.NO_REPEAT,//repeat Y</span><br><span class="line">            BackgroundPosition.CENTER,//position</span><br><span class="line">            new BackgroundSize(</span><br><span class="line">                 100,// width = 100%</span><br><span class="line">                 100,// height = 100%</span><br><span class="line">                 true,//width 是百分比</span><br><span class="line">                 true,//height是百分比</span><br><span class="line">                 true,//范围内包含图片</span><br><span class="line">                 true,//覆盖所有内容区域（content Area）--上面讲的区域</span><br><span class="line">            )</span><br><span class="line">         </span><br><span class="line">         )</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javafx</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/16/javafx_region/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-为什么要使用设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/16/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">为什么使用设计模式</a>
+    </h1>
+  
+
+        
+        <a href="/2021/12/16/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2021-12-16T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>设计模式是软件工程开发的基石，它可以帮助我们最大化地复用代码，减少代码冗余，使代码变得更有层次感，更容易被开发人员理解，也保证了代码的质量和可靠性。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">java设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/16/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-什么是设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/16/%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">什么是设计模式</a>
+    </h1>
+  
+
+        
+        <a href="/2021/12/16/%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2021-12-16T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>设计模式（Design pattern）是经验丰富的前人经过相当长的一段时间沉淀出来的一套代码编写和设计的最佳实践总结。</p>
+<p>设计模式就像工人们盖房子，如果有一套成熟的建造模式，工人们只要按那个模式盖就好了，能保证整体质量和可靠性。如果每个工人都按自己的思路盖，那盖出来的房子十有八九是七扭八歪的。开发人员开发软件也是如此。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">java设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/16/%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-总共有多少种设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/16/%E6%80%BB%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">总共有多少种设计模式</a>
+    </h1>
+  
+
+        
+        <a href="/2021/12/16/%E6%80%BB%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2021-12-16T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1995年，GOF（Gang of four ，四人帮）合作出版了《设计模式：可复用面向对象软件的基础》一书，书中共收录了23中设计模式，所以公认的权威的设计模式有23种。</p>
+<p><img src="https://s2.loli.net/2021/12/16/jRfkGS3O57JoYBw.png" alt="image.png"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">java设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/16/%E6%80%BB%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java方法命名规范" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -202,161 +540,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/12/11/java%E6%96%B9%E6%B3%95%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java标识符命名规则" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/java%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99/">java标识符命名规则</a>
-    </h1>
-  
-
-        
-        <a href="/2021/12/11/java%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、标识符只能由字母（a-z,A-Z）、数字（0-9）、下划线（_）和美元符合（$）组成。</p>
-<p>2、标识符不能以数字开头</p>
-<p>3、标识符不能使用Java关键字</p>
-<p>4、标识符区分大小写</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/java%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java类命名规范" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">java类命名规范</a>
-    </h1>
-  
-
-        
-        <a href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##类命名规范</p>
-<p>类名首字母大写，后面每个单词首字母大写，符合UpperCamelCase大驼峰式风格，比如：</p>
-<p>· Order</p>
-<p>· OrderDetail</p>
-<p>但是一般这样的缩写例外:DO、VO、DTO等</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">展开全文 >></a>
         </p>
       
 
@@ -467,6 +650,83 @@
 
 
   
+    <article id="post-java标识符命名规则" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/11/java%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99/">java标识符命名规则</a>
+    </h1>
+  
+
+        
+        <a href="/2021/12/11/java%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99/" class="archive-article-date">
+  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、标识符只能由字母（a-z,A-Z）、数字（0-9）、下划线（_）和美元符合（$）组成。</p>
+<p>2、标识符不能以数字开头</p>
+<p>3、标识符不能使用Java关键字</p>
+<p>4、标识符区分大小写</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/11/java%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-jdk与jre的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -545,19 +805,19 @@
 
 
   
-    <article id="post-什么是设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java类命名规范" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">什么是设计模式</a>
+      <a class="article-title" href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">java类命名规范</a>
     </h1>
   
 
         
-        <a href="/2021/12/11/%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+        <a href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" class="archive-article-date">
   	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
 </a>
         
@@ -565,8 +825,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>设计模式（Design pattern）是经验丰富的前人经过相当长的一段时间沉淀出来的一套代码编写和设计的最佳实践总结。</p>
-<p>设计模式就像工人们盖房子，如果有一套成熟的建造模式，工人们只要按那个模式盖就好了，能保证整体质量和可靠性。如果每个工人都按自己的思路盖，那盖出来的房子十有八九是七扭八歪的。开发人员开发软件也是如此。</p>
+        <p>##类命名规范</p>
+<p>类名首字母大写，后面每个单词首字母大写，符合UpperCamelCase大驼峰式风格，比如：</p>
+<p>· Order</p>
+<p>· OrderDetail</p>
+<p>但是一般这样的缩写例外:DO、VO、DTO等</p>
 
       
 
@@ -580,7 +843,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">java设计模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
         		</li>
       		
 		</ul>
@@ -590,81 +853,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-为什么要使用设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">为什么使用设计模式</a>
-    </h1>
-  
-
-        
-        <a href="/2021/12/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>设计模式是软件工程开发的基石，它可以帮助我们最大化地复用代码，减少代码冗余，使代码变得更有层次感，更容易被开发人员理解，也保证了代码的质量和可靠性。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">java设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">展开全文 >></a>
         </p>
       
 
@@ -772,156 +961,10 @@
 
 
   
-    <article id="post-总共有多少种设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/%E6%80%BB%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">总共有多少种设计模式</a>
-    </h1>
-  
-
-        
-        <a href="/2021/12/11/%E6%80%BB%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1995年，GOF（Gang of four ，四人帮）合作出版了《设计模式：可复用面向对象软件的基础》一书，书中共收录了23中设计模式，所以公认的权威的设计模式有23种。</p>
-<p><img src="https://s2.loli.net/2021/12/16/jRfkGS3O57JoYBw.png" alt="image.png"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">java设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/%E6%80%BB%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2021/12/11/hello-world/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:51:15.268Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -1016,6 +1059,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">javafx</a>
               </li>
              
               <li class="article-tag-list-item">
