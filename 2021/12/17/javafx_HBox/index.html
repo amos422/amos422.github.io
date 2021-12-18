@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>java方法命名规范 | ABlog</title>
+  <title>javafx - HBox | ABlog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##方法命名规范 方法名首字母小写，后面每个单词首字母大写，符合小驼峰式风格，比如： · indexOf · saveOrderInfo">
+  <meta name="description" content="（文中组件与节点意思等同） HBox（javafx.scene.layout.HBox） 是一个将所有子组件派在一个水平行上的布局组件。 你可以用无参构造构建一个hbox实例： 1HBox hbox &#x3D; new HBox();  也可以用带有组件参数的构造器构造实例： 1234Button button1 &#x3D; new Button(&quot;Button Number1&quot;);Butto">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java方法命名规范">
-<meta property="og:url" content="http://example.com/2021/12/11/java%E6%96%B9%E6%B3%95%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/index.html">
+<meta property="og:title" content="javafx - HBox">
+<meta property="og:url" content="http://example.com/2021/12/17/javafx_HBox/index.html">
 <meta property="og:site_name" content="ABlog">
-<meta property="og:description" content="##方法命名规范 方法名首字母小写，后面每个单词首字母大写，符合小驼峰式风格，比如： · indexOf · saveOrderInfo">
+<meta property="og:description" content="（文中组件与节点意思等同） HBox（javafx.scene.layout.HBox） 是一个将所有子组件派在一个水平行上的布局组件。 你可以用无参构造构建一个hbox实例： 1HBox hbox &#x3D; new HBox();  也可以用带有组件参数的构造器构造实例： 1234Button button1 &#x3D; new Button(&quot;Button Number1&quot;);Butto">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-12-11T15:58:56.000Z">
-<meta property="article:modified_time" content="2021-12-13T03:44:57.961Z">
+<meta property="og:image" content="https://s2.loli.net/2021/12/18/C13roecmdZNPhJi.png">
+<meta property="article:published_time" content="2021-12-17T15:58:56.000Z">
+<meta property="article:modified_time" content="2021-12-18T08:20:49.103Z">
 <meta property="article:author" content="Amos">
-<meta property="article:tag" content="java基础">
+<meta property="article:tag" content="javafx">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2021/12/18/C13roecmdZNPhJi.png">
   
     <link rel="alternative" href="/atom.xml" title="ABlog" type="application/atom+xml">
   
@@ -155,30 +157,173 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-java方法命名规范" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-javafx_HBox" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java方法命名规范
+      javafx - HBox
     </h1>
   
 
         
-        <a href="/2021/12/11/java%E6%96%B9%E6%B3%95%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
+        <a href="/2021/12/17/javafx_HBox/" class="archive-article-date">
+  	<time datetime="2021-12-17T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##方法命名规范</p>
-<p>方法名首字母小写，后面每个单词首字母大写，符合小驼峰式风格，比如：</p>
-<p>· indexOf</p>
-<p>· saveOrderInfo</p>
+        <p>（文中组件与节点意思等同）</p>
+<p>HBox（javafx.scene.layout.HBox） 是一个将所有子组件派在一个水平行上的布局组件。</p>
+<p>你可以用无参构造构建一个hbox实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HBox hbox = new HBox();</span><br></pre></td></tr></table></figure>
+
+<p>也可以用带有组件参数的构造器构造实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Button button1 = new Button(&quot;Button Number1&quot;);</span><br><span class="line">Button button2 = new Button(&quot;Button Number2&quot;);</span><br><span class="line"></span><br><span class="line">HBox hbox = new HBox(button1,button2);</span><br></pre></td></tr></table></figure>
+
+<p>hbox会将两个按钮实例布局到一个水平上。</p>
+<p>把HBox放入场景中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">package com.amos.javafx.layouts;</span><br><span class="line"></span><br><span class="line">import javafx.application.Application;</span><br><span class="line">import javafx.scene.Scene;</span><br><span class="line">import javafx.scene.control.Button;</span><br><span class="line">import javafx.scene.layout.HBox;</span><br><span class="line">import javafx.stage.Stage;</span><br><span class="line"></span><br><span class="line">public class HBoxExperiment extends Application&#123;</span><br><span class="line"> public static void main(String[] args)&#123;</span><br><span class="line">   Application.launch(args);</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> @Override</span><br><span class="line"> public void start(Stage primaryStage) throws Exception&#123;</span><br><span class="line">   primaryStage.setTitle(&quot;HBox Experiment;</span><br><span class="line">   </span><br><span class="line">   Button button1 = new Button(&quot;Button Number1&quot;);</span><br><span class="line">   Button button2 = new Button(&quot;Button Number2&quot;);</span><br><span class="line"> </span><br><span class="line">   HBox hbox = new HBox(button1,button2);</span><br><span class="line">   </span><br><span class="line">   Scene scene = new Scene(hbox,200,100);</span><br><span class="line">   primaryStage.setScene(scene);</span><br><span class="line">   primaryStage.show();</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行以上代码会出现下面的应用场景：</p>
+<p><img src="https://s2.loli.net/2021/12/18/C13roecmdZNPhJi.png" alt="image.png"></p>
+<p>注意两个按钮始终保持在一个水平行上，即使没有足够宽的空间给它们展示自己，它们不会折到下一行。</p>
+<h3 id="子节点间隔"><a href="#子节点间隔" class="headerlink" title="子节点间隔"></a>子节点间隔</h3><p>我们可以通过有间隔参数的构造函数创建一个有间隔的HBox:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HBox hbox = new HBox(20,button1,button2);</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码在两个按钮之间添加了20像素的间隔。</p>
+<p>也可以通过实例方法添加间隔：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hbox.setSpacing(20);</span><br></pre></td></tr></table></figure>
+
+<p>上面两句代码效果等同；</p>
+<h3 id="子节点边距"><a href="#子节点边距" class="headerlink" title="子节点边距"></a>子节点边距</h3><p>你可以通过HBOX的静态方法 setMargin() 设置任意一个子节点的边距：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Button button1 = new Button(&quot;Button 1&quot;);</span><br><span class="line"></span><br><span class="line">HBox hbox = new HBox(button1);</span><br><span class="line"></span><br><span class="line">HBox.setMargin(button1,new Insets(10,10,10,10));</span><br></pre></td></tr></table></figure>
+
+<p>上面的实例将HBox内的按钮button1周围的边距设置为每侧10像素。</p>
+<h3 id="子节点对齐"><a href="#子节点对齐" class="headerlink" title="子节点对齐"></a>子节点对齐</h3><p>由于HBox是一个容器组件，这意味着它可以容纳其他的javafx 组件，你可以通过setAlignment() 指定HBox如何对齐其包含的组件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hbox.setAlignment(Pos.BASELINE_CENTER);</span><br></pre></td></tr></table></figure>
+
+<p>上面实例中hbox会把子节点按基线（水平方向） 布局在中间；</p>
+<p>javafx HBox 与javafx VBox 都有以下位置枚举：</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">垂直</th>
+<th align="left">水平</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Pos.BASELINE_LEFT</td>
+<td align="left">Baseline</td>
+<td align="left">Left</td>
+</tr>
+<tr>
+<td align="center">Pos.BASELINE_CENTER</td>
+<td align="left">Baseline</td>
+<td align="left">Center</td>
+</tr>
+<tr>
+<td align="center">Pos.BASELINE_RIGHT</td>
+<td align="left">Baseline</td>
+<td align="left">Right</td>
+</tr>
+<tr>
+<td align="center">Pos.BOTTOM_LEFT</td>
+<td align="left">Bottom</td>
+<td align="left">Left</td>
+</tr>
+<tr>
+<td align="center">Pos.BOTTOM_CENTER</td>
+<td align="left">Bottom</td>
+<td align="left">Center</td>
+</tr>
+<tr>
+<td align="center">Pos.BOTTOM_RIGHT</td>
+<td align="left">Bottom</td>
+<td align="left">Right</td>
+</tr>
+<tr>
+<td align="center">Pos.CENTER_LEFT</td>
+<td align="left">Center</td>
+<td align="left">Left</td>
+</tr>
+<tr>
+<td align="center">Pos.CENTER</td>
+<td align="left">Center</td>
+<td align="left">Center</td>
+</tr>
+<tr>
+<td align="center">Pos.CENTER_RIGHT</td>
+<td align="left">Center</td>
+<td align="left">Right</td>
+</tr>
+<tr>
+<td align="center">Pos.TOP_LEFT</td>
+<td align="left">Top</td>
+<td align="left">Left</td>
+</tr>
+<tr>
+<td align="center">Pos.TOP_CENTER</td>
+<td align="left">Top</td>
+<td align="left">Center</td>
+</tr>
+<tr>
+<td align="center">Pos.TOP_RIGHT</td>
+<td align="left">Top</td>
+<td align="left">Right</td>
+</tr>
+</tbody></table>
+<h3 id="子节点横向增长"><a href="#子节点横向增长" class="headerlink" title="子节点横向增长"></a>子节点横向增长</h3><p>您可以指定HBox的子节点是否应水平增长以填充HBox内的任何可用空间。您可以通过HBox setHgrow（）静态方法执行此操作。必须指定为哪个子节点设置规则。可以通过将子节点作为参数传递给setHgrow（）来实现。您还必须将水平扩展策略作为参数传递给setHgrow（）。下面是一个示例，告诉您，如果HBox内部有可用空间，则子按钮将水平展开：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Button button1   = new Button(&quot;Button 1&quot;);</span><br><span class="line"></span><br><span class="line">HBox hbox = new HBox(button1);</span><br><span class="line"></span><br><span class="line">HBox.setHgrow(button1, Priority.ALWAYS);</span><br></pre></td></tr></table></figure>
+
+<p>增长策略总共有三种：Priority.ALWAYS、Priority.SOMETIMES、Priority.NAVER</p>
+<p>请记住，如果HBox的宽度大于其子项的首选宽度之和，则HBox将只有额外的水平空间可用。</p>
+<h3 id="HBox首选高度"><a href="#HBox首选高度" class="headerlink" title="HBox首选高度"></a>HBox首选高度</h3><p>HBox的默认首选高度设置为与其任何子节点的最大首选高度相同的值。</p>
+<h3 id="填充高度"><a href="#填充高度" class="headerlink" title="填充高度"></a>填充高度</h3><p>JavaFX HBox fillHeight属性可用于告知HBox控件是否应扩展其子项的高度以填充HBox的整个高度，或将其子项保持在其首选高度。</p>
+<p>fillHeight特性仅影响实际可以更改高度的子零部件。例如，默认情况下，按钮不会更改其高度。它的最大高度设置为其首选高度。但是，您可以通过将按钮或要嵌套在HBox内的任何其他组件的最大高度设置为与其首选值不同的值来覆盖该值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Button button1   = new Button(&quot;Button 1&quot;);</span><br><span class="line">button1.setMaxHeight(99999.0D); //或者设置 Double.MAX_VALUE;</span><br><span class="line"></span><br><span class="line">HBox hbox = new HBox(button1);</span><br><span class="line"></span><br><span class="line">hbox.setFillHeight(true);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       
 
@@ -213,7 +358,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javafx</a>
         		</li>
       		
 		</ul>
@@ -269,7 +414,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/12/11/java%E6%96%B9%E6%B3%95%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/12/17/javafx_HBox/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -283,18 +428,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/12/16/%E6%80%BB%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/12/18/javafx_Separator/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          总共有多少种设计模式
+          javafx - Separator
         
       </div>
     </a>
   
   
-    <a href="/2021/12/11/java%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java标识符命名规则</div>
+    <a href="/2021/12/17/javafx_pane/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javafx - Pane</div>
       <i class="icon-circle-right"></i>
     </a>
   
