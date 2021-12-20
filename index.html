@@ -339,6 +339,109 @@
 
 
   
+    <article id="post-javafx_pane" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/17/javafx_pane/">javafx - Pane</a>
+    </h1>
+  
+
+        
+         
+
+
+<a href="/2021/12/17/javafx_pane/" class="archive-article-date">
+  	<time datetime="2021-12-17T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Pane类是一个可以容纳其他javafx组件的布局容器，实际上Pane并没有提供任何布局算法，它只是简单地把组件展示在它们想要被展示的位置，换句话说Pane使用子组件的 layoutX 和 layoutY  来决定在哪里展示这些子组件。</p>
+<p>Pane类，javafx.scene.layout.Pane，是Region的一个子类，所以它继承了Region所有的功能，如borders,padding,background 设置等等。</p>
+<h4 id="使用无参构造创建Pane并添加项进去："><a href="#使用无参构造创建Pane并添加项进去：" class="headerlink" title="使用无参构造创建Pane并添加项进去："></a>使用无参构造创建Pane并添加项进去：</h4><p>我们可以通过getChildren（） 获取 Pane的子项列表，并将这些项添加到列表中，以下是向pane列表添加Label项的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Pane pane = new Pane();</span><br><span class="line"></span><br><span class="line">pane.getChildren().add(new Label(&quot;hello pane&quot;));</span><br></pre></td></tr></table></figure>
+
+<p>如果重复执行第二句代码，那我们会添加多个Label项到Pane中，但需要注意的是，除非你修改了Label的layoutX 或layoutY 属性，否则这些Label项将会重叠在坐标的同一个点上，以至于看起来只有一个Lable项，实则不然。</p>
+<p>最后想要把pane（窗格）展示出来需要把pane 作为根节点 传递给Scene，并将Scene传递给Stage：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import javafx.application.Application;</span><br><span class="line">import javafx.scene.Scene;</span><br><span class="line">import javafx.scene.control.Lable;</span><br><span class="line">import javafx.scene.layout.Pane;</span><br><span class="line">import javafx.stage.Stage;</span><br><span class="line"></span><br><span class="line">public class PaneExample extends Application&#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">        launch(args);</span><br><span class="line">  &#125;</span><br><span class="line">  public void start(Stage primaryStage)&#123;</span><br><span class="line">    Pane pane = new Pane();</span><br><span class="line">    pane.getChildren().add(new Label(&quot;Hello pane&quot;));</span><br><span class="line">    Scene scene = new Scene(pane);</span><br><span class="line">    primaryStage.setScene(scene);</span><br><span class="line">    primaryStage.show();</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javafx</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/17/javafx_pane/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-javafx_HBox" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -533,109 +636,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/12/17/javafx_HBox/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-javafx_pane" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/17/javafx_pane/">javafx - Pane</a>
-    </h1>
-  
-
-        
-         
-
-
-<a href="/2021/12/17/javafx_pane/" class="archive-article-date">
-  	<time datetime="2021-12-17T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Pane类是一个可以容纳其他javafx组件的布局容器，实际上Pane并没有提供任何布局算法，它只是简单地把组件展示在它们想要被展示的位置，换句话说Pane使用子组件的 layoutX 和 layoutY  来决定在哪里展示这些子组件。</p>
-<p>Pane类，javafx.scene.layout.Pane，是Region的一个子类，所以它继承了Region所有的功能，如borders,padding,background 设置等等。</p>
-<h4 id="使用无参构造创建Pane并添加项进去："><a href="#使用无参构造创建Pane并添加项进去：" class="headerlink" title="使用无参构造创建Pane并添加项进去："></a>使用无参构造创建Pane并添加项进去：</h4><p>我们可以通过getChildren（） 获取 Pane的子项列表，并将这些项添加到列表中，以下是向pane列表添加Label项的示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Pane pane = new Pane();</span><br><span class="line"></span><br><span class="line">pane.getChildren().add(new Label(&quot;hello pane&quot;));</span><br></pre></td></tr></table></figure>
-
-<p>如果重复执行第二句代码，那我们会添加多个Label项到Pane中，但需要注意的是，除非你修改了Label的layoutX 或layoutY 属性，否则这些Label项将会重叠在坐标的同一个点上，以至于看起来只有一个Lable项，实则不然。</p>
-<p>最后想要把pane（窗格）展示出来需要把pane 作为根节点 传递给Scene，并将Scene传递给Stage：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import javafx.application.Application;</span><br><span class="line">import javafx.scene.Scene;</span><br><span class="line">import javafx.scene.control.Lable;</span><br><span class="line">import javafx.scene.layout.Pane;</span><br><span class="line">import javafx.stage.Stage;</span><br><span class="line"></span><br><span class="line">public class PaneExample extends Application&#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">        launch(args);</span><br><span class="line">  &#125;</span><br><span class="line">  public void start(Stage primaryStage)&#123;</span><br><span class="line">    Pane pane = new Pane();</span><br><span class="line">    pane.getChildren().add(new Label(&quot;Hello pane&quot;));</span><br><span class="line">    Scene scene = new Scene(pane);</span><br><span class="line">    primaryStage.setScene(scene);</span><br><span class="line">    primaryStage.show();</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javafx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/17/javafx_pane/">展开全文 >></a>
         </p>
       
 
@@ -1095,14 +1095,14 @@
 
 
   
-    <article id="post-java类命名规范" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java方法命名规范" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">java类命名规范</a>
+      <a class="article-title" href="/2021/12/11/java%E6%96%B9%E6%B3%95%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">java方法命名规范</a>
     </h1>
   
 
@@ -1110,7 +1110,7 @@
          
 
 
-<a href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" class="archive-article-date">
+<a href="/2021/12/11/java%E6%96%B9%E6%B3%95%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" class="archive-article-date">
   	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
 </a>
         
@@ -1118,11 +1118,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##类命名规范</p>
-<p>类名首字母大写，后面每个单词首字母大写，符合UpperCamelCase大驼峰式风格，比如：</p>
-<p>· Order</p>
-<p>· OrderDetail</p>
-<p>但是一般这样的缩写例外:DO、VO、DTO等</p>
+        <p>##方法命名规范</p>
+<p>方法名首字母小写，后面每个单词首字母大写，符合小驼峰式风格，比如：</p>
+<p>· indexOf</p>
+<p>· saveOrderInfo</p>
 
       
 
@@ -1146,7 +1145,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/11/java%E6%96%B9%E6%B3%95%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">展开全文 >></a>
         </p>
       
 
@@ -1441,7 +1440,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 <!--动态线条背景-->
 <script type="text/javascript"
   color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
