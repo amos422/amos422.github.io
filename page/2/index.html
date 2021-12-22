@@ -155,14 +155,14 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-java类命名规范" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java反射慢在哪里" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">java类命名规范</a>
+      <a class="article-title" href="/2021/12/21/java%E5%8F%8D%E5%B0%84%E6%85%A2%E5%9C%A8%E5%93%AA%E9%87%8C/">java反射慢在哪里</a>
     </h1>
   
 
@@ -170,19 +170,17 @@
          
 
 
-<a href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
+<a href="/2021/12/21/java%E5%8F%8D%E5%B0%84%E6%85%A2%E5%9C%A8%E5%93%AA%E9%87%8C/" class="archive-article-date">
+  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##类命名规范</p>
-<p>类名首字母大写，后面每个单词首字母大写，符合UpperCamelCase大驼峰式风格，比如：</p>
-<p>· Order</p>
-<p>· OrderDetail</p>
-<p>但是一般这样的缩写例外:DO、VO、DTO等</p>
+        <p>1、反射调用涉及到检查字段、方法的可见性。</p>
+<p>2、反射调用涉及到动态加载，所以JIT编译无法优化到。</p>
+<p>3、反射调用还涉及到验证过程和参数，参数需要装箱和拆箱，还需要组装成Object[]形式、异常的包装等等问题。</p>
 
       
 
@@ -206,7 +204,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/21/java%E5%8F%8D%E5%B0%84%E6%85%A2%E5%9C%A8%E5%93%AA%E9%87%8C/">展开全文 >></a>
         </p>
       
 
@@ -236,14 +234,14 @@
 
 
   
-    <article id="post-java面向对象编程特征" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java金额计算怎么避免精度丢失" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E7%89%B9%E5%BE%81/">面向对象编程特征</a>
+      <a class="article-title" href="/2021/12/21/java%E9%87%91%E9%A2%9D%E8%AE%A1%E7%AE%97%E6%80%8E%E4%B9%88%E9%81%BF%E5%85%8D%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1/">java金额计算怎么避免精度丢失</a>
     </h1>
   
 
@@ -251,22 +249,47 @@
          
 
 
-<a href="/2021/12/11/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E7%89%B9%E5%BE%81/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
+<a href="/2021/12/21/java%E9%87%91%E9%A2%9D%E8%AE%A1%E7%AE%97%E6%80%8E%E4%B9%88%E9%81%BF%E5%85%8D%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" class="archive-article-date">
+  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##封装（Encapsulation)：</p>
-<p>封装就是指隐藏对象的属性和实现细节，控制成员属性的访问和修改权限，通过特定的方法（如get，set）暴露给外界访问。</p>
-<p>##继承（Inheritance):</p>
-<p>继承就是指子类继承父类的成员和方法，由此子类也能具有父类相同的行为。</p>
-<p>java类只能单继承。</p>
-<p>##多态（Polymorphism):</p>
-<p>多态指同一个行为具有多个不同的表现形式，一个类的方法在不同情况下有不同的表现形式。</p>
-<p>比如方法重载，同一个方法名可以有不同参数的表现形式。</p>
+        <h3 id="经典的精度丢失问题"><a href="#经典的精度丢失问题" class="headerlink" title="经典的精度丢失问题"></a>经典的精度丢失问题</h3><p>java中的类型float、double用来做计算会有精度丢失问题，看下面实例：</p>
+<img src="https://s2.loli.net/2021/12/21/zNZVyMFDiJo5SkA.png" alt="image.png" style="zoom:67%;" />
+
+<p>上面的程序输出结果是多少？</p>
+<p>0.07？不是。</p>
+<p>结果是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.06999999999999999</span><br></pre></td></tr></table></figure>
+
+<p>为什么？</p>
+<p>浮点数可能丢失精度，浮点十进制数通常没有完全相同的二进制的表示形式，这是cpu所采用的浮点数据表现形式的副作用。为此，可能会有一些精度丢失，并且一些浮点运算可能会产生未知的结果。</p>
+<p>浮点运算很少是精确地，只要是超过精度能表示的范围就会产生误差。所以在使用float、double做精确运算的时候一定要特别小心，除非能容忍精度丢失，不然产生的误差会造成双方对账不一致。</p>
+<h3 id="怎么解决"><a href="#怎么解决" class="headerlink" title="怎么解决"></a>怎么解决</h3><p>在《Effective Java》中提到这个原则:float、double只能用来做科学技术或者工程计算，在商业计算中我们要用java.math.BigDecimal.</p>
+<p>BigDecimal 适合更精确的运算，也提供了丰富的操作符类型，小数位控制，四舍五入规则等。</p>
+<p>不过使用BigDecimal不当也有精度丢失的情况，如double型参数的构造方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal(double val)</span><br></pre></td></tr></table></figure>
+
+<p>再看如下示例:</p>
+<img src="https://s2.loli.net/2021/12/21/rCMwmT8dVUsxlpG.png" alt="image.png" style="zoom: 50%;" />
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.0699999999999999962529972918900966760702431201934814453125</span><br></pre></td></tr></table></figure>
+
+<p>这个精度更烂</p>
+<p>所以一定要使用String型参数的构造方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal(String val)</span><br></pre></td></tr></table></figure>
+
+<img src="https://s2.loli.net/2021/12/21/WrAnOQj9s7iCe68.png" alt="image.png" style="zoom:50%;" />
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.07</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>1、金额运算尽量使用BigDecimal（String val）进行运算。</p>
+<p>2、数据库存储金额，一般有整形和浮点型两种存储方式。如果是有汇率转换的，建议使用浮点数decimal进行存储，可以灵活地控制精度，decimal直接对应java类型BigDecimal。当然用整数存储分这种形式也可以，转账的时候单位为元而如果忘了转换分为元，那就悲剧了。</p>
 
       
 
@@ -290,7 +313,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E7%89%B9%E5%BE%81/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/21/java%E9%87%91%E9%A2%9D%E8%AE%A1%E7%AE%97%E6%80%8E%E4%B9%88%E9%81%BF%E5%85%8D%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1/">展开全文 >></a>
         </p>
       
 
@@ -320,14 +343,14 @@
 
 
   
-    <article id="post-jdk与jre的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-main方法能不能改为非静态" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/jdk%E4%B8%8Ejre%E7%9A%84%E5%8C%BA%E5%88%AB/">jdk与jre的区别</a>
+      <a class="article-title" href="/2021/12/21/main%E6%96%B9%E6%B3%95%E8%83%BD%E4%B8%8D%E8%83%BD%E6%94%B9%E4%B8%BA%E9%9D%9E%E9%9D%99%E6%80%81/">main方法能不能改为非静态</a>
     </h1>
   
 
@@ -335,19 +358,17 @@
          
 
 
-<a href="/2021/12/11/jdk%E4%B8%8Ejre%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
+<a href="/2021/12/21/main%E6%96%B9%E6%B3%95%E8%83%BD%E4%B8%8D%E8%83%BD%E6%94%B9%E4%B8%BA%E9%9D%9E%E9%9D%99%E6%80%81/" class="archive-article-date">
+  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##JDK：</p>
-<p>全称：Java Development kit ，java开发工具包是整个java核心，包含了java运行时环境（jre）和一系列java开发工具完整的包。</p>
-<p>##JRE:</p>
-<p>全称 ：Java Runtime Enviroment ,java运行时环境，包含了JVM，java核心类库等。</p>
-<p>jre只能用来运行java应用程序，不能用于编译开发，是jdk的子集</p>
+        <p>不能改为非静态，main方法必须声明为静态的，这样JVM才可以调用main方法而无需实例化它的类。</p>
+<p>如果从main方法去掉 static 声明，虽然依然可以编译成功，但在运行时会导致程序失败。</p>
+<p>在实例化时还得调用类的构造函数，如果这个类的构造函数有参数，那么届时会出现歧义。</p>
 
       
 
@@ -371,7 +392,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/jdk%E4%B8%8Ejre%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/21/main%E6%96%B9%E6%B3%95%E8%83%BD%E4%B8%8D%E8%83%BD%E6%94%B9%E4%B8%BA%E9%9D%9E%E9%9D%99%E6%80%81/">展开全文 >></a>
         </p>
       
 
@@ -401,14 +422,14 @@
 
 
   
-    <article id="post-如何编译和运行java文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-一些小的问答点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/%E5%A6%82%E4%BD%95%E7%BC%96%E8%AF%91%E5%92%8C%E8%BF%90%E8%A1%8Cjava%E6%96%87%E4%BB%B6/">如何编译和运行java文件</a>
+      <a class="article-title" href="/2021/12/21/%E4%B8%80%E4%BA%9B%E5%B0%8F%E7%9A%84%E9%97%AE%E7%AD%94%E7%82%B9/">一些小的问答点</a>
     </h1>
   
 
@@ -416,19 +437,41 @@
          
 
 
-<a href="/2021/12/11/%E5%A6%82%E4%BD%95%E7%BC%96%E8%AF%91%E5%92%8C%E8%BF%90%E8%A1%8Cjava%E6%96%87%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
+<a href="/2021/12/21/%E4%B8%80%E4%BA%9B%E5%B0%8F%E7%9A%84%E9%97%AE%E7%AD%94%E7%82%B9/" class="archive-article-date">
+  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##使用javac 命令 来编译 .java 文件  </p>
-<p>javac Test.java</p>
-<p>运行后生成Test.class  文件</p>
-<p>##使用java 命令来运行:</p>
-<p>java Test</p>
+        <p>问：Math.round(-1.5)等于多少？</p>
+<p>答：-1</p>
+<p>问: short s1 = 1; s1 = s1 + 1;有错吗？</p>
+<p>答: 有错。第二句的1是int类型，s1+1运算结果也是int类型，所以需要强制转换类型才能赋值给short类型</p>
+<p>s1 =(short) s1 + 1</p>
+<p>问：java中一个字符占几个字节？</p>
+<p>答：2个。</p>
+<img src="https://s2.loli.net/2021/12/21/c63j2sIlkPKJMeH.png" alt="image.png" style="zoom:50%;" />
+
+<p>问：java支持多继承吗？</p>
+<p>答：类直接只能单继承，接口之间可以多继承。</p>
+<p>问：函数式接口用什么注解修饰？</p>
+<p>答：@FunctionalInterface</p>
+<p>问：怎么向main方法传递参数？</p>
+<p>答：通过String[]数组</p>
+<p>问：怎么初始化数组？</p>
+<p>答：1、int[] arr = new int[5];      int[] [] arr = new int[3] [4];2、 int[] arr ={1,2,3,4,5};</p>
+<p>问：可以获取java对象的原始hashcode值的方法是？</p>
+<p>答：identityHashCode</p>
+<p>问：什么时候可以用 + 拼接字符串？</p>
+<p>答：1、在循环和多个表达式中不能 + ，频繁创建StringBuilder会影响性能；2、在单个表达式中可以用 + ，编译器做了优化；</p>
+<p>问：java可以一次catch多个异常吗？</p>
+<p>答：java7开始可以一次catch多个异常，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line"></span><br><span class="line">&#125;catch(IllegalArgumentException | SecurityException | IllegalAccessException | NoSuchFieldException ex)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>问：java到底是值传递还是引用传递？</p>
+<p>答：java中方法参数严格来说是按值传递的。如果参数是基本类型：传递的是基本类型的字面量值的拷贝。如果参数是引用类型：传递的是该参量所引用的对象在堆中地址值的拷贝。</p>
 
       
 
@@ -452,7 +495,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/%E5%A6%82%E4%BD%95%E7%BC%96%E8%AF%91%E5%92%8C%E8%BF%90%E8%A1%8Cjava%E6%96%87%E4%BB%B6/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/21/%E4%B8%80%E4%BA%9B%E5%B0%8F%E7%9A%84%E9%97%AE%E7%AD%94%E7%82%B9/">展开全文 >></a>
         </p>
       
 
@@ -482,14 +525,14 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-静态变量和实例变量有什么区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/hello-world/">Hello World</a>
+      <a class="article-title" href="/2021/12/21/%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">静态变量和实例变量有什么区别</a>
     </h1>
   
 
@@ -497,27 +540,16 @@
          
 
 
-<a href="/2021/12/11/hello-world/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:51:15.268Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
+<a href="/2021/12/21/%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <p><strong>静态变量</strong>，即被static修饰的变量，它属于类，但不属于类的任何一个对象，一个类不管创建多少个对象，静态变量在内存中有且仅有一个拷贝，静态变量可以实现让多个对象共享内存。</p>
+<p><strong>实例变量</strong>，它属于某一对象实例，需要通过一个类的对象实例才能访问它。</p>
 
       
 
@@ -526,11 +558,632 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/21/%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-重载和重写有什么区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/21/%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">重载和重写有什么区别</a>
+    </h1>
+  
+
+        
+         
+
+
+<a href="/2021/12/21/%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>重载(Overload):</p>
+<p>在一个类中，具有相同的方法名，但是方法的参数不同，返回值类型可以相同也可以不同。被称为重载。</p>
+<ul>
+<li>被重载的方法必须改变参数列表（参数个数或类型不同）；</li>
+<li>被重载的方法可以改变返回类型；</li>
+<li>被重载的方法可以改变访问修饰符；</li>
+<li>被重载的方法可以声明新的或更广的检查异常；</li>
+<li>方法能够在同一个类中或者在一个子类中被重载；</li>
+<li>无法以返回值类型作为重载函数的区分标准；</li>
+</ul>
+<p>重写（override）：</p>
+<p>一般都是表示子类和父类之间的关系，其主要的特征是：方法名相同，参数相同，但是具体的实现不同；</p>
+<ul>
+<li>参数列表与被重写方法的参数列表必须完全相同；</li>
+<li>返回类型与被重写方法的返回类型可以不相同，但是必须是父类返回值的派生类（java5及之前需要返回类型一样，java7及更高版本可以不同）；</li>
+<li>访问权限不能比父类中被重写的方法的访问权限更低。如：如果父类的一个方法被修饰为public，那子类中重写该方法就不能声明为protected；</li>
+<li>父类的成员方法只能被他的子类重写；</li>
+<li>声明为static的方法不能被重写，但是能够被再次声明；</li>
+<li>子类和父类在同一个包中，子类可以重写除声明为private和final的所有方法；</li>
+<li>子类和父类不在同一个包中，子类只能重写父类的声明为public和protected的非final方法；</li>
+<li>重写的方法能够抛出任何非强制异常，无论被重写的方法是否抛出异常。但是，重写的方法不能抛出新的强制性异常，或者比被重写方法声明的更广泛的强制性异常，反之则可以；</li>
+<li>构造方法不能被重写；</li>
+<li>如果不能继承一个类，则不能重写该类的方法；</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/21/%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-javafx_FlowPane" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/18/javafx_FlowPane/">javafx - FlowPane</a>
+    </h1>
+  
+
+        
+         
+
+
+<a href="/2021/12/18/javafx_FlowPane/" class="archive-article-date">
+  	<time datetime="2021-12-18T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>FlowPane(流动窗体)</p>
+<p>FlowPane是一个布局组件，它可以垂直或水平地布局其子组件，如果一行中没有足够的空间，它可以将组件包装到下一行或下一列；</p>
+<h3 id="创建流动窗体并将按钮放入其中："><a href="#创建流动窗体并将按钮放入其中：" class="headerlink" title="创建流动窗体并将按钮放入其中："></a>创建流动窗体并将按钮放入其中：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Button button1 = new Button(&quot;Buttoon Number 1&quot;);</span><br><span class="line">Button button2 = new Button(&quot;Buttoon Number 2&quot;);</span><br><span class="line">Button button3 = new Button(&quot;Buttoon Number 3&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">FlowPane flowpane = new FlowPane();</span><br><span class="line"></span><br><span class="line">flowpane.getChildren().add(button1);</span><br><span class="line">flowpane.getChildren().add(button2);</span><br><span class="line">flowpane.getChildren().add(button3);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="完整实例："><a href="#完整实例：" class="headerlink" title="完整实例："></a>完整实例：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">package com.amos.javafx.layouts;</span><br><span class="line"></span><br><span class="line">import javafx.application.Application;</span><br><span class="line">import javafx.geometry.Orientation;</span><br><span class="line">import javafx.scene.Scene;</span><br><span class="line">import javafx.scene.control.Button;</span><br><span class="line">import javafx.scene.layout.FlowPane;</span><br><span class="line">import javafx.stage.Stage;</span><br><span class="line"></span><br><span class="line">public class FlowPaneExample extends Application&#123;</span><br><span class="line">  public static main(String[] args)&#123;</span><br><span class="line">    launch(args);</span><br><span class="line">  &#125;</span><br><span class="line">  @Override</span><br><span class="line">  public void start(Stage primaryStage) throws Exception&#123;</span><br><span class="line">     Button button1 = new Button(&quot;Buttoon Number 1&quot;);</span><br><span class="line">     Button button2 = new Button(&quot;Buttoon Number 2&quot;);</span><br><span class="line">     Button button3 = new Button(&quot;Buttoon Number 3&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     FlowPane flowpane = new FlowPane();</span><br><span class="line"></span><br><span class="line">     flowpane.getChildren().add(button1);</span><br><span class="line">     flowpane.getChildren().add(button2);</span><br><span class="line">     flowpane.getChildren().add(button3);</span><br><span class="line">     </span><br><span class="line">     Scene scene = new Scene(flowpane,200,100);</span><br><span class="line">     primaryStage.setScene(scene);</span><br><span class="line">     primaryStage.show();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上代码运行结果如下：</p>
+<img src="https://s2.loli.net/2021/12/18/xCRTAUXWO6fJyQL.png" alt="image.png" style="zoom: 67%;" />
+
+<p>注意当第一行的宽度容不下三个按钮时，第三个按钮折到了第二行。</p>
+<h3 id="水平与垂直间隔"><a href="#水平与垂直间隔" class="headerlink" title="水平与垂直间隔"></a>水平与垂直间隔</h3><p>您可以在流动窗体中通过setHgap()和setVgap() 方法设置两个组件之间的间隔：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flowpane.setHgap(10);</span><br><span class="line">flowpane.setVgap(10);</span><br></pre></td></tr></table></figure>
+
+<p>代码中如果有以上两句那宽度不够时运行结果会是如下：</p>
+<img src="https://s2.loli.net/2021/12/18/izf75UERFXbCayx.png" alt="image.png" style="zoom:67%;" />
+
+
+
+
+
+<h3 id="Orientation（方向）"><a href="#Orientation（方向）" class="headerlink" title="Orientation（方向）"></a>Orientation（方向）</h3><p>流动窗体默认水平方向布局，当没有足够的宽度展示其子组件时，子组件会自动折行到第二行。但是我们也可以通过setOrientation()方法强制让流动窗体垂直布局：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flowpane.setOrientation(Orientation.VERTICAL);</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javafx</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/18/javafx_FlowPane/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-javafx_Separator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/18/javafx_Separator/">javafx - Separator</a>
+    </h1>
+  
+
+        
+         
+
+
+<a href="/2021/12/18/javafx_Separator/" class="archive-article-date">
+  	<time datetime="2021-12-18T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Separator-可视化分隔符"><a href="#Separator-可视化分隔符" class="headerlink" title="Separator  可视化分隔符"></a>Separator  可视化分隔符</h3><p>这个组件显示组件之间的可视化分隔符，比如VBox中的控件之间的分隔符：</p>
+<p><img src="https://s2.loli.net/2021/12/18/8uUDIiXaSbtckTO.png" alt="image.png"></p>
+<p>代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import javafx.application.Application;</span><br><span class="line">import javafx.geometry.Orientation;</span><br><span class="line">import javafx.secene.Scene;</span><br><span class="line">import javafx.scene.control.Label;</span><br><span class="line">import javafx.scene.control.Separator;</span><br><span class="line">import javafx.scene.layout.VBox;</span><br><span class="line">import javafx.stage.Stage;</span><br><span class="line"></span><br><span class="line">public class SeparatorExample extends Application&#123;</span><br><span class="line">   public static void main(String[] args)&#123;</span><br><span class="line">      launch(args);</span><br><span class="line">   &#125;</span><br><span class="line">   public void start(Stage primaryStage)&#123;</span><br><span class="line">     Label label1 = new Label(&quot;Component 1&quot;);</span><br><span class="line">     Label label2 = new Label(&quot;Component 2&quot;);</span><br><span class="line">     </span><br><span class="line">     Separator separator = new Separator(Orientation.HORIZONTAL);</span><br><span class="line">     </span><br><span class="line">     VBox vBox = new VBox(label1,separator,label2);</span><br><span class="line">     Scene scene = new Scene(vBox);</span><br><span class="line">     </span><br><span class="line">     primaryStage.setScene(scene);</span><br><span class="line">     primaryStage.setTitle(&quot;JavaFX App&quot;);</span><br><span class="line">   </span><br><span class="line">     primaryStage.show();</span><br><span class="line">   </span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意VBox构造方法中separator是放在第二个，这样可以正好起分隔的作用；</p>
+<h3 id="Separator-Orientation-分隔符方向"><a href="#Separator-Orientation-分隔符方向" class="headerlink" title="Separator Orientation(分隔符方向)"></a>Separator Orientation(分隔符方向)</h3><p>您可以通过给构造方法传递参数指定分隔符是垂直还是水平方向的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Separator separator = new Separator(Orientation.HORIZONTAL);</span><br><span class="line">Separator separator = new Separator(Orientation.VERTICAL);</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javafx</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/18/javafx_Separator/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-javafx_HBox" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/17/javafx_HBox/">javafx - HBox</a>
+    </h1>
+  
+
+        
+         
+
+
+<a href="/2021/12/17/javafx_HBox/" class="archive-article-date">
+  	<time datetime="2021-12-17T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>（文中组件与节点意思等同）</p>
+<p>HBox（javafx.scene.layout.HBox） 是一个将所有子组件派在一个水平行上的布局组件。</p>
+<p>你可以用无参构造构建一个hbox实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HBox hbox = new HBox();</span><br></pre></td></tr></table></figure>
+
+<p>也可以用带有组件参数的构造器构造实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Button button1 = new Button(&quot;Button Number1&quot;);</span><br><span class="line">Button button2 = new Button(&quot;Button Number2&quot;);</span><br><span class="line"></span><br><span class="line">HBox hbox = new HBox(button1,button2);</span><br></pre></td></tr></table></figure>
+
+<p>hbox会将两个按钮实例布局到一个水平上。</p>
+<p>把HBox放入场景中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">package com.amos.javafx.layouts;</span><br><span class="line"></span><br><span class="line">import javafx.application.Application;</span><br><span class="line">import javafx.scene.Scene;</span><br><span class="line">import javafx.scene.control.Button;</span><br><span class="line">import javafx.scene.layout.HBox;</span><br><span class="line">import javafx.stage.Stage;</span><br><span class="line"></span><br><span class="line">public class HBoxExperiment extends Application&#123;</span><br><span class="line"> public static void main(String[] args)&#123;</span><br><span class="line">   Application.launch(args);</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> @Override</span><br><span class="line"> public void start(Stage primaryStage) throws Exception&#123;</span><br><span class="line">   primaryStage.setTitle(&quot;HBox Experiment;</span><br><span class="line">   </span><br><span class="line">   Button button1 = new Button(&quot;Button Number1&quot;);</span><br><span class="line">   Button button2 = new Button(&quot;Button Number2&quot;);</span><br><span class="line"> </span><br><span class="line">   HBox hbox = new HBox(button1,button2);</span><br><span class="line">   </span><br><span class="line">   Scene scene = new Scene(hbox,200,100);</span><br><span class="line">   primaryStage.setScene(scene);</span><br><span class="line">   primaryStage.show();</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行以上代码会出现下面的应用场景：</p>
+<p><img src="https://s2.loli.net/2021/12/18/C13roecmdZNPhJi.png" alt="image.png"></p>
+<p>注意两个按钮始终保持在一个水平行上，即使没有足够宽的空间给它们展示自己，它们不会折到下一行。</p>
+<h3 id="子节点间隔"><a href="#子节点间隔" class="headerlink" title="子节点间隔"></a>子节点间隔</h3><p>我们可以通过有间隔参数的构造函数创建一个有间隔的HBox:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HBox hbox = new HBox(20,button1,button2);</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码在两个按钮之间添加了20像素的间隔。</p>
+<p>也可以通过实例方法添加间隔：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hbox.setSpacing(20);</span><br></pre></td></tr></table></figure>
+
+<p>上面两句代码效果等同；</p>
+<h3 id="子节点边距"><a href="#子节点边距" class="headerlink" title="子节点边距"></a>子节点边距</h3><p>你可以通过HBOX的静态方法 setMargin() 设置任意一个子节点的边距：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Button button1 = new Button(&quot;Button 1&quot;);</span><br><span class="line"></span><br><span class="line">HBox hbox = new HBox(button1);</span><br><span class="line"></span><br><span class="line">HBox.setMargin(button1,new Insets(10,10,10,10));</span><br></pre></td></tr></table></figure>
+
+<p>上面的实例将HBox内的按钮button1周围的边距设置为每侧10像素。</p>
+<h3 id="子节点对齐"><a href="#子节点对齐" class="headerlink" title="子节点对齐"></a>子节点对齐</h3><p>由于HBox是一个容器组件，这意味着它可以容纳其他的javafx 组件，你可以通过setAlignment() 指定HBox如何对齐其包含的组件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hbox.setAlignment(Pos.BASELINE_CENTER);</span><br></pre></td></tr></table></figure>
+
+<p>上面实例中hbox会把子节点按基线（水平方向） 布局在中间；</p>
+<p>javafx HBox 与javafx VBox 都有以下位置枚举：</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="left">垂直</th>
+<th align="left">水平</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Pos.BASELINE_LEFT</td>
+<td align="left">Baseline</td>
+<td align="left">Left</td>
+</tr>
+<tr>
+<td align="center">Pos.BASELINE_CENTER</td>
+<td align="left">Baseline</td>
+<td align="left">Center</td>
+</tr>
+<tr>
+<td align="center">Pos.BASELINE_RIGHT</td>
+<td align="left">Baseline</td>
+<td align="left">Right</td>
+</tr>
+<tr>
+<td align="center">Pos.BOTTOM_LEFT</td>
+<td align="left">Bottom</td>
+<td align="left">Left</td>
+</tr>
+<tr>
+<td align="center">Pos.BOTTOM_CENTER</td>
+<td align="left">Bottom</td>
+<td align="left">Center</td>
+</tr>
+<tr>
+<td align="center">Pos.BOTTOM_RIGHT</td>
+<td align="left">Bottom</td>
+<td align="left">Right</td>
+</tr>
+<tr>
+<td align="center">Pos.CENTER_LEFT</td>
+<td align="left">Center</td>
+<td align="left">Left</td>
+</tr>
+<tr>
+<td align="center">Pos.CENTER</td>
+<td align="left">Center</td>
+<td align="left">Center</td>
+</tr>
+<tr>
+<td align="center">Pos.CENTER_RIGHT</td>
+<td align="left">Center</td>
+<td align="left">Right</td>
+</tr>
+<tr>
+<td align="center">Pos.TOP_LEFT</td>
+<td align="left">Top</td>
+<td align="left">Left</td>
+</tr>
+<tr>
+<td align="center">Pos.TOP_CENTER</td>
+<td align="left">Top</td>
+<td align="left">Center</td>
+</tr>
+<tr>
+<td align="center">Pos.TOP_RIGHT</td>
+<td align="left">Top</td>
+<td align="left">Right</td>
+</tr>
+</tbody></table>
+<h3 id="子节点横向增长"><a href="#子节点横向增长" class="headerlink" title="子节点横向增长"></a>子节点横向增长</h3><p>您可以指定HBox的子节点是否应水平增长以填充HBox内的任何可用空间。您可以通过HBox setHgrow（）静态方法执行此操作。必须指定为哪个子节点设置规则。可以通过将子节点作为参数传递给setHgrow（）来实现。您还必须将水平扩展策略作为参数传递给setHgrow（）。下面是一个示例，告诉您，如果HBox内部有可用空间，则子按钮将水平展开：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Button button1   = new Button(&quot;Button 1&quot;);</span><br><span class="line"></span><br><span class="line">HBox hbox = new HBox(button1);</span><br><span class="line"></span><br><span class="line">HBox.setHgrow(button1, Priority.ALWAYS);</span><br></pre></td></tr></table></figure>
+
+<p>增长策略总共有三种：Priority.ALWAYS、Priority.SOMETIMES、Priority.NAVER</p>
+<p>请记住，如果HBox的宽度大于其子项的首选宽度之和，则HBox将只有额外的水平空间可用。</p>
+<h3 id="HBox首选高度"><a href="#HBox首选高度" class="headerlink" title="HBox首选高度"></a>HBox首选高度</h3><p>HBox的默认首选高度设置为与其任何子节点的最大首选高度相同的值。</p>
+<h3 id="填充高度"><a href="#填充高度" class="headerlink" title="填充高度"></a>填充高度</h3><p>JavaFX HBox fillHeight属性可用于告知HBox控件是否应扩展其子项的高度以填充HBox的整个高度，或将其子项保持在其首选高度。</p>
+<p>fillHeight特性仅影响实际可以更改高度的子零部件。例如，默认情况下，按钮不会更改其高度。它的最大高度设置为其首选高度。但是，您可以通过将按钮或要嵌套在HBox内的任何其他组件的最大高度设置为与其首选值不同的值来覆盖该值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Button button1   = new Button(&quot;Button 1&quot;);</span><br><span class="line">button1.setMaxHeight(99999.0D); //或者设置 Double.MAX_VALUE;</span><br><span class="line"></span><br><span class="line">HBox hbox = new HBox(button1);</span><br><span class="line"></span><br><span class="line">hbox.setFillHeight(true);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javafx</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/17/javafx_HBox/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-javafx_pane" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/17/javafx_pane/">javafx - Pane</a>
+    </h1>
+  
+
+        
+         
+
+
+<a href="/2021/12/17/javafx_pane/" class="archive-article-date">
+  	<time datetime="2021-12-17T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Pane类是一个可以容纳其他javafx组件的布局容器，实际上Pane并没有提供任何布局算法，它只是简单地把组件展示在它们想要被展示的位置，换句话说Pane使用子组件的 layoutX 和 layoutY  来决定在哪里展示这些子组件。</p>
+<p>Pane类，javafx.scene.layout.Pane，是Region的一个子类，所以它继承了Region所有的功能，如borders,padding,background 设置等等。</p>
+<h4 id="使用无参构造创建Pane并添加项进去："><a href="#使用无参构造创建Pane并添加项进去：" class="headerlink" title="使用无参构造创建Pane并添加项进去："></a>使用无参构造创建Pane并添加项进去：</h4><p>我们可以通过getChildren（） 获取 Pane的子项列表，并将这些项添加到列表中，以下是向pane列表添加Label项的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Pane pane = new Pane();</span><br><span class="line"></span><br><span class="line">pane.getChildren().add(new Label(&quot;hello pane&quot;));</span><br></pre></td></tr></table></figure>
+
+<p>如果重复执行第二句代码，那我们会添加多个Label项到Pane中，但需要注意的是，除非你修改了Label的layoutX 或layoutY 属性，否则这些Label项将会重叠在坐标的同一个点上，以至于看起来只有一个Lable项，实则不然。</p>
+<p>最后想要把pane（窗格）展示出来需要把pane 作为根节点 传递给Scene，并将Scene传递给Stage：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import javafx.application.Application;</span><br><span class="line">import javafx.scene.Scene;</span><br><span class="line">import javafx.scene.control.Lable;</span><br><span class="line">import javafx.scene.layout.Pane;</span><br><span class="line">import javafx.stage.Stage;</span><br><span class="line"></span><br><span class="line">public class PaneExample extends Application&#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">        launch(args);</span><br><span class="line">  &#125;</span><br><span class="line">  public void start(Stage primaryStage)&#123;</span><br><span class="line">    Pane pane = new Pane();</span><br><span class="line">    pane.getChildren().add(new Label(&quot;Hello pane&quot;));</span><br><span class="line">    Scene scene = new Scene(pane);</span><br><span class="line">    primaryStage.setScene(scene);</span><br><span class="line">    primaryStage.show();</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javafx</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/17/javafx_pane/">展开全文 >></a>
         </p>
       
 
@@ -562,7 +1215,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -672,11 +1325,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">javafx</a>
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+                <a href="javascript:void(0)" class="js-tag color2">javafx</a>
               </li>
              
               <li class="article-tag-list-item">
