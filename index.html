@@ -155,14 +155,14 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Lambda表达式的用途有哪些" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-char 和 varchar 的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/22/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E7%94%A8%E9%80%94%E6%9C%89%E5%93%AA%E4%BA%9B/">Lambda表达式的用途有哪些？</a>
+      <a class="article-title" href="/2021/12/29/char%20%E5%92%8C%20varchar%20%E7%9A%84%E5%8C%BA%E5%88%AB/">char 和 varchar 的区别</a>
     </h1>
   
 
@@ -170,28 +170,20 @@
          
 
 
-<a href="/2021/12/22/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E7%94%A8%E9%80%94%E6%9C%89%E5%93%AA%E4%BA%9B/" class="archive-article-date">
-  	<time datetime="2021-12-22T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
+<a href="/2021/12/29/char%20%E5%92%8C%20varchar%20%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1、只有一个抽象方法的函数式接口"><a href="#1、只有一个抽象方法的函数式接口" class="headerlink" title="1、只有一个抽象方法的函数式接口"></a>1、只有一个抽象方法的函数式接口</h3><p>Lambda表达式的目标类是函数式接口。比如创建线程可以有几种写法：</p>
-<img src="https://s2.loli.net/2021/12/22/BZday7KYrIM8ixE.png" alt="image.png" style="zoom: 67%;" />
-
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t1</span><br><span class="line">t2</span><br><span class="line">t3</span><br><span class="line">t4</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、集合批量操作"><a href="#2、集合批量操作" class="headerlink" title="2、集合批量操作"></a>2、集合批量操作</h3><img src="https://s2.loli.net/2021/12/22/v2soKjX3BwmOgDl.png" alt="image.png" style="zoom:80%;" />
-
-<p>以上两种打印集合的写法是等价的。</p>
-<h3 id="3、流操作"><a href="#3、流操作" class="headerlink" title="3、流操作"></a>3、流操作</h3><p>查询集合中等于“a“的元素的数量：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.stream().filter((e) -&gt; &quot;a&quot;.equals(e)).count();</span><br></pre></td></tr></table></figure>
-
-
-
+        <p>1、char 是固定长度的，而varchar是可变长度的</p>
+<p>字段b：类型char（10），值为：abc，存储为：abc（abc + 7个空格）；</p>
+<p>字段d：类型varchar（10），值为：abc，存储为：abc（自动变为3个的长度）；</p>
+<p>2、char最多可以存储255个字符，varchar的最大长度为65535个字节，varchar可存放的字符数跟编码有关</p>
+<p>字符集为gbk，每个字符最多占2个字节，最大长度不能超过32766个字符；</p>
+<p>字符集为utf8，每个字符最多占3个字节，最大长度不能超过21845个字符；</p>
 
       
 
@@ -205,7 +197,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -215,7 +207,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/22/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E7%94%A8%E9%80%94%E6%9C%89%E5%93%AA%E4%BA%9B/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/char%20%E5%92%8C%20varchar%20%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
         </p>
       
 
@@ -245,14 +237,14 @@
 
 
   
-    <article id="post-StringBuilder与StringBuffer默认容量多少" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql B+树索引和哈希索引的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/22/StringBuilder%E4%B8%8EStringBuffer%E9%BB%98%E8%AE%A4%E5%AE%B9%E9%87%8F%E5%A4%9A%E5%B0%91/">StringBuilder与StringBuffer默认容量多少？</a>
+      <a class="article-title" href="/2021/12/29/mysql%20B+%E6%A0%91%E7%B4%A2%E5%BC%95%E5%92%8C%E5%93%88%E5%B8%8C%E7%B4%A2%E5%BC%95%E7%9A%84%E5%8C%BA%E5%88%AB/">mysql B+树索引和哈希索引的区别</a>
     </h1>
   
 
@@ -260,17 +252,19 @@
          
 
 
-<a href="/2021/12/22/StringBuilder%E4%B8%8EStringBuffer%E9%BB%98%E8%AE%A4%E5%AE%B9%E9%87%8F%E5%A4%9A%E5%B0%91/" class="archive-article-date">
-  	<time datetime="2021-12-22T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
+<a href="/2021/12/29/mysql%20B+%E6%A0%91%E7%B4%A2%E5%BC%95%E5%92%8C%E5%93%88%E5%B8%8C%E7%B4%A2%E5%BC%95%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://s2.loli.net/2021/12/22/QpRoyKIxBklVdNE.png" alt="image.png"></p>
-<p>默认都是16个字节。</p>
-<p>扩容都是原来的容量乘以2再+2个字节。</p>
+        <p>1、哈希索引适合等值查询，但是无法进行范围查询；</p>
+<p>2、哈希索引无法利用索引完成排序；</p>
+<p>3、哈希索引不支持多列联合索引的最左匹配规则；</p>
+<p>4、如果有大量重复键值的情况，就可能存在哈希碰撞问题，哈希索引的效率会很低；</p>
+<p>B+树索引适用于大多数场景；</p>
 
       
 
@@ -284,7 +278,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -294,7 +288,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/22/StringBuilder%E4%B8%8EStringBuffer%E9%BB%98%E8%AE%A4%E5%AE%B9%E9%87%8F%E5%A4%9A%E5%B0%91/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/mysql%20B+%E6%A0%91%E7%B4%A2%E5%BC%95%E5%92%8C%E5%93%88%E5%B8%8C%E7%B4%A2%E5%BC%95%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
         </p>
       
 
@@ -324,14 +318,14 @@
 
 
   
-    <article id="post-java中断言（assert）是什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql中的隐藏索引是什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/22/java%E4%B8%AD%E6%96%AD%E8%A8%80%EF%BC%88assert%EF%BC%89%E6%98%AF%E4%BB%80%E4%B9%88/">java中断言（assert）是什么？</a>
+      <a class="article-title" href="/2021/12/29/mysql%E4%B8%AD%E7%9A%84%E9%9A%90%E8%97%8F%E7%B4%A2%E5%BC%95%E6%98%AF%E4%BB%80%E4%B9%88/">mysql中的隐藏索引是什么</a>
     </h1>
   
 
@@ -339,30 +333,58 @@
          
 
 
-<a href="/2021/12/22/java%E4%B8%AD%E6%96%AD%E8%A8%80%EF%BC%88assert%EF%BC%89%E6%98%AF%E4%BB%80%E4%B9%88/" class="archive-article-date">
-  	<time datetime="2021-12-22T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
+<a href="/2021/12/29/mysql%E4%B8%AD%E7%9A%84%E9%9A%90%E8%97%8F%E7%B4%A2%E5%BC%95%E6%98%AF%E4%BB%80%E4%B9%88/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在java中，断言-assert 关键字是从java se 1.4 引入的，断言是为了方便调试程序，并不是发布程序的组成部分。</p>
-<p>默认情况下，jvm是关闭断言的（此时所有断言语句都将忽略），如果要开启，则需要在命令行模式下运行java程序时可增加参数 -enableassertions 或 -ea 打开断言；可通过 -disableassertions 或者 -da 关闭断言（默认情况，可有可无）</p>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>断言语法有两种：</p>
-<h4 id="1、assert-lt-boolean表达式-gt"><a href="#1、assert-lt-boolean表达式-gt" class="headerlink" title="1、assert&lt;boolean表达式&gt;"></a>1、assert&lt;boolean表达式&gt;</h4><p>如果 表达式为 true，则程序继续执行， 如果为false，则程序抛出AssertionError。并终止执行。</p>
-<p>如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class AssertionTest&#123;</span><br><span class="line">  public static void main(String[] args)【</span><br><span class="line">    boolean isSafe = false;</span><br><span class="line">    assert isSafe;</span><br><span class="line">    System.out.println(&quot;断言通过&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>mysql8.0 新增了许多新特性，比如<strong>隐藏索引</strong>和<strong>不可见索引</strong>：</p>
+<p>隐藏索引 字面意思就是把索引进行隐藏，即不可见，它不是用来查询优化的，所以它不会被优化器使用到。隐藏索引适用于除主键索引（显式或者隐式设置）之外的索引，意味着主键索引是不能通过任何方式隐藏的。</p>
+<p>mysql数据库默认创建的索引都是可见的，要显式地控制一个索引的可见性，可以在CREATE TABLE,CREATE INDEX 或者 ALTER TABLE 的索引定义命令中使用 VISIBLE 或者 INVISIBLE 关键字。</p>
+<p>如下示例所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE java&#123;</span><br><span class="line">age int,</span><br><span class="line">weight int,</span><br><span class="line">tall int,</span><br><span class="line">index idx_age(age) invisible</span><br><span class="line">&#125;ENGINE = InnoDB;</span><br><span class="line">CREATE INDEX idx_weight ON java(weight) INVISIBLE;</span><br><span class="line">ALTER TABLE java ADD INDEX idx_tall(tall) INVISIBLE;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>如果是命令行模式运行，需要指明开启断言功能，如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -ea AssertionTest</span><br></pre></td></tr></table></figure>
+<p>年龄索引更改为可见：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE java ALTER INDEX idx_age VISIBLE;</span><br></pre></td></tr></table></figure>
 
-<p>如果是IDE下，比如Eclipese，可这样设置: Run as -&gt; Run Configurations -&gt; Arguments -&gt; VM arguments：敲入-ea即可。</p>
-<h4 id="2、assert-lt-boolean表达式-gt-lt-错误信息表达式-gt"><a href="#2、assert-lt-boolean表达式-gt-lt-错误信息表达式-gt" class="headerlink" title="2、assert&lt;boolean表达式&gt;:&lt;错误信息表达式&gt;"></a>2、assert&lt;boolean表达式&gt;:&lt;错误信息表达式&gt;</h4><p>如果 表达式为 true，则程序继续执行， 如果为false，则程序抛出AssertionError，并输出&lt;错误信息表达式&gt;。</p>
-<p>如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class AssertionTest&#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">         boolean isSafe = false;</span><br><span class="line">         assert isSafe : &quot;Not safe&quot;;</span><br><span class="line">         System.out.println(&quot;断言通过&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>想要知道一个表中的索引是可见还是不可见，可以从 INFORMATION_SCHEMA.STATISTICS 表，或者SHOW INDEX 命令输出中获得。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT </span><br><span class="line">             INDEX_NAME,</span><br><span class="line">             IS_VISIBLE</span><br><span class="line">      FROM INFORMATION_SCHEMA.STATISTICS</span><br><span class="line">      WHERE TABLE_SCHEMA = &#x27;db1&#x27; AND TABLE_NAME =&#x27;java&#x27;；</span><br></pre></td></tr></table></figure>
 
-<p>第二种与第一种相比只会多输出一句错误信息；</p>
+<p><strong>隐藏索引的作用是什么？</strong></p>
+<p>隐藏索引可以不被优化器所使用，那么我们可以把某个表的某个索引设置隐藏，然后再测试sql语句的查询性能。</p>
+<p>即可以利用隐藏索引快速测试删除索引后对sql查询性能的影响，而无需进行索引删除、重建操作，如果需要该索引，再设置可见就好了，这在大表测试中无疑非常有用，因为对于大表索引的删除和重新添加很耗性能，甚至影响表的正常工作。</p>
+<p><strong>隐藏索引设置</strong></p>
+<p>如果一个索引被设置为隐藏，但实际上又需要被优化器所使用，有几种表索引情况缺失对查询造成的影响：</p>
+<p>1、sql查询语句中包含了索引提示指向不可见索引会发生错误。</p>
+<p>2、性能模式数据中显示了受影响sql查询语句的负载增高。</p>
+<p>3、sql查询语句进行EXPLAIN时出现了不同的执行计划。</p>
+<p>4、sql查询语句出现在了慢查询日志中（之前没有出现）。</p>
+<p>系统变量 optimizer_switch 的use_invisible_indexes 标志的值，控制了优化器执行计划构建时是否使用隐藏索引。</p>
+<p>如果use_invisible_indexes 值设置为off 关闭状态（默认值） ，优化器默认会忽略隐藏索引，即和加入该参数之前的效果一样。</p>
+<p>如果 use_invisible_indexes 值设置为 on 打开状态，隐藏索引仍然保持不可见，但优化器会把隐藏索引加入到执行计划的构建中。</p>
+<p>如果想要在某条单个sql 查询语句上启用隐藏索引，可以使用 SET_VAR 优化器提示来临时更新 optimizer_switch 的值，如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; EXPLAIN SELECT </span><br><span class="line">+ SET_VAR(optimizer_switch = &#x27;user_invisible_index=on&#x27;)</span><br><span class="line">age from java where weight &gt;150;</span><br></pre></td></tr></table></figure>
+
+<p>索引的可见性不会影响索引的自身维护，例如不管索引是可见还是不可见，每次表数据行的更改索引都会更新，并且唯一索引也可防止插入重复数据。</p>
+<p>没有显式主键的表如果在 NOT NULL 列上有任何一个唯一索引，则扔可能成为有效的隐式主键。在这种情况下，第一个这样的索引会对表数据行施加与显式主键相同的约束，并且该索引不能设置为不可见。</p>
+<p>如下表的定义：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE java&#123;</span><br><span class="line">  age int not null,</span><br><span class="line">  weight double not null,</span><br><span class="line">  unique idx_weight (weight)</span><br><span class="line">&#125;ENGINE =InnoDB;</span><br></pre></td></tr></table></figure>
+
+<p>该表定义不包含任何显式主键，但是weight列为not null，在该列上创建的唯一索引在数据行上与主键具有相同的约束，并且不能使其不可见:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE java ALTER INDEX idx_weight INVISIBLE;</span><br><span class="line">ERROR 3522 (HY000):A primary key index cannot be invisible;</span><br></pre></td></tr></table></figure>
+
+<p>如果现在我们将一个显式主键添加到表中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE java ADD PRIMARY KEY (age);</span><br></pre></td></tr></table></figure>
+
+<p>显式主键不能设置为不可见，此时，weight列上的唯一索引不再充当隐式主键，因此可以设置其不可见。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE java ALTER INDEX idx_weight INVISIBLE;</span><br><span class="line">Query OK,0 rows affected(0.03 sec)</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结：</strong></p>
+<p>本章介绍了mysql8.0 中的新特性：隐藏索引，这个索引并不是新加的索引类型，而是可以控制索引是否加入执行计划的构建之中。</p>
+<p>在实际生产中也可以利用隐藏索引进行sql语句的性能测试，或者对索引进行逻辑删除，以及索引的灰度发布测试等，用处还是蛮大的。</p>
 
       
 
@@ -376,7 +398,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -386,7 +408,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/22/java%E4%B8%AD%E6%96%AD%E8%A8%80%EF%BC%88assert%EF%BC%89%E6%98%AF%E4%BB%80%E4%B9%88/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/mysql%E4%B8%AD%E7%9A%84%E9%9A%90%E8%97%8F%E7%B4%A2%E5%BC%95%E6%98%AF%E4%BB%80%E4%B9%88/">展开全文 >></a>
         </p>
       
 
@@ -416,14 +438,14 @@
 
 
   
-    <article id="post-java回调函数（方法）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql 行锁实现的几种算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/22/java%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%EF%BC%88%E6%96%B9%E6%B3%95%EF%BC%89/">java中断言（assert）是什么？</a>
+      <a class="article-title" href="/2021/12/29/mysql%20%E8%A1%8C%E9%94%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E7%AE%97%E6%B3%95/">mysql 行锁实现的几种算法</a>
     </h1>
   
 
@@ -431,15 +453,26 @@
          
 
 
-<a href="/2021/12/22/java%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%EF%BC%88%E6%96%B9%E6%B3%95%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2021-12-22T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
+<a href="/2021/12/29/mysql%20%E8%A1%8C%E9%94%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E7%AE%97%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p><strong>Record Lock: 单个记录上的锁</strong></p>
+<p>锁总会锁住索引记录，锁住的是key。</p>
+<p>如果InnoDB 存储引擎表在建立的时候没有设置任何一个索引，那么这是InnoDB 会使用隐式的主键进行锁定。</p>
+<p><strong>Gap Lock：间隙锁，锁定一个范围，但不包含记录本身。</strong></p>
+<p>锁定索引记录间隙，确保索引记录的间隙不变。</p>
+<p>间隙锁是针对事务隔离级别为可重复读或以上级别而配的。</p>
+<p>Gap Lock 在InnoDB 的唯一作用就是防止其他事务的插入操作，以此防止幻读。</p>
+<p><strong>Next-Key Lock：Gap Lock + Record Lock ,锁定一个范围，并且锁定记录本身。</strong></p>
+<p>在Next-Key Lock 算法下，InnoDB 对于行的查询都是采用这种锁定的算法。可以有效地防止幻读。</p>
+<p>当查询的索引含有唯一属性时，InnoDB 存储引擎会对Next-Key Lock 进行优化，将其降级为Record Lock，即仅锁住索引本身，而不是范围。</p>
+<p>当查询的索引为辅助索引时，默认使用Next-Key Locking 技术进行加锁，锁定范围是前一个索引到后一个索引之间的范围。</p>
+
       
 
       
@@ -452,7 +485,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -462,7 +495,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/22/java%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%EF%BC%88%E6%96%B9%E6%B3%95%EF%BC%89/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/mysql%20%E8%A1%8C%E9%94%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E7%AE%97%E6%B3%95/">展开全文 >></a>
         </p>
       
 
@@ -492,14 +525,14 @@
 
 
   
-    <article id="post-java常见运行时异常有哪些" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql怎么实现分页查询" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/22/java%E5%B8%B8%E8%A7%81%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8%E6%9C%89%E5%93%AA%E4%BA%9B/">java常见运行时异常有哪些</a>
+      <a class="article-title" href="/2021/12/29/mysql%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/">mysql怎么实现分页查询</a>
     </h1>
   
 
@@ -507,59 +540,24 @@
          
 
 
-<a href="/2021/12/22/java%E5%B8%B8%E8%A7%81%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8%E6%9C%89%E5%93%AA%E4%BA%9B/" class="archive-article-date">
-  	<time datetime="2021-12-22T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
+<a href="/2021/12/29/mysql%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>常见运行时异常有（RuntimeException）主要有：</p>
-<p>1、NullPointerException:空指针异常</p>
-<p>​    操作一个null对象的方法或属性时会抛出这个异常。</p>
-<p>2、OutofMemoryError：内存溢出异常</p>
-<p>   这不是程序能控制的，是指要分配的对象的内存超出了当前最大的堆内存，需要调整堆内存大小（-Xmx）以及优化程序。</p>
-<p>3、IOException：输入输出异常</p>
-<p>  IO，即：input，output，我们在读写磁盘文件、网络内容的时候经常会发生的一种异常，这种异常时受检查异常，需要进行手工捕获。</p>
-<p>如文件读写会抛出IOException:</p>
-<p><img src="https://s2.loli.net/2021/12/22/7L36RvsQtoCOEbz.png" alt="image.png"></p>
-<p>4、FileNotFoundException：文件找不到异常</p>
-<p>   如果文件不存在就会抛出这种异常。</p>
-<p>  比如定义文件输入输出流，文件不存在会报错：</p>
-<p><img src="https://s2.loli.net/2021/12/22/INc5DBTk86xXRlU.png" alt="image.png"></p>
-<p>  FileNotFoundException 是 IOException的子类，同样是受检查异常，需要进行手工捕获。</p>
-<p>5、ClassNotFoundException: 类找不到异常</p>
-<p>  类找不到异常，开发中经常遇到，这是在加载类的时候抛出的，即在类路径下不能加载指定的类。</p>
-<p> 看一个示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static &lt;T&gt; Class&lt;T&gt; getExistingClass(ClassLoader classLoader,String className)&#123;</span><br><span class="line"> try&#123;</span><br><span class="line">     return (Class&lt;T&gt;)Class.forName(className,true,classLoader);</span><br><span class="line"> &#125;catch(ClassNotFoundException e)&#123;</span><br><span class="line">     return null;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>分页查询语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table limit[offset,] rows</span><br></pre></td></tr></table></figure>
 
-<p> 它是受检查异常，需要进行手工捕获。</p>
-<p>6、ClassCastException：类转换异常</p>
-<p>  将一个不是该类的实例转换成这个类就会抛出这个异常。</p>
-<p>比如将一个数字强转成字符串就会报这个异常：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object x = new Integer(0);</span><br><span class="line">System.out.println((String)x);</span><br></pre></td></tr></table></figure>
+<p>limit子句可以被用于强制select语句返回指定的记录数；</p>
+<p>limit接收一个或两个数字参数，参数必须是一个整数常量。如果给定两个参数，第一个参数指定第一个返回记录行的偏移量，第二个参数指定返回记录行的最大数目。</p>
+<p>初始记录行的偏移量是0（而不是1）：为了与PostgreSQL兼容，MySQL也支持句法：limit #OFFSET#</p>
+<p>查询第5 - 20行记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from table limit 4,16</span><br></pre></td></tr></table></figure>
 
-<p>7、NoSuchMethodException: 无此方法异常</p>
-<p>  一般发生在反射调用方法的时候，比如:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public Method getMethod(String name,Class&lt;?&gt;... parameterTypes)throws NoSuchMethodException,SecurityException&#123;</span><br><span class="line"> checkMemberAccess(Member.PUBLIC,Reflection.getCallerClass(),true);</span><br><span class="line"> Method method = getMethod0(name,parameterTypes,true);</span><br><span class="line"> if(method == null)&#123;</span><br><span class="line"> throw new NoSuchMethodException(getName() + &quot;.&quot; + name + argumentTypesToString(parameterTypes));</span><br><span class="line"> &#125;</span><br><span class="line">return method;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>8、IndexOutOfBoundsException：索引越界异常</p>
-<p>​    当操作一个字符串或者数组的时候经常遇到的异常。</p>
-<p><img src="https://s2.loli.net/2021/12/22/OKaJXw8yIL61D3s.png" alt="image.png"></p>
-<p>它是运行时异常，不需要手工捕获。</p>
-<p>9、ArithmeticExcetion: 算数异常</p>
-<p>  发生在数字的算术运算时的异常，如一个数字除以0就会报这个错：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">double n =3/0;</span><br></pre></td></tr></table></figure>
-
-<p>这个异常是运行时异常，但我们可以手工捕获并抛出自定义的异常。</p>
-<p>10、SQLException: SQL异常</p>
-<p>发生在操作数据库时的异常：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public Connection getConnection() throws SQLException&#123;</span><br><span class="line">  if(getUser() == null)&#123;</span><br><span class="line">    return DriverManager.getConnection(url);</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">    return DriverManger.getConnection(url,getUser(),getPassWord());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>或者是获取下一条记录的时候：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boolean next() throws SQLException;</span><br></pre></td></tr></table></figure>
-
+<p>4带标偏移量，16代表要返回的记录条数。</p>
 
       
 
@@ -573,7 +571,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -583,7 +581,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/22/java%E5%B8%B8%E8%A7%81%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8%E6%9C%89%E5%93%AA%E4%BA%9B/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/mysql%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/">展开全文 >></a>
         </p>
       
 
@@ -613,14 +611,14 @@
 
 
   
-    <article id="post-为什么重写equals就要重写hashCode？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql索引为什么选用B+Tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/22/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%8D%E5%86%99equals%E5%B0%B1%E8%A6%81%E9%87%8D%E5%86%99hashCode%EF%BC%9F/">为什么重写equals就要重写hashCode？？</a>
+      <a class="article-title" href="/2021/12/29/mysql%E7%B4%A2%E5%BC%95%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E7%94%A8B+Tree/">mysql索引为什么选用B+Tree</a>
     </h1>
   
 
@@ -628,22 +626,19 @@
          
 
 
-<a href="/2021/12/22/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%8D%E5%86%99equals%E5%B0%B1%E8%A6%81%E9%87%8D%E5%86%99hashCode%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2021-12-22T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
+<a href="/2021/12/29/mysql%E7%B4%A2%E5%BC%95%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E7%94%A8B+Tree/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>先看一下Object.hashCode的通用约定（《Effective Java》 第45页）</p>
-<p>1.在一个应用程序执行期间，如果一个对象的equals方法作比较所用到的信息没有被修改，那对该对象调用hashCode方法多次，它必须始终如一地返回同一个整数。在同一个应用程序的多次执行过程中，这个整数可以不同，即这个应用程序这次执行返回的整数与下一次执行返回的整数可以不一致。</p>
-<p>2.如果两个对象根据equals（Object）方法是<strong>相等</strong>的，那么调用这两个对象中任何一个对象的hashCode方法<strong>必须</strong>产生<strong>同样</strong>的<strong>整数结果</strong>。</p>
-<p>3.如果两个对象根据equals（Object）方法是<strong>不相等</strong>的，那么调用这两个对象中任何一个对象的hashCode方法，<strong>不要求必须</strong>产生<strong>不同</strong>的<strong>整数结果</strong>。然而，程序员应该意识到这样的事实，对于<strong>不相等</strong>的<strong>对象</strong>产生截然<strong>不同</strong>的<strong>整数结果</strong>，有可能<strong>提高散列表</strong>（hash table）的<strong>性能</strong>。</p>
-<p><strong>如果只重写了equals方法而没有重写hashCode方法的话，则会违反约定的第二条：相等的对象必须具有相等的散列码（hashCode）。</strong></p>
-<p><strong>同时对于HashSet和HashMap这些基于散列值（hash）实现的类。</strong>HashMap的底层处理机制是以数组的方法保存放入的数据的（Node&lt;K,V&gt;[] table），其中的关键是数组下标的处理。<strong>数组的下标是根据传入的元素的hashCode方法的返回值再和特定的值异或决定的。</strong></p>
-<p>如果该数组位置上已经有放入的值了，且传入的键值相等则不处理，若不相等则覆盖原来的值，如果数组位置没有条目，则插入，并加入到相应的链表中。检查键是否存在也是根据hashCode值来确定的。所以如果不重写hashCode的话，<strong>可能导致HashSet、HashMap不能正常地运行</strong>。</p>
-<p>如果我们将某个自定义对象存到HashMap或者HashSet及其类似实现类中的时候，<strong>如果该对象的属性参与了hashCode的计算，那么就不能修改该对象参与hashCode计算的属性了</strong>。有可能会移除不了元素，导致内存泄漏。</p>
+        <p>使用B+树的原因：</p>
+<p>1、提高索引查询时的磁盘IO 效率，还可以提高范围查询的效率；</p>
+<p>2、查询IO 次数更少，特别是范围查询；</p>
+<p>3、所有查询都要查找到叶子节点，查询性能稳定；</p>
+<p>4、B+树里的元素也都是有序的；</p>
 
       
 
@@ -657,7 +652,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -667,7 +662,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/22/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%8D%E5%86%99equals%E5%B0%B1%E8%A6%81%E9%87%8D%E5%86%99hashCode%EF%BC%9F/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/mysql%E7%B4%A2%E5%BC%95%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E7%94%A8B+Tree/">展开全文 >></a>
         </p>
       
 
@@ -697,14 +692,14 @@
 
 
   
-    <article id="post-什么时候会发生空指针异常？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql索引在哪些情况下会失效" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/22/%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%8F%91%E7%94%9F%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8%EF%BC%9F/">什么时候会发生空指针异常？</a>
+      <a class="article-title" href="/2021/12/29/mysql%E7%B4%A2%E5%BC%95%E5%9C%A8%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E5%A4%B1%E6%95%88/">mysql索引在哪些情况下会失效</a>
     </h1>
   
 
@@ -712,21 +707,23 @@
          
 
 
-<a href="/2021/12/22/%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%8F%91%E7%94%9F%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8%EF%BC%9F/" class="archive-article-date">
-  	<time datetime="2021-12-22T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
+<a href="/2021/12/29/mysql%E7%B4%A2%E5%BC%95%E5%9C%A8%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E5%A4%B1%E6%95%88/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>当一个变量的值为null时，在java里代表一个不存在的空对象，没有实际内容，没有给它分配内存，null也是对象成员变量的默认值。</p>
-<p>所以，一个对象如果没有进行初始化操作，这时如果你调用这个对象的方法或者变量，就会出现空指针异常。</p>
-<p>如下所示会发生空指针异常：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object object = null;</span><br><span class="line">String string = object.toString();</span><br></pre></td></tr></table></figure>
-
-<p>Throwable &lt;= Exception &lt;= RuntimeException &lt;= NullPointerException</p>
-<p>从类结构来看，空指针属于运行时异常 RuntimeException  的子类，它不是捕获型的，只有在程序运行时才可能报出来，而且会造成程序中断。</p>
+        <p>mysql索引失效常见的场景：</p>
+<p>1、不符合索引最左匹配原则；</p>
+<p>2、like 模糊查询以%开头，如：%张；</p>
+<p>3、索引列上使用了函数、表达式计算；</p>
+<p>4、数据类型出现隐式转换，即查询条件索引列类型和查询值数据类型不一致；</p>
+<p>5、JOIN 条件中索引列数据类型不一致；</p>
+<p>6、条件存在NULL 值，如：name is not null;</p>
+<p>7、使用了 !=,&lt; &gt;,NOT IN 判断条件；</p>
+<p>8、查询条件使用了 or，要想索引生效，or 中的每个列都要加上索引；</p>
 
       
 
@@ -740,7 +737,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -750,7 +747,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/22/%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%8F%91%E7%94%9F%E7%A9%BA%E6%8C%87%E9%92%88%E5%BC%82%E5%B8%B8%EF%BC%9F/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/mysql%E7%B4%A2%E5%BC%95%E5%9C%A8%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E5%A4%B1%E6%95%88/">展开全文 >></a>
         </p>
       
 
@@ -780,14 +777,14 @@
 
 
   
-    <article id="post-字符串在jdk内部用什么编码存储" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-redis 到底是单线程还是多线程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/22/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%9C%A8jdk%E5%86%85%E9%83%A8%E7%94%A8%E4%BB%80%E4%B9%88%E7%BC%96%E7%A0%81%E5%AD%98%E5%82%A8/">字符串在jdk内部用什么编码存储</a>
+      <a class="article-title" href="/2021/12/29/redis%20%E5%88%B0%E5%BA%95%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E8%BF%98%E6%98%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B/">redis 到底是单线程还是多线程</a>
     </h1>
   
 
@@ -795,18 +792,39 @@
          
 
 
-<a href="/2021/12/22/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%9C%A8jdk%E5%86%85%E9%83%A8%E7%94%A8%E4%BB%80%E4%B9%88%E7%BC%96%E7%A0%81%E5%AD%98%E5%82%A8/" class="archive-article-date">
-  	<time datetime="2021-12-22T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
+<a href="/2021/12/29/redis%20%E5%88%B0%E5%BA%95%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E8%BF%98%E6%98%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>字符串在jdk内部存储的编码是：UTF-16</p>
-<p>但这样存储英文是一种浪费，所以在jdk9中对这块进行了优化，没有必要使用UTF-16的字符会使用byte来存储以优化内存。</p>
-<h3 id="char类型可以存储中文汉字吗？"><a href="#char类型可以存储中文汉字吗？" class="headerlink" title="char类型可以存储中文汉字吗？"></a>char类型可以存储中文汉字吗？</h3><p>可以，因为java中使用的编码是Unicode，一个char类型占2个字节（16Bit），而一个中文汉字也是占2个字节，所以存放一个中文没问题。</p>
-<h3 id="switch是否能用在String上"><a href="#switch是否能用在String上" class="headerlink" title="switch是否能用在String上?"></a>switch是否能用在String上?</h3><p>从java7开始，是可以用在String上的。</p>
+        <p>1、redis 单线程到底指的是什么？</p>
+<p>大家熟知的redis 确实是单线程模型，指的是执行redis 命令的核心模块是单线程的，而不是整个redis 实例就一个线程，redis其他模块还有各自模块的线程的。</p>
+<p>下面这个解释比较好：</p>
+<img src="https://s2.loli.net/2022/01/07/DVFt32KjgyJHlqI.png" alt="image.png" style="zoom: 50%;" />
+
+<p>redis 基于Reactor模式开发了网络事件处理器，这个处理器被称为文件事件处理器。它的组成结构为4 部分：多个套接字、IO多路复用程序、文件事件分派器、事件处理器。</p>
+<p>因为文件事件分派器队列的消费是单线程的，所以redis 才叫单线程。</p>
+<p>2、redis 不仅仅是单线程</p>
+<p>一般来说redis 的瓶颈并不在cpu ，而在内存和网络。如果要使用cpu 多核，可以搭建多个redis 实例来解决。</p>
+<p>其实，redis 4.0 开始就有多线程的概念了，比如redis 通过多线程方式在后台删除对象、以及通过redis 模块实现的阻塞命令等。</p>
+<p>来自官方的解释：</p>
+<img src="https://s2.loli.net/2022/01/07/qWrBTGiFLlVDetP.png" alt="image.png" style="zoom: 67%;" />
+
+<p>redis 6.0 还有多线程IO：</p>
+<img src="https://s2.loli.net/2022/01/07/6NjT9vlKEHeIwru.png" alt="image.png" style="zoom: 67%;" />
+
+<p>这个Threaded IO 指的是在网络IO处理方面上的多线程，如网络数据的读写和协议解析等，需要注意的是，执行命令的核心模块还是单线程的。</p>
+<p>3、为什么网络处理要引入多线程？</p>
+<p>前文提到，redis 的瓶颈并不在cpu ，而在内存和网络。</p>
+<p>内存不够的话，可以加内存或者做数据结构优化和其他优化等，但网络的性能优化才是大头，网络IO 的读写在 redis 整个执行期间占用了大部分的cpu时间，如果把网络处理这部分做成多线程处理方式，那对整个redis 的性能会有很大的提升。</p>
+<p>网上也有对redis 单/多线程情况下的 get/set 操作性能做的对比（get/set 性能对比基本一样，所以只放get)：</p>
+<img src="https://s2.loli.net/2022/01/07/akrqv4os2XpKizh.png" alt="image.png" style="zoom: 67%;" />
+
+<p>从性能测试图来看，多线程性能几乎是单线程的两倍，该文章只是简单地对多线程性能的验证，并没有多严谨的测试，不能作为线上指标参考。</p>
+<p>但可以知道的是，redis 在网络处理方面上的多线程确实会让redis性能上一个新台阶，IO多线程模式默认是不开启的，需要去配置文件中启动并配置线程数。</p>
 
       
 
@@ -820,7 +838,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
         		</li>
       		
 		</ul>
@@ -830,7 +848,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/22/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%9C%A8jdk%E5%86%85%E9%83%A8%E7%94%A8%E4%BB%80%E4%B9%88%E7%BC%96%E7%A0%81%E5%AD%98%E5%82%A8/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/redis%20%E5%88%B0%E5%BA%95%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E8%BF%98%E6%98%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B/">展开全文 >></a>
         </p>
       
 
@@ -860,14 +878,14 @@
 
 
   
-    <article id="post-JDK实现定时任务有哪些方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-nginx相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/21/JDK%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E5%BC%8F/">JDK实现定时任务有哪些方式</a>
+      <a class="article-title" href="/2021/12/29/nginx%E7%9B%B8%E5%85%B3/">什么是redisson</a>
     </h1>
   
 
@@ -875,57 +893,123 @@
          
 
 
-<a href="/2021/12/21/JDK%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
+<a href="/2021/12/29/nginx%E7%9B%B8%E5%85%B3/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>不错，不用任何框架，用我们朴素的java编程语言就能实现定时任务。</p>
-<h3 id="1、sleep"><a href="#1、sleep" class="headerlink" title="1、sleep"></a>1、sleep</h3><p>不只可以做休眠用，还可以利用它轻松实现一个定时任务。</p>
-<p>实现逻辑:新开一个线程，添加一个for/while死循环，然后在死循环里添加一个sleep休眠，让程序每个n秒休眠再执行一次，这样就达到定时任务的效果。</p>
-<img src="https://s2.loli.net/2021/12/21/KxHbNCt2YupS8zF.png" alt="image.png" style="zoom: 67%;" />
-
-<p>这种方式比较傻瓜式，只能按固定频率运行，不能指定具体运行的时间。</p>
-<h3 id="2、Timer"><a href="#2、Timer" class="headerlink" title="2、Timer"></a>2、Timer</h3><p>JDK1.3就开始内置的java.util.Timer类可以用于调度java.util.TimerTask任务</p>
-<img src="https://s2.loli.net/2021/12/21/ifEosRtKwkWA43a.png" alt="image.png" style="zoom:50%;" />
-
-<p>几个重要的方法：</p>
+        <p>redisson 是redis 官方推荐的一个高级的分布式协调redis 客户端。</p>
+<p>redisson 在基于NIO 的Netty 框架上，充分地利用了redis键值数据库提供的一系列优势，在java实用工具包中常用接口的基础上，为使用者提供了一系列具有分布式特性的常用工具类。使得原本作为协调单机多线程并发程序的工具包获得了协调分布式多级多线程并发系统的能力，大大降低了设计和研发大规模分布式系统的难度。同时结合各富特色的分布式服务，更进一步简化了分布式环境中程序相互之间的协作。</p>
+<p>兼容 redis 2.6 +  and   jdk1.6 + ，使用Apache License 2.0授权协议。</p>
+<p>适用场景：</p>
+<p>分布式应用，缓存，分布式会话，分布式任务/服务/延迟执行服务，redis客户端等。</p>
+<p>主要特性：</p>
+<p>云redis 管理、多样redis配置支持、丰富连接方式、分布式对象、分布式集合、分布式锁、分布式服务、多种序列化方式、三方框架整合、完善工具等。</p>
+<p>1、支持云托管服务模式（同时支持亚马逊云的ElastiCache redis 和 微软云的 Azure redisCache）：</p>
 <ul>
-<li>schedule：开始调度任务，提供了几个包装方法；</li>
-<li>cancel：终止任务钓鱼，取消当前调度的所有任务，正在运行的任务不受影响；</li>
-<li>purge：从任务队列中移除所有已取消的任务。</li>
+<li>自动发现主节点变化</li>
 </ul>
-<p>java.util.TimerTask实现了Runnable接口，具体任务逻辑是在run方法中实现。</p>
-<img src="https://s2.loli.net/2021/12/21/XnjUBaZkcINK1qg.png" alt="image.png" style="zoom: 67%;" />
-
-<p>这种实现方式比较简单，可以指定首次执行的延迟时间、首次执行的具体日期时间、以及执行频率；</p>
-<p>Timer是线程安全的，因为是单线程在执行所有任务。</p>
-<h4 id="Timer也有一些缺陷："><a href="#Timer也有一些缺陷：" class="headerlink" title="Timer也有一些缺陷："></a>Timer也有一些缺陷：</h4><ul>
-<li>Timer是单线程的，假如有任务A,B,C，任务A如果执行时间比较长，那么就会影响任务B,C的启动和执行时间，如果B,C执行时间也比较长，那就会相互影响；</li>
-<li>Timer不会捕获异常，如果A,B,C任何一个任务在执行过程中发生异常，就会导致Timer整个定时任务停止工作；</li>
-<li>Timer是基于绝对时间调度的，而不是基于相对时间，所以它对系统时间的改变非常敏感；</li>
-</ul>
-<p>所以，如果在使用Timer的过程中需要注意这些缺陷，虽然可以用，但是不推荐。</p>
-<h3 id="3、ScheduledExecutorService"><a href="#3、ScheduledExecutorService" class="headerlink" title="3、ScheduledExecutorService"></a>3、ScheduledExecutorService</h3><p>因为Timer有一些缺陷，所以不太建议使用TImer，推荐使用ScheduledExecutorService:</p>
-<img src="https://s2.loli.net/2021/12/21/kIGRU8upP6OlWgA.png" alt="image.png" style="zoom:50%;" />
-
-<p>ScheduledExecutorService是Timer的替代品，jdk1.5并发包引入，是基于线程池设计的定时任务类：</p>
-<img src="https://s2.loli.net/2021/12/21/LsmXB3okzwaQqOM.png" alt="image.png" style="zoom: 50%;" />
-
-<p>有了线程池，每个调度任务都会被分配到线程池中的某一个线程去执行，任务就是并发调度执行的，任务之间互不影响。</p>
-<p>几个重要的调度方法：</p>
-<img src="https://s2.loli.net/2021/12/21/1lSNKPAJOWzYnUC.png" alt="image.png" style="zoom:50%;" />
-
+<p>2、支持redis 集群模式（同时支持亚马逊云的ElastiCache redis Cluster 和微软云的 Azure redisCache):</p>
 <ul>
-<li>schedule:只执行一次调度；</li>
-<li>scheduleAtFixedRate：按固定频率调度，如果执行时间过长，下一次调度会延迟，不会同时执行；</li>
-<li>scheduleWithFixedDelay：延迟调度，上一次执行完再加上延迟时间后执行；</li>
+<li>自动发现主从节点</li>
+<li>自动更新状态和组态拓扑</li>
+<li>自动发现槽的变化</li>
 </ul>
-<p>任务是支持Runnable和Callable调度的。</p>
-<p>使用代码如下：</p>
+<p>3、支持redis 哨兵模式：</p>
+<ul>
+<li>自动发现主、从和哨兵节点</li>
+<li>自动更新状态和组态拓扑</li>
+</ul>
+<p>4、支持redis主从模式</p>
+<p>5、支持redis单节模式</p>
+<p>6、多节点模式均支持读写分离：从读主写，主读主写，主从混读主写</p>
+<p>7、所有对象和接口均支持异步操作</p>
+<p>8、自行管理的弹性异步连接池</p>
+<p>9、所有操作线程安全</p>
+<p>10、支持LUA脚本</p>
+<p>11、提供分布式对象：</p>
+<ul>
+<li>通用对象桶 - Object Bucket</li>
+<li>二进制流 - Binary Stream</li>
+<li>地理空间对象桶 - Geospatial  Bucket</li>
+<li>BitSet</li>
+<li>原子整长形 - AtomicLong</li>
+<li>原子双精度浮点数 - AtomicDouble</li>
+<li>话题（订阅分发)</li>
+<li>布隆过滤器 - Bloom Filter</li>
+<li>基数估计算法 - HyperLogLog</li>
+</ul>
+<p>12、提供分布式集合</p>
+<ul>
+<li>映射 -Map</li>
+<li>多值映射 - Multimap</li>
+<li>集 - Set</li>
+<li>列表 - List</li>
+<li>有序集 - SortedSet</li>
+<li>计分排序集 - ScoredSortedSet</li>
+<li>字典排序集 - LexSortedSet</li>
+<li>队列 - Queue</li>
+<li>双端队列 - Deque</li>
+<li>阻塞队列 - Blocking Queue</li>
+<li>有界阻塞队列 - Bounded Blocking Queue</li>
+<li>阻塞双端队列 - Blocking Deque</li>
+<li>阻塞公平队列 - Blocking Fair Queue</li>
+<li>延迟队列- Delayed Queue </li>
+<li>优先队列 - Priority Queue</li>
+<li>优先双端队列 - Priority Deque</li>
+</ul>
+<p>13、提供分布式锁和同步器：</p>
+<ul>
+<li>可重入锁 - Reentrant Lock</li>
+<li>公平锁 - Fair Lock</li>
+<li>联锁 - MultiLock</li>
+<li>红锁 - RedLock</li>
+<li>读写锁 - ReadWriteLock</li>
+<li>信号量 - Semaphore</li>
+<li>可过期性信号量 - PermitExpirableSemaphore</li>
+<li>闭锁 - CountDownLatch</li>
+</ul>
+<p>14、提供分布式服务</p>
+<ul>
+<li>分布式远程服务 - Remote Service,RPC</li>
+<li>分布式实时对象服务 - Live Object Service</li>
+<li>分布式执行服务 - Executor Service</li>
+<li>分布式调度任务服务 - Scheduler Service</li>
+<li>分布式映射归纳服务 - MapReduce</li>
+</ul>
+<p>15、支持spring 框架</p>
+<p>16、提供spring Cache 集成</p>
+<p>17、提供Hibernate Cache 集成</p>
+<p>18、提供JCache 实现</p>
+<p>19、提供Tomcat Session Manager</p>
+<p>20、提供spring Session 集成</p>
+<p>21、支持异步流方式执行操作</p>
+<p>22、支持redis 管道操作（批量执行）</p>
+<p>23、支持安卓系统</p>
+<p>24、支持断线自动重连</p>
+<p>25、支持命令发送失败自动重试</p>
+<p>26、支持OSGi</p>
+<p>27、支持采用多种方式自动序列化和反序列化（Jackson JSON,Avro,Smile,CBOR,MsgPack,Kryo,FST,LZ4,Snappy和JDK 序列化）</p>
+<p>28、超过1000个单元测试</p>
+<p><strong>与jedis对比</strong></p>
+<p>jedis 是redis 的java实现的客户端，其API 提供了比较全面的redis 命令的支持；redisson实现了分布式和可扩展的java数据结构，和jedis相比，功能较为简单，不支持字符串操作、不支持排序、事务、管道、分区等redis特性。</p>
+<p>redisson 的宗旨是促进使用者对redis 的关注分离，从而让使用者能够将经理更集中地放在处理业务逻辑上。</p>
+<p>快速开始：</p>
+<img src="https://s2.loli.net/2022/01/10/CxE2hWXLRZp5kzV.png" alt="image.png" style="zoom:67%;" />
+
+<img src="https://s2.loli.net/2022/01/10/aixMyAgWSVlnQeK.png" alt="image.png" style="zoom:67%;" />
+
+
+
+
+
+
+
+
+
 
       
 
@@ -939,7 +1023,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
         		</li>
       		
 		</ul>
@@ -949,7 +1033,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/21/JDK%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E5%BC%8F/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/nginx%E7%9B%B8%E5%85%B3/">展开全文 >></a>
         </p>
       
 
@@ -979,14 +1063,14 @@
 
 
   
-    <article id="post-StringBuffer和StringBuilder的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql索引的种类有哪些" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/21/StringBuffer%E5%92%8CStringBuilder%E7%9A%84%E5%8C%BA%E5%88%AB/">StringBuffer和StringBuilder的区别</a>
+      <a class="article-title" href="/2021/12/29/mysql%E7%B4%A2%E5%BC%95%E7%9A%84%E7%A7%8D%E7%B1%BB%E6%9C%89%E5%93%AA%E4%BA%9B/">mysql索引的种类有哪些</a>
     </h1>
   
 
@@ -994,30 +1078,36 @@
          
 
 
-<a href="/2021/12/21/StringBuffer%E5%92%8CStringBuilder%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
+<a href="/2021/12/29/mysql%E7%B4%A2%E5%BC%95%E7%9A%84%E7%A7%8D%E7%B1%BB%E6%9C%89%E5%93%AA%E4%BA%9B/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>下图是StringBuffer和StringBuilder的类结构：</p>
-<img src="https://s2.loli.net/2021/12/21/rAZdzIKkSFHvQcp.png" alt="image.png" style="zoom: 80%;" />
-
-<p>两个类都继承了一个抽象的字符串父类：AbstractStringBuilder；</p>
-<h3 id="区别1：线程安全"><a href="#区别1：线程安全" class="headerlink" title="区别1：线程安全"></a>区别1：线程安全</h3><p>StringBuffer线程安全，StringBuilder线程不安全。因为StringBuffer所有的公开方法都是synchronized修饰的，而StringBuilder并没有synchronized修饰。</p>
-<h3 id="区别2：缓冲区"><a href="#区别2：缓冲区" class="headerlink" title="区别2：缓冲区"></a>区别2：缓冲区</h3><p>StringBuffer代码片段:</p>
-<img src="https://s2.loli.net/2021/12/21/sKqVa4PGbLgInht.png" alt="image.png" style="zoom: 50%;" />
-
-<p>StringBuilder代码片段：</p>
-<img src="https://s2.loli.net/2021/12/21/s8ElhcL4So7IgVt.png" alt="image.png" style="zoom: 67%;" />
-
-<p>可以看出，StringBuffer每次执行toString都会直接使用缓存区的toStringCache字符数组来构造一个字符串。</p>
-<p>而StringBuilder则每次都需要复制一次字符数组，再构造一个字符串。</p>
-<p>所以缓冲区也是对StringBuffer的一个优化，不过StringBuffer的这个toString方法仍然是同步的；</p>
-<h3 id="区别3：性能"><a href="#区别3：性能" class="headerlink" title="区别3：性能"></a>区别3：性能</h3><p>既然StringBuffer是线程安全的，它的所有公开方法都是同步的，StringBuilder是没有对方法加锁同步的，所以StringBuilder的性能要远超StringBuffer；</p>
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>综上，StringBuffer适用于多个线程操作同一个StringBuffer的场景，如果是单线程场景还是StringBuilder更合适。</p>
+        <p>mysql的索引有两种分类方式：<strong>逻辑分类和物理分类</strong>。</p>
+<p>1、按照逻辑分类，索引可分为:</p>
+<ul>
+<li>普通索引：仅加速查询（mysql中基本索引类型，没有什么限制，允许在定义索引的列中插入重复值和空值，纯粹为了查询数据更快一点）。</li>
+<li>唯一索引：加速查询 + 列值唯一（可以有null）。</li>
+<li>主键索引：加速查询 + 列值唯一（不可以有null） + 表中只有一个。</li>
+<li>复合索引：多个列组成一个索引，用于多个字段组合搜索。</li>
+<li>全文索引：目前只能在MyISAM、InnoDB引擎上才能使用，只能在CHAR,VARCHAR,TEXT类型字段上使用全文索引，可以通过某个关键字找到该字段所属的记录行。</li>
+</ul>
+<p>2、按照物理分类，索引可分为：</p>
+<p>聚集索引：也叫聚簇索引，是指数据行的物理顺序与列值（一般是主键的那一列）的逻辑顺序相同，一个表中只能拥有一个聚集索引。<strong>mysql中一般默认主键为聚集索引</strong>。</p>
+<p>非聚集索引：该索引中索引的逻辑顺序与磁盘上行的物理存储顺序不同，一个表中可以拥有多个非聚集索引。其实按照定义，除了聚集索引以外的索引都是非聚集索引，只是人们想细分一下非聚集索引，分成普通索引，唯一索引，全文索引。</p>
+<p>动作描述                       使用聚集索引          使用非聚集索引</p>
+<p>列经常被分组排序                应                             应</p>
+<p>返回某范围内的数据              应                         不应</p>
+<p>一个或极少不同值                不应                       不应</p>
+<p>小数目的不同值                    应                           不应</p>
+<p>大数目的不同值                    不应                         应</p>
+<p>频繁更新的列                        不应                         应</p>
+<p>外键列                                    应                             应</p>
+<p>主键列                                    应                             应</p>
+<p>频繁修改索引列                    不应                          应</p>
 
       
 
@@ -1031,7 +1121,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -1041,7 +1131,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/21/StringBuffer%E5%92%8CStringBuilder%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/mysql%E7%B4%A2%E5%BC%95%E7%9A%84%E7%A7%8D%E7%B1%BB%E6%9C%89%E5%93%AA%E4%BA%9B/">展开全文 >></a>
         </p>
       
 
@@ -1073,7 +1163,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1085,7 +1175,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 Amos
+    		&copy; 2022 Amos
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1187,7 +1277,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">javafx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">

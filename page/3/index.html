@@ -155,14 +155,14 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-javafx_region" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-数据设计时怎么使用范式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/16/javafx_region/">javafx - Region</a>
+      <a class="article-title" href="/2021/12/29/%E6%95%B0%E6%8D%AE%E8%AE%BE%E8%AE%A1%E6%97%B6%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E8%8C%83%E5%BC%8F/">数据设计时怎么使用范式</a>
     </h1>
   
 
@@ -170,55 +170,467 @@
          
 
 
-<a href="/2021/12/16/javafx_region/" class="archive-article-date">
-  	<time datetime="2021-12-16T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-16</time>
+<a href="/2021/12/29/%E6%95%B0%E6%8D%AE%E8%AE%BE%E8%AE%A1%E6%97%B6%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E8%8C%83%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>javafx Region类 是所有布局窗体的基类（如Pane等等），所有继承Region类的布局类会共享Region类的属性和特征。</p>
-<p>JavaFX Region类周围的类层次结构如下所示：</p>
-<img src="https://s2.loli.net/2021/12/17/nuI42wMYRiK8Ta7.png" alt="image.png" style="zoom: 50%;" />
+        <p>在设计数据库时，不一定强制要求使用标准范式化设计，可以进行一定的调整。</p>
+<p>一般的设计是混用范式化和反范式化，适度进行数据冗余，以提高查询性能。</p>
 
-<p>Axis,Chart,Control,Pane都有很多的子类，而这些子类又是Region间接的子类，所以他们又与Region相同的属性和特征：</p>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/29/%E6%95%B0%E6%8D%AE%E8%AE%BE%E8%AE%A1%E6%97%B6%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E8%8C%83%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-索引的设计有哪些原则" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/29/%E7%B4%A2%E5%BC%95%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8E%9F%E5%88%99/">索引的设计有哪些原则</a>
+    </h1>
+  
+
+        
+         
+
+
+<a href="/2021/12/29/%E7%B4%A2%E5%BC%95%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8E%9F%E5%88%99/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、对于经常查询的字段，建议创建索引。</p>
+<p>2、索引不是越多越好，一个表如果有大量索引，不仅占用磁盘空间，而且会影响insert,delete,update 等语句的性能。</p>
+<p>3、避免对经常更新的表进行过多的索引，因为当表中数据更改的同时，索引也会进行调整和更新，十分消耗系统资源。</p>
+<p>4、数据量小的表建议不要创建索引，数据量小时索引不仅起不到明显的优化效果，对于索引结构的维护反而消耗系统资源。</p>
+<p>5、不要在区分度低的字段建立索引，比如性别字段，只有 “男” 和“女” ，建索引完全起不到优化效果。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/29/%E7%B4%A2%E5%BC%95%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8E%9F%E5%88%99/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-索引对数据库有什么负面影响" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/29/%E7%B4%A2%E5%BC%95%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%89%E4%BB%80%E4%B9%88%E8%B4%9F%E9%9D%A2%E5%BD%B1%E5%93%8D/">索引对数据库有什么负面影响</a>
+    </h1>
+  
+
+        
+         
+
+
+<a href="/2021/12/29/%E7%B4%A2%E5%BC%95%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%89%E4%BB%80%E4%B9%88%E8%B4%9F%E9%9D%A2%E5%BD%B1%E5%93%8D/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>索引建立是有开销的：</strong></p>
+<p>1、创建索引和维护索引需要耗费时间，这个时间随着数据量的增加而增加。</p>
+<p>2、不光是数据库需要占用数据空间，每个索引也都需要占用额外物理空间。</p>
+<p>3、当对表进行增、删、改的时候，索引也要动态维护，降低了数据的维护速度。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/29/%E7%B4%A2%E5%BC%95%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%89%E4%BB%80%E4%B9%88%E8%B4%9F%E9%9D%A2%E5%BD%B1%E5%93%8D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-redis相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/29/redis%E7%9B%B8%E5%85%B3/">redis相关知识点</a>
+    </h1>
+  
+
+        
+         
+
+
+<a href="/2021/12/29/redis%E7%9B%B8%E5%85%B3/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、redis 默认支持多少个数据库？怎么修改？</p>
+<p>redis 默认支持16个数据库。</p>
+<p>可以通过修改redis配置文件 redis.conf 中的databases 进行变更。</p>
+<p>如修改为20个：</p>
+<p><img src="https://s2.loli.net/2022/01/07/ZKHFNpzqh3fcCYw.png" alt="image.png"></p>
+<p>redis 不会限制最大的数据库数量，但是会限制最小数据库数量为1个。</p>
+<p>2、redis SET 命令可以代替SETNX 吗？</p>
+<p>看版本，目前的版本肯定可以了。</p>
+<p>从2.6.12 版本开始，redis 为SET 命令增加了 一系列选项：</p>
 <ul>
-<li>BackGround</li>
-<li>Content Area</li>
-<li>Padding</li>
-<li>Borders</li>
-<li>Margin</li>
-<li>Region Insets</li>
+<li>EX seconds - 设置键key的过期时间，单位 - 秒；</li>
+<li>PX milliseconds - 设置键key的过期时间，单位 - 毫秒；</li>
+<li>NX - 只有键key不存在的时候才会设置key的值；</li>
+<li>XX - 只有键key存在的时候才会设置key的值；</li>
 </ul>
-<p>##关系图：</p>
-<img src="https://s2.loli.net/2021/12/17/RJtU7VDBdehZNsf.png" alt="image.png" style="zoom: 50%;" />
+<p>SET 命令加上这些选项，已经可以完全替代 SETNX,SETEX,PSETEN 的功能，所以在将来的版本中，redis 可能不会推荐使用，并且最终抛弃这几个命令。</p>
+<p>3、redis 最大key大小？</p>
+<p>The maximum allowed key size is 512MB.</p>
+<p>4、redis String 值最大存储多少？</p>
+<p>A value can’t be bigger than 512 MB.</p>
+<p>5、redis 事务有什么用？</p>
+<p>事务是一个原子操作，事务中的命令要么全部被执行，要么全部都不执行。</p>
+<p>事务中的所有命令都会序列化、按顺序地执行，事务在执行的过程中，不会被其他客户端发送过来的命令请求所打断。</p>
+<p>6、redis 事务相关的命名有哪几个?</p>
+<p>MULTI :用于开启事务；</p>
+<p>EXEC ：用于执行事务中的所有命令；</p>
+<p>DISCARD ： 用于取消当前事务；</p>
+<p>WATCH ：监视一个或多个key，决定事务是继续执行还是回滚；</p>
+<p>UNWATCH ： 取消WATCH 的监视；</p>
+<p>7、redis 事务是原子性的吗？</p>
+<p>EXEC 命令执行之前的错误（如：各种语法错误），redis 会自动放弃事务，但调用EXEC 命令执行失败后的错误（如：事务中的命令和处理了不支持的键），此时，事务中的其他命令仍会执行。</p>
+<p><strong>所以严格来说，redis 事务不具备原子性</strong>，但是redis 的命令是原子性的。因为redis是单线程的，一个操作要么执行，要么不执行，不会被其他线程打断。</p>
+<p>8、redis 持久化有什么用？</p>
+<p>持久化就是把内存的数据写到磁盘中去，防止服务宕机了内存数据丢失。</p>
+<p>9、redis有哪几种持久化方式？</p>
+<p>redis 提供两种持久化机制：RDB（默认）和AOF机制</p>
+<p>RDB: 即redis database ，是redis 默认的持久化方式。</p>
+<p>按照一定的时间将内存的数据以快照的形式保存到硬盘中，对应产生的数据文件为dump.rdb；</p>
+<p>通过配置文件中的save 参数来定义快照的周期。</p>
+<p>AOF，即 append only file ，则是将redis 执行的每次写命令记录到单独的日志文件中，当重启redis 会重新将持久化的日志中文件恢复数据。</p>
+<p>10、redis 持久化方式如何选择？</p>
+<p>一般来说，应该同时使用RDB 和AOF 两种持久化功能。</p>
+<p>当redis 重启的时候会优先载入AOF 文件来恢复原始的数据，因为通常情况下AOF 文件保存的数据集要比RDB 文件保存的数据集要完整。</p>
+<p>11、如何保证redis 中的数据都是热点数据？</p>
+<p>比如，现在mysql 数据库里有2000万数据，redis 中只能存 20万数据，如何保证redis中的数据都是热点数据呢？</p>
+<p>这道题考察的是redis 的淘汰策略，所以，首先计算一下20万数据大概占用的内存大小，然后设置一下redis 的最大内存容量大小，并将淘汰策略设置为 volatile-lru 或者 allkeys-lru，redis 会根据自身数据执行淘汰策略，即淘汰最近最少使用的数据，最后留下来的都是热数据。</p>
+<p>12、redis 内存满了怎么办？</p>
+<p>如果达到设置的上限，默认淘汰策略下，redis的写命令会返回错误信息，但是读命令还可以正常返回。</p>
+<p>一般要配置合适的淘汰机制，当redis 达到内存上限时会淘汰掉旧的数据。</p>
+<p>13、redis怎么配置最大内存容量？</p>
+<p>修改redis 配置文件</p>
+<img src="https://s2.loli.net/2022/01/08/qrJ1CgXecvEtbNo.png" alt="image.png" style="zoom:67%;" />
 
-<p>Content Area 是布局容器所在的地方；</p>
-<p>Padding是Content Area 和border 之间的空间；</p>
-<p>border是围绕在Content Area 加上 Padding 之外的 一条线（类似）</p>
-<p>Margin是在一个Region和其他组件之间的空间</p>
-<h3 id="setPadding"><a href="#setPadding" class="headerlink" title="setPadding"></a><strong>setPadding</strong></h3><p>我们可以使用setPadding 方法为Region类及其子类设置内填充，比如HBox：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HBox hBox = new HBox(new Label(&quot;hello Pane&quot;));</span><br><span class="line"></span><br><span class="line">hBox.setPadding(new Insets(10));</span><br></pre></td></tr></table></figure>
+<p>单位 ： 字节。</p>
+<p>14、redis 有哪些淘汰策略？</p>
+<p>redis 目前有八种淘汰策略：</p>
+<p>淘汰策略                  描述</p>
+<p>noeviction             默认淘汰策略，无法进行写入</p>
+<p>allkeys-lru             从所有键中淘汰最近最少访问的键            （Least Recently Used 最近最少使用）</p>
+<p>volatile-lru            从设置了过期时间的键中淘汰最近最少访问的键</p>
+<p>allkeys-lfu             从所有键中淘汰最近访问频率最低的键         （Least Frequently Used   最不常用）</p>
+<p>volatile-lfu            从设置了过期时间的键中淘汰最近访问频率最低的键</p>
+<p>allkeys-random   从所有键中随机淘汰键</p>
+<p>volatile-random  从设置了过期时间的键中随机淘汰键</p>
+<p>volatile-ttl             从设置了过期时间的键中淘汰最早过期的键</p>
+<p>15、redis 4.0为什么新增了 LFU 淘汰策略？</p>
+<p>比如redis 中的一个键，之前一直都没有被访问过，最近突然被访问了一次。</p>
+<p>使用LRU 淘汰策略就很难被淘汰，因为LRU 会把它定义为热键，会很晚淘汰。而使用LFU 淘汰策略就可能很快被淘汰，因为LRU 优先淘汰最近未被使用的，而LFU 优先淘汰最近访问频率最低的。</p>
+<p>LFU 比 LRU 淘汰更精确，有助于提升redis 的缓存命中率。</p>
+<p>16、redis 淘汰策略LRU 和 LFU 的区别？</p>
+<p>LRU 淘汰策略优先淘汰未被使用的键，如果最近有被使用，那么被淘汰的概率越低；</p>
+<p>LFU 淘汰策略是redis 4.0开始支持的，这种策略是基于键的访问频率进行淘汰，访问频率更低的键将更容易被淘汰。</p>
+<p>17、redis 怎么配置淘汰策略？</p>
+<p>修改redis 配置文件：</p>
+<img src="https://s2.loli.net/2022/01/10/TuXmzZrMKWJN2Ao.png" alt="image.png" style="zoom:67%;" />
 
-<h3 id="setBorder"><a href="#setBorder" class="headerlink" title="setBorder"></a>setBorder</h3><p>我们可以使用标准画笔画一个border也可以使用border image，border image 可以用来画一个图片边框，但是画笔边框是更加常用的。</p>
-<p>设置画笔边框</p>
-<p>以下是一个用Region子类Pane做的一个设置画笔边框的示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Pane pane = new Pane();</span><br><span class="line"></span><br><span class="line">StrokeType strokeType = StrokeType.INSIDE;</span><br><span class="line">StrokeLineJoin strokeLinejoin = StrokeLineJoin.MITER;</span><br><span class="line">StrokeLineCap strokeLineCap = StrokeLineCap.BUTT;</span><br><span class="line">double miterLimit = 0;</span><br><span class="line">double dashOffset = 0;</span><br><span class="line">List&lt;Double&gt; dashArray = null;</span><br><span class="line"></span><br><span class="line">BorderStrokeStyle borderStrokeStyle =</span><br><span class="line">       new BorderStrokeStyle(</span><br><span class="line">            strokeType,</span><br><span class="line">            strokeLineJoin,</span><br><span class="line">            strokeLineCap,</span><br><span class="line">            miterLimit,</span><br><span class="line">            dashOffset,</span><br><span class="line">            dashArray</span><br><span class="line">       );</span><br><span class="line">       </span><br><span class="line">BorderStroke borderStroke =</span><br><span class="line">          new BorderStroke(</span><br><span class="line">             Color.valueOf(&quot;08ff80&quot;),</span><br><span class="line">             borderStrokeStyle,</span><br><span class="line">             new CornerRadii(0),</span><br><span class="line">             new BorderWidths(8)</span><br><span class="line">          );</span><br><span class="line">Border border = new Border(borderStroke);</span><br><span class="line"></span><br><span class="line">pane.setBorder(border);</span><br><span class="line">       </span><br></pre></td></tr></table></figure>
+<p>默认为noeviction ，对于写请求不再提供服务，直接返回错误。</p>
+<p>配置淘汰策略为“allkeys-lru”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maxmemory-policy allkeys-lru</span><br></pre></td></tr></table></figure>
 
+<p>18、redis 过期键的删除策略有哪些？</p>
+<p>redis过期键的删除策略有3种：</p>
+<p>1、定时删除</p>
+<p>设置键的过期时间，同时创建一个定时器，当键达到过期时间时，让定时器执行键的删除操作。</p>
+<p>2、惰性删除</p>
+<p>这种策略 不会定时、主动去删除过期的键，每次从键空间获取键时，首先检查该键是否过期，如果过期则主动删除该键，否则直接返回。</p>
+<p>3、定期删除</p>
+<p>程序每隔一段时间会取出一定数量的随机键进行检查，然后删除所有过期的键。</p>
+<p>19、redis 如何提高多核cpu 利用率？</p>
+<p>可以在同一个服务器部署多个redis 的实例，并把它们当做不同的服务器来使用，在某些时候，无论如何一个服务器是不够的，所以如果你想使用多个cpu，可以考虑一下分片（shard）。</p>
+<p>20、redis 如何实现大量数据插入？</p>
+<p>redis 2.6开始 redis-cli 支持一种新的被称为pipe mode（管道） 的新模式用于执行大量数据插入 工作。</p>
+<p>21、redis 的回收进程如何工作的？</p>
+<p>1.一个客户运行了新的命令，添加了新的数据。</p>
+<p>2.redis检查内存使用情况，如果大于 maxmemory的限制，则根据设定好的策略进行回收。</p>
+<p>3.一个新的命令被执行，等等。</p>
+<p>所以我们不断地穿越内存限制的边界，通过不断达到边界然后不断地回收回到边界以下。</p>
+<p>如果一个命令的结果导致大量内存被使用（例如很大的集合的交集保存到一个新的键），不用多久内存限制就会被这个内存使用量超越。</p>
+<p>22、redis 中的管道有什么用？</p>
+<p>redis中的管道技术是指：<strong>redis pipelining</strong>，用于提高redis 服务的性能。</p>
+<p>管道技术可以在服务端还未响应时，客户端仍然可以继续想服务端发送请求，即客户端可以发送多个命令到服务端，而不用等待服务器的响应，客户端会在最后再一次性读取所有服务端的响应。</p>
+<p>23、redis 有哪些高可用方案？</p>
+<ul>
+<li>redis 主从复制；</li>
+<li>redis sentinel（哨兵）；</li>
+<li>redis cluster（集群）；</li>
+<li>codis（第三方）；</li>
+<li>twemproxy（第三方）；</li>
+</ul>
+<p>24、reids 集群如何选择数据库？</p>
+<p>redis 集群目前无法做数据库选择，默认在 0 号数据库。</p>
+<p>25、redis 哈希槽怎么理解？</p>
+<p>redis 集群没有使用一致性 hash算法，而是引入了哈希槽的概念。</p>
+<p>redis 集群有 <strong>16384</strong> 个哈希槽，每个key通过 CRC16 校验后 对16384取模来决定放置哪个槽，集群的每个节点负责一部分hash 槽。</p>
+<p>26、redis 支持的java 客户端有哪些？</p>
+<p>redisson,jedis,lettuce,aredis 等等,官方推荐使用的java 客户端是：redisson</p>
+<p>27、redis 和redisson 有什么关系？</p>
+<p>redisson 是一个高级的<strong>分布式协调redis客户端</strong>，能帮助用户在分布式环境中轻松实现一些java 的对象（Bloom filter,BitSet,Set,SetMultimap,ScoredSortedSet,SortedSet,Map,ConcurrentMap,List,ListMultimap,Queue,BlockingQueue,List,ListMultimap,Queue,BlockingQueue,Deque,BlockingDeque,Semaphore,Lock,ReadWriteLock,AtomicLong,CountDownLatch,Publish/Subscribe,HyperLogLog).</p>
+<p>28、redis 如何设置密码访问</p>
+<p>命令设置密码：</p>
+<p>这种方式是临时的，重启后需要重新设置。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config set requirepass 123456</span><br></pre></td></tr></table></figure>
 
+<p>配置设置密码：</p>
+<p>redis.conf 中添加设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">requirepass 123456</span><br></pre></td></tr></table></figure>
 
-<h3 id="setBackground"><a href="#setBackground" class="headerlink" title="setBackground"></a>setBackground</h3><p>我们可以使用Backgound类为Region及其子类设置背景，设置背景填充或者背景图片。</p>
-<p>设置背景填充：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Pane pane = new Pane();</span><br><span class="line"></span><br><span class="line">BackgroundFill backgroundFill = </span><br><span class="line">          new BackgroundFill(</span><br><span class="line">            Color.valueOf(&quot;#ff00ff&quot;),</span><br><span class="line">            new CornerRadii(10),</span><br><span class="line">            new Insets(10)</span><br><span class="line">          )</span><br><span class="line">          </span><br><span class="line">Background background = </span><br><span class="line">          new Background(backgroundFill);</span><br><span class="line">          </span><br><span class="line">pane.setBackground(background);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>授权密码：</p>
+<p>有两种方式</p>
+<p>auth 123456</p>
+<p>$ ./redis-cli -p 9001 -a 123456</p>
+<p>29、redis 为什么不提供windows版本?</p>
+<p>因为目前Linux 版本相当稳定，而且用户量很大，无需开发windows 版本，反而会带来兼容性等问题。</p>
+<p>30、redis 如何分析慢查询操作？</p>
+<p>什么是慢查询？</p>
+<p>和mysql的慢sql日志分析一样，redis也有类似的功能，来帮助定位一些慢查询操作。</p>
+<p>redis <strong>slowlog</strong> 是redis用来记录查询执行时间的日志系统。</p>
+<p>查询执行时间指的是不包括想客户端响应（taking）、发送回复等IO操作，而单单是执行一个查询命令所耗费的时间。</p>
+<p>另外，slow log 保存在内存里面，读写速度非常快，因此你可以放心地使用它，不必担心因为开启slow log 而损害redis 的速度。</p>
+<p><strong>慢查询参数</strong></p>
+<p>首先关注慢日志分析对应的两个参数：</p>
+<p>1、slowlog-log-slower-than：预设阀值，即记录超过多少时间的记录，默认为10000微妙，即10毫秒。</p>
+<p>2、slowlog-max-len：记录慢查询的条数，默认为128条，当超过设置的条数时最早进入队列的将被移除。线上建议增大数值，如：1000，这样可减少队列移除的频率。</p>
+<img src="https://s2.loli.net/2022/01/10/nkz37DlE4AiZ6GL.png" alt="image.png" style="zoom:67%;" />
 
-<p>BackgroundFill 构造函数中的CornerRadii实例用于设置背景填充角的半径（如果需要圆角）。如果不需要可以把 拐角半径 设置为0； Insets实例用于设置Region边缘和背景填充之间的内部填充；</p>
-<p>设置背景图片：</p>
-<p>我们也可以使用图片作为Region及其子类的背景</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Pane pane = new Pane();</span><br><span class="line"></span><br><span class="line">String filePath = &quot;data/background.jpg&quot;;</span><br><span class="line">Image image = null;</span><br><span class="line">try&#123;</span><br><span class="line"> image = new Image(new FileInputStream(filePath));</span><br><span class="line">&#125;catch(FileNotFoundException e)&#123;</span><br><span class="line">  e.printStackTeace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BackgroundImage backgroundimage = </span><br><span class="line">         new BackgroundImage(</span><br><span class="line">            image,</span><br><span class="line">            BackgroundRepeat.NO_REPEAT,//repeat x</span><br><span class="line">            BackgroundRepeat.NO_REPEAT,//repeat Y</span><br><span class="line">            BackgroundPosition.CENTER,//position</span><br><span class="line">            new BackgroundSize(</span><br><span class="line">                 100,// width = 100%</span><br><span class="line">                 100,// height = 100%</span><br><span class="line">                 true,//width 是百分比</span><br><span class="line">                 true,//height是百分比</span><br><span class="line">                 true,//范围内包含图片</span><br><span class="line">                 true,//覆盖所有内容区域（content Area）--上面讲的区域</span><br><span class="line">            )</span><br><span class="line">         </span><br><span class="line">         )</span><br></pre></td></tr></table></figure>
+<p>可以用config set 对这两个参数进行调整，或者在配置文件中设置：</p>
+<img src="https://s2.loli.net/2022/01/10/kSPblF91ZoBj8Qh.png" alt="image.png" style="zoom:67%;" />
 
+<p><strong>慢查询命令</strong></p>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slowlog subcommand[argument]</span><br></pre></td></tr></table></figure>
 
+<p>如，进行查询慢查询、获取慢查询记录的数量、重置慢查询日志等操作：</p>
+<img src="https://s2.loli.net/2022/01/10/dgry2fCqEeX6v3Q.png" alt="image.png" style="zoom:67%;" />
 
+<p>31、什么是缓存预热？</p>
+<p>新的缓存系统没有任何缓存数据，在缓存重建数据的过程中，系统性能和数据库负载都不太好，所以最好是在系统上线之前就把要缓存的热点数据加载到缓存中，这种缓存加载手段就是缓存预热。</p>
+<p>32、什么是缓存热备？</p>
+<p>缓存热备即当一台缓存服务器不可用时能实时切换到备用缓存服务器，不影响缓存使用。</p>
+<p>集群模式下，每个主节点都会有一个或多个从节点来当备用，一旦主节点挂点，从节点立即充当主节点使用。</p>
+<p>33、什么是缓存雪崩？</p>
+<p>缓存雪崩是指由于缓存的原因，导致大量请求到达后端数据库，从而导致数据库崩溃，整个系统崩溃，发生灾难。</p>
+<p>34、如何解决缓存雪崩？</p>
+<ul>
+<li>给缓存的失效时间，加上一个随机值，避免集体失效。</li>
+<li>双缓存，我们有两个缓存，缓存A 和缓存B。缓存A的失效时间为20分钟，缓存B不设失效时间。自己做缓存预热操作。然后细分以下几个小点：从缓存A读数据库，有则直接返回；A没有数据，直接从B读数据，直接返回，并且异步启动一个更新线程，更新线程同时更新缓存A和缓存B。</li>
+</ul>
+<p>35、什么是缓存穿透？</p>
+<p>指在高并发场景下，如果某一个key被高并发访问，没有被命中，出于对容错性考虑，会尝试去从后端数据库中获取，从而导致了大量请求到达数据库，而当该key对应的数据本身就是空的情况下，这就导致数据库中并发地去执行了很多不必要的查询操作，从而导致巨大冲击和压力。</p>
+<p>36、如何解决缓存穿透？</p>
+<p>1、缓存空对象</p>
+<p>对查询结果为空的对象也进行缓存，如果是集合，可以缓存一个空的集合（非null），如果是缓存单个对象，可以通过字段标识来区分。这样避免请求穿透到后端数据库。</p>
+<p>同时，也需要保证缓存数据的时效性。这种方式实现起来成本较低，比较适合命中不高，但可能被频繁更新的数据。</p>
+<p>2、单独过滤处理</p>
+<p>对所有可能对应数据为空的key进行统一地存放，并在请求前做拦截，这样避免请求穿透到数据库。这种方式实现起来相对复杂，比较适合命中不高，但是更新不频繁的数据。</p>
+<img src="https://s2.loli.net/2022/01/10/MFDGOfKIk6TgX7B.png" alt="image.png" style="zoom:67%;" />
+
+<p>37、什么是缓存击穿？</p>
+<p>实际上是缓存雪崩的一个特例，大家使用过微博的都知道，微博有一个热门话题的功能，用户对于热门话题的搜索量往往在一些时刻会大大地高于其他话题，这种我们称为系统的“热点”。</p>
+<p>由于系统中对这些热点的数据缓存也存在失效时间，在热点的缓存到达失效时间时，此时可能依然会有大量的请求到达系统，没有了缓存层的保护，这些请求同样的会到达数据库从而可能引起故障。</p>
+<p>击穿与雪崩的区别即在于击穿是对于特定的热点数据来说，而雪崩是全部数据。</p>
+<p>38、如何解决缓存击穿？</p>
+<ul>
+<li>对于热点数据进行二级缓存</li>
+<li>对于不同级别的缓存设定不同的失效时间</li>
+</ul>
+<p>39、什么是缓存抖动？</p>
+<p>缓存抖动可以看做是一种比“缓存雪崩”更轻微的缓存故障，一般是由于缓存节点故障导致，但是也会在一段时间内对系统造成冲击和性能影响。</p>
+<p>40、如何解决缓存抖动？</p>
+<p>一般是由于缓存节点故障导致，业内推荐的做法是通过<strong>一致性Hash算法</strong>来解决。</p>
+<p>41、什么是缓存无底洞？</p>
+<p>该问题由 facebook 的工作人员提出的，facebook 在2010年左右，memcached节点就已经达到3000个，缓存数千G内容。</p>
+<p>他们发现了一个问题：memcached连接频率，导致效率下降了，于是加 memcached节点，添加了后，发现因为连接频率导致的问题仍然存在，并没有好转，称之为“无底洞现象”：</p>
+<p>42、redis支持json 数据类型吗？为什么</p>
+<p>redis基本数据类型 不支持json,不过可以通过 redis4.0 中的模块系统 进行支持。</p>
+<p>模块名：RedisJSON</p>
+<p>模块地址： <a target="_blank" rel="noopener" href="https://oss.redis.com/redisjson/">https://oss.redis.com/redisjson/</a></p>
+<img src="https://s2.loli.net/2022/01/14/ZqTbkJs8mUAHzeY.png" alt="image.png" style="zoom: 50%;" />
+
+<p>43、redis 模块系统有什么用？</p>
+<p>redis中的模块系统：Redis Modules System,是redis 4.0中的重大改进，可以通过外部模块对redis 功能进行动态扩展，如果官方不支持的功能，我们可以开发一个模块进行支持。</p>
+<p>44、redis 支持对象映射模型吗？</p>
+<p>redis 重磅官宣：redis OM 发布，即：Object Mapping ，支持对象映射，像操作对象一样操作redis。</p>
+<p>redis OM的横空出世不仅仅是对象映射，更多的是提供一个高级的抽象类库，目标是让开发人员更简单、方便地使用redis数据。</p>
+<p>redis OM 支持的第一个抽象就是：对象映射，支持基于对象的redis 数据持久化、流式查询操作。</p>
+<p>目前只支持4种开发语言：</p>
+<ul>
+<li>redis OM for spring(java)</li>
+<li>redis OM for .NET</li>
+<li>redis OM for Node.js</li>
+<li>redis OM for Python</li>
+</ul>
+<p>45、redis 单个实例最多能存放多少个键？</p>
+<p>redis 最大可以存放 2^32 （4 294 967 296：接近43亿）个键值，即如果没有设置最大内存，redis 存储极限是服务器最大可用内存值。</p>
 
       
 
@@ -232,7 +644,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javafx</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
         		</li>
       		
 		</ul>
@@ -242,7 +654,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/16/javafx_region/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/redis%E7%9B%B8%E5%85%B3/">展开全文 >></a>
         </p>
       
 
@@ -272,14 +684,14 @@
 
 
   
-    <article id="post-为什么要使用设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-主键、外键有什么区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/16/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">为什么使用设计模式</a>
+      <a class="article-title" href="/2021/12/28/%E4%B8%BB%E9%94%AE%E3%80%81%E5%A4%96%E9%94%AE%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">主键、外键有什么区别</a>
     </h1>
   
 
@@ -287,15 +699,16 @@
          
 
 
-<a href="/2021/12/16/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-12-16T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-16</time>
+<a href="/2021/12/28/%E4%B8%BB%E9%94%AE%E3%80%81%E5%A4%96%E9%94%AE%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2021-12-28T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>设计模式是软件工程开发的基石，它可以帮助我们最大化地复用代码，减少代码冗余，使代码变得更有层次感，更容易被开发人员理解，也保证了代码的质量和可靠性。</p>
+        <p><strong>主键</strong>：用来表示一条记录的唯一标识，不能有重复的，不允许为空，默认为聚集索引，用来保证数据完整性。</p>
+<p><strong>外键</strong>：表的某列是另一表的主键，外键可以有重复的，可以是空值，用来和其他表建立关联用的。</p>
 
       
 
@@ -309,7 +722,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">java设计模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -319,7 +732,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/16/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/28/%E4%B8%BB%E9%94%AE%E3%80%81%E5%A4%96%E9%94%AE%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">展开全文 >></a>
         </p>
       
 
@@ -349,14 +762,14 @@
 
 
   
-    <article id="post-什么是设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-范式化有什么优缺点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/16/%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">什么是设计模式</a>
+      <a class="article-title" href="/2021/12/28/%E8%8C%83%E5%BC%8F%E5%8C%96%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9/">范式化有什么优缺点</a>
     </h1>
   
 
@@ -364,16 +777,21 @@
          
 
 
-<a href="/2021/12/16/%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-12-16T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-16</time>
+<a href="/2021/12/28/%E8%8C%83%E5%BC%8F%E5%8C%96%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9/" class="archive-article-date">
+  	<time datetime="2021-12-28T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>设计模式（Design pattern）是经验丰富的前人经过相当长的一段时间沉淀出来的一套代码编写和设计的最佳实践总结。</p>
-<p>设计模式就像工人们盖房子，如果有一套成熟的建造模式，工人们只要按那个模式盖就好了，能保证整体质量和可靠性。如果每个工人都按自己的思路盖，那盖出来的房子十有八九是七扭八歪的。开发人员开发软件也是如此。</p>
+        <p><strong>范式化的优点：</strong></p>
+<p>1、数据库更新起来更快；</p>
+<p>2、可以只修改更少的数据；</p>
+<p>3、更少的 distinct/group by 语句；</p>
+<p>4、表更小，可以在内存中执行；</p>
+<p><strong>范式化的缺点：</strong></p>
+<p>范式化没有冗余数据，查询会产生较多关联，并且不能建立复合索引，所以查询性能会大大降低。</p>
 
       
 
@@ -387,7 +805,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">java设计模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -397,7 +815,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/16/%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/28/%E8%8C%83%E5%BC%8F%E5%8C%96%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9/">展开全文 >></a>
         </p>
       
 
@@ -427,14 +845,14 @@
 
 
   
-    <article id="post-总共有多少种设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-== 和 equals 比较有什么区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/16/%E6%80%BB%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">总共有多少种设计模式</a>
+      <a class="article-title" href="/2021/12/22/==%20%E5%92%8C%20equals%20%E6%AF%94%E8%BE%83%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">== 和 equals 比较有什么区别？</a>
     </h1>
   
 
@@ -442,96 +860,26 @@
          
 
 
-<a href="/2021/12/16/%E6%80%BB%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-12-16T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-16</time>
+<a href="/2021/12/22/==%20%E5%92%8C%20equals%20%E6%AF%94%E8%BE%83%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2021-12-22T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1995年，GOF（Gang of four ，四人帮）合作出版了《设计模式：可复用面向对象软件的基础》一书，书中共收录了23中设计模式，所以公认的权威的设计模式有23种。</p>
-<p><img src="https://s2.loli.net/2021/12/16/jRfkGS3O57JoYBw.png" alt="image.png"></p>
+        <p>==：</p>
+<p>如果比较的对象是基本数据类型，则比较的是数值是否一致；</p>
+<p>如果比较的是引用数据类型，则比较的是对象的地址是否一致；</p>
+<p>equals():</p>
+<p>equals() 默认用来比较对象的地址是否一致，不能用于比较基本数据类型，如果对象和自身进行比较，则equals()方法与 == 的作用是一样的。</p>
+<img src="https://s2.loli.net/2021/12/23/YlAQFIhDORsm2ry.png" alt="image.png" style="zoom:67%;" />
 
-      
+<p>那为什么常用equals()来比较String字符串的内容是否相等呢？</p>
+<p>那是因为对于String、Date、Integer等类型重写了equals方法，使其比较的是存储对象的内容，而不是堆内存地址。</p>
+<p>如String，已经重写了equals方法：</p>
+<img src="https://s2.loli.net/2021/12/23/CeRUE5LqTZM2kwV.png" alt="image.png" style="zoom:67%;" />
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">java设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/16/%E6%80%BB%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java标识符命名规则" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/java%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99/">java标识符命名规则</a>
-    </h1>
-  
-
-        
-         
-
-
-<a href="/2021/12/11/java%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、标识符只能由字母（a-z,A-Z）、数字（0-9）、下划线（_）和美元符合（$）组成。</p>
-<p>2、标识符不能以数字开头</p>
-<p>3、标识符不能使用Java关键字</p>
-<p>4、标识符区分大小写</p>
 
       
 
@@ -555,7 +903,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/java%E6%A0%87%E8%AF%86%E7%AC%A6%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/22/==%20%E5%92%8C%20equals%20%E6%AF%94%E8%BE%83%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">展开全文 >></a>
         </p>
       
 
@@ -585,14 +933,14 @@
 
 
   
-    <article id="post-java方法命名规范" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-StringBuilder与StringBuffer默认容量多少" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/java%E6%96%B9%E6%B3%95%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">java方法命名规范</a>
+      <a class="article-title" href="/2021/12/22/StringBuilder%E4%B8%8EStringBuffer%E9%BB%98%E8%AE%A4%E5%AE%B9%E9%87%8F%E5%A4%9A%E5%B0%91/">StringBuilder与StringBuffer默认容量多少？</a>
     </h1>
   
 
@@ -600,18 +948,17 @@
          
 
 
-<a href="/2021/12/11/java%E6%96%B9%E6%B3%95%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
+<a href="/2021/12/22/StringBuilder%E4%B8%8EStringBuffer%E9%BB%98%E8%AE%A4%E5%AE%B9%E9%87%8F%E5%A4%9A%E5%B0%91/" class="archive-article-date">
+  	<time datetime="2021-12-22T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##方法命名规范</p>
-<p>方法名首字母小写，后面每个单词首字母大写，符合小驼峰式风格，比如：</p>
-<p>· indexOf</p>
-<p>· saveOrderInfo</p>
+        <p><img src="https://s2.loli.net/2021/12/22/QpRoyKIxBklVdNE.png" alt="image.png"></p>
+<p>默认都是16个字节。</p>
+<p>扩容都是原来的容量乘以2再+2个字节。</p>
 
       
 
@@ -635,7 +982,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/java%E6%96%B9%E6%B3%95%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/22/StringBuilder%E4%B8%8EStringBuffer%E9%BB%98%E8%AE%A4%E5%AE%B9%E9%87%8F%E5%A4%9A%E5%B0%91/">展开全文 >></a>
         </p>
       
 
@@ -665,14 +1012,14 @@
 
 
   
-    <article id="post-java类命名规范" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Lambda表达式的用途有哪些" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">java类命名规范</a>
+      <a class="article-title" href="/2021/12/22/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E7%94%A8%E9%80%94%E6%9C%89%E5%93%AA%E4%BA%9B/">Lambda表达式的用途有哪些？</a>
     </h1>
   
 
@@ -680,19 +1027,28 @@
          
 
 
-<a href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
+<a href="/2021/12/22/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E7%94%A8%E9%80%94%E6%9C%89%E5%93%AA%E4%BA%9B/" class="archive-article-date">
+  	<time datetime="2021-12-22T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##类命名规范</p>
-<p>类名首字母大写，后面每个单词首字母大写，符合UpperCamelCase大驼峰式风格，比如：</p>
-<p>· Order</p>
-<p>· OrderDetail</p>
-<p>但是一般这样的缩写例外:DO、VO、DTO等</p>
+        <h3 id="1、只有一个抽象方法的函数式接口"><a href="#1、只有一个抽象方法的函数式接口" class="headerlink" title="1、只有一个抽象方法的函数式接口"></a>1、只有一个抽象方法的函数式接口</h3><p>Lambda表达式的目标类是函数式接口。比如创建线程可以有几种写法：</p>
+<img src="https://s2.loli.net/2021/12/22/BZday7KYrIM8ixE.png" alt="image.png" style="zoom: 67%;" />
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t1</span><br><span class="line">t2</span><br><span class="line">t3</span><br><span class="line">t4</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、集合批量操作"><a href="#2、集合批量操作" class="headerlink" title="2、集合批量操作"></a>2、集合批量操作</h3><img src="https://s2.loli.net/2021/12/22/v2soKjX3BwmOgDl.png" alt="image.png" style="zoom:80%;" />
+
+<p>以上两种打印集合的写法是等价的。</p>
+<h3 id="3、流操作"><a href="#3、流操作" class="headerlink" title="3、流操作"></a>3、流操作</h3><p>查询集合中等于“a“的元素的数量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.stream().filter((e) -&gt; &quot;a&quot;.equals(e)).count();</span><br></pre></td></tr></table></figure>
+
+
+
 
       
 
@@ -716,7 +1072,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/java%E7%B1%BB%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/22/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E7%94%A8%E9%80%94%E6%9C%89%E5%93%AA%E4%BA%9B/">展开全文 >></a>
         </p>
       
 
@@ -746,14 +1102,14 @@
 
 
   
-    <article id="post-java面向对象编程特征" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-java中断言（assert）是什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E7%89%B9%E5%BE%81/">面向对象编程特征</a>
+      <a class="article-title" href="/2021/12/22/java%E4%B8%AD%E6%96%AD%E8%A8%80%EF%BC%88assert%EF%BC%89%E6%98%AF%E4%BB%80%E4%B9%88/">java中断言（assert）是什么？</a>
     </h1>
   
 
@@ -761,22 +1117,30 @@
          
 
 
-<a href="/2021/12/11/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E7%89%B9%E5%BE%81/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
+<a href="/2021/12/22/java%E4%B8%AD%E6%96%AD%E8%A8%80%EF%BC%88assert%EF%BC%89%E6%98%AF%E4%BB%80%E4%B9%88/" class="archive-article-date">
+  	<time datetime="2021-12-22T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##封装（Encapsulation)：</p>
-<p>封装就是指隐藏对象的属性和实现细节，控制成员属性的访问和修改权限，通过特定的方法（如get，set）暴露给外界访问。</p>
-<p>##继承（Inheritance):</p>
-<p>继承就是指子类继承父类的成员和方法，由此子类也能具有父类相同的行为。</p>
-<p>java类只能单继承。</p>
-<p>##多态（Polymorphism):</p>
-<p>多态指同一个行为具有多个不同的表现形式，一个类的方法在不同情况下有不同的表现形式。</p>
-<p>比如方法重载，同一个方法名可以有不同参数的表现形式。</p>
+        <p>在java中，断言-assert 关键字是从java se 1.4 引入的，断言是为了方便调试程序，并不是发布程序的组成部分。</p>
+<p>默认情况下，jvm是关闭断言的（此时所有断言语句都将忽略），如果要开启，则需要在命令行模式下运行java程序时可增加参数 -enableassertions 或 -ea 打开断言；可通过 -disableassertions 或者 -da 关闭断言（默认情况，可有可无）</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>断言语法有两种：</p>
+<h4 id="1、assert-lt-boolean表达式-gt"><a href="#1、assert-lt-boolean表达式-gt" class="headerlink" title="1、assert&lt;boolean表达式&gt;"></a>1、assert&lt;boolean表达式&gt;</h4><p>如果 表达式为 true，则程序继续执行， 如果为false，则程序抛出AssertionError。并终止执行。</p>
+<p>如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class AssertionTest&#123;</span><br><span class="line">  public static void main(String[] args)【</span><br><span class="line">    boolean isSafe = false;</span><br><span class="line">    assert isSafe;</span><br><span class="line">    System.out.println(&quot;断言通过&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是命令行模式运行，需要指明开启断言功能，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -ea AssertionTest</span><br></pre></td></tr></table></figure>
+
+<p>如果是IDE下，比如Eclipese，可这样设置: Run as -&gt; Run Configurations -&gt; Arguments -&gt; VM arguments：敲入-ea即可。</p>
+<h4 id="2、assert-lt-boolean表达式-gt-lt-错误信息表达式-gt"><a href="#2、assert-lt-boolean表达式-gt-lt-错误信息表达式-gt" class="headerlink" title="2、assert&lt;boolean表达式&gt;:&lt;错误信息表达式&gt;"></a>2、assert&lt;boolean表达式&gt;:&lt;错误信息表达式&gt;</h4><p>如果 表达式为 true，则程序继续执行， 如果为false，则程序抛出AssertionError，并输出&lt;错误信息表达式&gt;。</p>
+<p>如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class AssertionTest&#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">         boolean isSafe = false;</span><br><span class="line">         assert isSafe : &quot;Not safe&quot;;</span><br><span class="line">         System.out.println(&quot;断言通过&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第二种与第一种相比只会多输出一句错误信息；</p>
 
       
 
@@ -800,169 +1164,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E7%89%B9%E5%BE%81/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-jdk与jre的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/jdk%E4%B8%8Ejre%E7%9A%84%E5%8C%BA%E5%88%AB/">jdk与jre的区别</a>
-    </h1>
-  
-
-        
-         
-
-
-<a href="/2021/12/11/jdk%E4%B8%8Ejre%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##JDK：</p>
-<p>全称：Java Development kit ，java开发工具包是整个java核心，包含了java运行时环境（jre）和一系列java开发工具完整的包。</p>
-<p>##JRE:</p>
-<p>全称 ：Java Runtime Enviroment ,java运行时环境，包含了JVM，java核心类库等。</p>
-<p>jre只能用来运行java应用程序，不能用于编译开发，是jdk的子集</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/jdk%E4%B8%8Ejre%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-如何编译和运行java文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/%E5%A6%82%E4%BD%95%E7%BC%96%E8%AF%91%E5%92%8C%E8%BF%90%E8%A1%8Cjava%E6%96%87%E4%BB%B6/">如何编译和运行java文件</a>
-    </h1>
-  
-
-        
-         
-
-
-<a href="/2021/12/11/%E5%A6%82%E4%BD%95%E7%BC%96%E8%AF%91%E5%92%8C%E8%BF%90%E8%A1%8Cjava%E6%96%87%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2021-12-11T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##使用javac 命令 来编译 .java 文件  </p>
-<p>javac Test.java</p>
-<p>运行后生成Test.class  文件</p>
-<p>##使用java 命令来运行:</p>
-<p>java Test</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/%E5%A6%82%E4%BD%95%E7%BC%96%E8%AF%91%E5%92%8C%E8%BF%90%E8%A1%8Cjava%E6%96%87%E4%BB%B6/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/22/java%E4%B8%AD%E6%96%AD%E8%A8%80%EF%BC%88assert%EF%BC%89%E6%98%AF%E4%BB%80%E4%B9%88/">展开全文 >></a>
         </p>
       
 
@@ -994,7 +1196,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1006,7 +1208,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 Amos
+    		&copy; 2022 Amos
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1108,7 +1310,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">javafx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">

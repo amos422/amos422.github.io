@@ -155,14 +155,14 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-java反射慢在哪里" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-mysql索引最左匹配原则怎么理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/21/java%E5%8F%8D%E5%B0%84%E6%85%A2%E5%9C%A8%E5%93%AA%E9%87%8C/">java反射慢在哪里</a>
+      <a class="article-title" href="/2021/12/29/mysql%E7%B4%A2%E5%BC%95%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D%E5%8E%9F%E5%88%99%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3/">mysql索引最左匹配原则怎么理解</a>
     </h1>
   
 
@@ -170,17 +170,24 @@
          
 
 
-<a href="/2021/12/21/java%E5%8F%8D%E5%B0%84%E6%85%A2%E5%9C%A8%E5%93%AA%E9%87%8C/" class="archive-article-date">
-  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
+<a href="/2021/12/29/mysql%E7%B4%A2%E5%BC%95%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D%E5%8E%9F%E5%88%99%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1、反射调用涉及到检查字段、方法的可见性。</p>
-<p>2、反射调用涉及到动态加载，所以JIT编译无法优化到。</p>
-<p>3、反射调用还涉及到验证过程和参数，参数需要装箱和拆箱，还需要组装成Object[]形式、异常的包装等等问题。</p>
+        <p><strong>索引最左匹配原则</strong>就是指在mysql 复合索引中从最左边开始匹配的原则，如果你的sql语句中用到了复合索引中的最左边的索引，那么这条sql语句就可以利用这个联合索引去进行匹配。</p>
+<p>如：建立abc三个字段的复合索引，就相当于建立了索引：(a) ,(a,b), (a,b,c)</p>
+<p>索引字段可以任何顺序，mysql的查询优化器会帮你优化成索引可以识别的形式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#用上了索引：a,b,c</span><br><span class="line">select * from t where a=1 and b=1 and c=1;</span><br><span class="line"></span><br><span class="line">#用上了索引：a,b</span><br><span class="line">select * from t where a=1 and b=1;</span><br><span class="line"></span><br><span class="line">#用上了索引：a,b</span><br><span class="line">select * from t where b=1 and a=1;</span><br><span class="line"></span><br><span class="line">#用上了索引：a</span><br><span class="line">select * from t where a=1;</span><br><span class="line"></span><br><span class="line">#没用索引</span><br><span class="line">select * from t where b=1 and c=1;</span><br><span class="line"></span><br><span class="line">#用上了索引：a</span><br><span class="line">select * from t where a=1 and c=1;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，当遇到范围查询（&gt;,&lt;,between,like)就会停止匹配，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#用上了索引：a,b</span><br><span class="line">select * from t where a=1 and b&gt;1 and c=1;</span><br></pre></td></tr></table></figure>
+
+
+
 
       
 
@@ -194,7 +201,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -204,7 +211,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/21/java%E5%8F%8D%E5%B0%84%E6%85%A2%E5%9C%A8%E5%93%AA%E9%87%8C/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/mysql%E7%B4%A2%E5%BC%95%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D%E5%8E%9F%E5%88%99%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3/">展开全文 >></a>
         </p>
       
 
@@ -234,14 +241,14 @@
 
 
   
-    <article id="post-java金额计算怎么避免精度丢失" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-redis和memcache有什么区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/21/java%E9%87%91%E9%A2%9D%E8%AE%A1%E7%AE%97%E6%80%8E%E4%B9%88%E9%81%BF%E5%85%8D%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1/">java金额计算怎么避免精度丢失</a>
+      <a class="article-title" href="/2021/12/29/redis%E5%92%8Cmemcache%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">redis和memcache有什么区别</a>
     </h1>
   
 
@@ -249,47 +256,21 @@
          
 
 
-<a href="/2021/12/21/java%E9%87%91%E9%A2%9D%E8%AE%A1%E7%AE%97%E6%80%8E%E4%B9%88%E9%81%BF%E5%85%8D%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" class="archive-article-date">
-  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
+<a href="/2021/12/29/redis%E5%92%8Cmemcache%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="经典的精度丢失问题"><a href="#经典的精度丢失问题" class="headerlink" title="经典的精度丢失问题"></a>经典的精度丢失问题</h3><p>java中的类型float、double用来做计算会有精度丢失问题，看下面实例：</p>
-<img src="https://s2.loli.net/2021/12/21/zNZVyMFDiJo5SkA.png" alt="image.png" style="zoom:67%;" />
-
-<p>上面的程序输出结果是多少？</p>
-<p>0.07？不是。</p>
-<p>结果是</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.06999999999999999</span><br></pre></td></tr></table></figure>
-
-<p>为什么？</p>
-<p>浮点数可能丢失精度，浮点十进制数通常没有完全相同的二进制的表示形式，这是cpu所采用的浮点数据表现形式的副作用。为此，可能会有一些精度丢失，并且一些浮点运算可能会产生未知的结果。</p>
-<p>浮点运算很少是精确地，只要是超过精度能表示的范围就会产生误差。所以在使用float、double做精确运算的时候一定要特别小心，除非能容忍精度丢失，不然产生的误差会造成双方对账不一致。</p>
-<h3 id="怎么解决"><a href="#怎么解决" class="headerlink" title="怎么解决"></a>怎么解决</h3><p>在《Effective Java》中提到这个原则:float、double只能用来做科学技术或者工程计算，在商业计算中我们要用java.math.BigDecimal.</p>
-<p>BigDecimal 适合更精确的运算，也提供了丰富的操作符类型，小数位控制，四舍五入规则等。</p>
-<p>不过使用BigDecimal不当也有精度丢失的情况，如double型参数的构造方法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal(double val)</span><br></pre></td></tr></table></figure>
-
-<p>再看如下示例:</p>
-<img src="https://s2.loli.net/2021/12/21/rCMwmT8dVUsxlpG.png" alt="image.png" style="zoom: 50%;" />
-
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.0699999999999999962529972918900966760702431201934814453125</span><br></pre></td></tr></table></figure>
-
-<p>这个精度更烂</p>
-<p>所以一定要使用String型参数的构造方法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal(String val)</span><br></pre></td></tr></table></figure>
-
-<img src="https://s2.loli.net/2021/12/21/WrAnOQj9s7iCe68.png" alt="image.png" style="zoom:50%;" />
-
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.07</span><br></pre></td></tr></table></figure>
-
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>1、金额运算尽量使用BigDecimal（String val）进行运算。</p>
-<p>2、数据库存储金额，一般有整形和浮点型两种存储方式。如果是有汇率转换的，建议使用浮点数decimal进行存储，可以灵活地控制精度，decimal直接对应java类型BigDecimal。当然用整数存储分这种形式也可以，转账的时候单位为元而如果忘了转换分为元，那就悲剧了。</p>
+        <p>1、存储方式</p>
+<p>redis支持数据持性，可以持久化数据到硬盘上。</p>
+<p>memcache把数据全部存在内存之中，断电后会挂掉，数据不能超过内存大小。</p>
+<p>2、数据类型</p>
+<p>redis 有丰富的数据结构，memcache 只支持简单的字符串类型。‘</p>
+<p>3、数据大小</p>
+<p>redis 单个value 的最大限制是 1 GB，memcache最大限制是 1 MB。</p>
 
       
 
@@ -303,7 +284,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
         		</li>
       		
 		</ul>
@@ -313,7 +294,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/21/java%E9%87%91%E9%A2%9D%E8%AE%A1%E7%AE%97%E6%80%8E%E4%B9%88%E9%81%BF%E5%85%8D%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/redis%E5%92%8Cmemcache%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">展开全文 >></a>
         </p>
       
 
@@ -343,14 +324,14 @@
 
 
   
-    <article id="post-main方法能不能改为非静态" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-redis有什么优势" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/21/main%E6%96%B9%E6%B3%95%E8%83%BD%E4%B8%8D%E8%83%BD%E6%94%B9%E4%B8%BA%E9%9D%9E%E9%9D%99%E6%80%81/">main方法能不能改为非静态</a>
+      <a class="article-title" href="/2021/12/29/redis%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8A%BF/">redis有什么优势</a>
     </h1>
   
 
@@ -358,298 +339,41 @@
          
 
 
-<a href="/2021/12/21/main%E6%96%B9%E6%B3%95%E8%83%BD%E4%B8%8D%E8%83%BD%E6%94%B9%E4%B8%BA%E9%9D%9E%E9%9D%99%E6%80%81/" class="archive-article-date">
-  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
+<a href="/2021/12/29/redis%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8A%BF/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>不能改为非静态，main方法必须声明为静态的，这样JVM才可以调用main方法而无需实例化它的类。</p>
-<p>如果从main方法去掉 static 声明，虽然依然可以编译成功，但在运行时会导致程序失败。</p>
-<p>在实例化时还得调用类的构造函数，如果这个类的构造函数有参数，那么届时会出现歧义。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/21/main%E6%96%B9%E6%B3%95%E8%83%BD%E4%B8%8D%E8%83%BD%E6%94%B9%E4%B8%BA%E9%9D%9E%E9%9D%99%E6%80%81/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-一些小的问答点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/21/%E4%B8%80%E4%BA%9B%E5%B0%8F%E7%9A%84%E9%97%AE%E7%AD%94%E7%82%B9/">一些小的问答点</a>
-    </h1>
-  
-
-        
-         
-
-
-<a href="/2021/12/21/%E4%B8%80%E4%BA%9B%E5%B0%8F%E7%9A%84%E9%97%AE%E7%AD%94%E7%82%B9/" class="archive-article-date">
-  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>问：Math.round(-1.5)等于多少？</p>
-<p>答：-1</p>
-<p>问: short s1 = 1; s1 = s1 + 1;有错吗？</p>
-<p>答: 有错。第二句的1是int类型，s1+1运算结果也是int类型，所以需要强制转换类型才能赋值给short类型</p>
-<p>s1 =(short) s1 + 1</p>
-<p>问：java中一个字符占几个字节？</p>
-<p>答：2个。</p>
-<img src="https://s2.loli.net/2021/12/21/c63j2sIlkPKJMeH.png" alt="image.png" style="zoom:50%;" />
-
-<p>问：java支持多继承吗？</p>
-<p>答：类直接只能单继承，接口之间可以多继承。</p>
-<p>问：函数式接口用什么注解修饰？</p>
-<p>答：@FunctionalInterface</p>
-<p>问：怎么向main方法传递参数？</p>
-<p>答：通过String[]数组</p>
-<p>问：怎么初始化数组？</p>
-<p>答：1、int[] arr = new int[5];      int[] [] arr = new int[3] [4];2、 int[] arr ={1,2,3,4,5};</p>
-<p>问：可以获取java对象的原始hashcode值的方法是？</p>
-<p>答：identityHashCode</p>
-<p>问：什么时候可以用 + 拼接字符串？</p>
-<p>答：1、在循环和多个表达式中不能 + ，频繁创建StringBuilder会影响性能；2、在单个表达式中可以用 + ，编译器做了优化；</p>
-<p>问：java可以一次catch多个异常吗？</p>
-<p>答：java7开始可以一次catch多个异常，如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line"></span><br><span class="line">&#125;catch(IllegalArgumentException | SecurityException | IllegalAccessException | NoSuchFieldException ex)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>问：java到底是值传递还是引用传递？</p>
-<p>答：java中方法参数严格来说是按值传递的。如果参数是基本类型：传递的是基本类型的字面量值的拷贝。如果参数是引用类型：传递的是该参量所引用的对象在堆中地址值的拷贝。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/21/%E4%B8%80%E4%BA%9B%E5%B0%8F%E7%9A%84%E9%97%AE%E7%AD%94%E7%82%B9/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-静态变量和实例变量有什么区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/21/%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">静态变量和实例变量有什么区别</a>
-    </h1>
-  
-
-        
-         
-
-
-<a href="/2021/12/21/%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>静态变量</strong>，即被static修饰的变量，它属于类，但不属于类的任何一个对象，一个类不管创建多少个对象，静态变量在内存中有且仅有一个拷贝，静态变量可以实现让多个对象共享内存。</p>
-<p><strong>实例变量</strong>，它属于某一对象实例，需要通过一个类的对象实例才能访问它。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/21/%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-重载和重写有什么区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/21/%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">重载和重写有什么区别</a>
-    </h1>
-  
-
-        
-         
-
-
-<a href="/2021/12/21/%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2021-12-21T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>重载(Overload):</p>
-<p>在一个类中，具有相同的方法名，但是方法的参数不同，返回值类型可以相同也可以不同。被称为重载。</p>
+        <p>1、性能高、速度快</p>
+<p>redis 命令执行速度非常快，官方给出的读写性能可以达到10w/秒。</p>
+<p>之所以如此之快，有以下几个因素：</p>
 <ul>
-<li>被重载的方法必须改变参数列表（参数个数或类型不同）；</li>
-<li>被重载的方法可以改变返回类型；</li>
-<li>被重载的方法可以改变访问修饰符；</li>
-<li>被重载的方法可以声明新的或更广的检查异常；</li>
-<li>方法能够在同一个类中或者在一个子类中被重载；</li>
-<li>无法以返回值类型作为重载函数的区分标准；</li>
+<li>数据存储在内存中，直接与内存连接。</li>
+<li>由相对底层的c 语言实现，离操作系统更近。</li>
+<li>实现源码很精湛，仅仅几万行代码，简单稳定。</li>
+<li>使用了单线程模型，无多线程竞争、锁等问题。</li>
+<li>采用了非阻塞I/O多路复用机制。</li>
 </ul>
-<p>重写（override）：</p>
-<p>一般都是表示子类和父类之间的关系，其主要的特征是：方法名相同，参数相同，但是具体的实现不同；</p>
+<p>2、丰富的数据类型</p>
+<p>redis 与其他的内存数据库不同的是，redis 拥有丰富的数据类型，如字符串、哈希、列表、集合、有序集合等。正式因为redis 丰富的数据类型，所以它能应用的场景非常多。</p>
+<p>3、丰富的特性</p>
+<p>除了支持丰富的数据结构外，还支持以下攻击功能：</p>
 <ul>
-<li>参数列表与被重写方法的参数列表必须完全相同；</li>
-<li>返回类型与被重写方法的返回类型可以不相同，但是必须是父类返回值的派生类（java5及之前需要返回类型一样，java7及更高版本可以不同）；</li>
-<li>访问权限不能比父类中被重写的方法的访问权限更低。如：如果父类的一个方法被修饰为public，那子类中重写该方法就不能声明为protected；</li>
-<li>父类的成员方法只能被他的子类重写；</li>
-<li>声明为static的方法不能被重写，但是能够被再次声明；</li>
-<li>子类和父类在同一个包中，子类可以重写除声明为private和final的所有方法；</li>
-<li>子类和父类不在同一个包中，子类只能重写父类的声明为public和protected的非final方法；</li>
-<li>重写的方法能够抛出任何非强制异常，无论被重写的方法是否抛出异常。但是，重写的方法不能抛出新的强制性异常，或者比被重写方法声明的更广泛的强制性异常，反之则可以；</li>
-<li>构造方法不能被重写；</li>
-<li>如果不能继承一个类，则不能重写该类的方法；</li>
+<li>支持键过期功能，可以用来实现定时缓存。</li>
+<li>支持发布/订阅功能，可以用来实现消息队列。</li>
+<li>支持事务功能，可以保证多条命令的事务性。</li>
+<li>支持管道功能，能够批量处理命令。</li>
+<li>支持Lua 脚本功能。</li>
+<li>支持集群分片和数据复制功能。</li>
+<li>支持内存数据持久化至硬盘功能。</li>
 </ul>
+<p>4、丰富的客户端</p>
+<p>官网索引：<a target="_blank" rel="noopener" href="http://www.redis.cn/clients.html">http://www.redis.cn/clients.html</a></p>
+<p>从官网给出的客户端列表可以看出，各种各样的语言都能接入到redis，接入包括了所有的主流开发语言。</p>
+<p>目前使用redis 的公司非常多，国内外都有很多重量级的公司在用。</p>
 
       
 
@@ -663,7 +387,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
         		</li>
       		
 		</ul>
@@ -673,7 +397,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/21/%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/redis%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8A%BF/">展开全文 >></a>
         </p>
       
 
@@ -703,14 +427,14 @@
 
 
   
-    <article id="post-javafx_FlowPane" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-redis支持哪些数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/18/javafx_FlowPane/">javafx - FlowPane</a>
+      <a class="article-title" href="/2021/12/29/redis%E6%94%AF%E6%8C%81%E5%93%AA%E4%BA%9B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">redis支持哪些数据类型</a>
     </h1>
   
 
@@ -718,37 +442,24 @@
          
 
 
-<a href="/2021/12/18/javafx_FlowPane/" class="archive-article-date">
-  	<time datetime="2021-12-18T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-18</time>
+<a href="/2021/12/29/redis%E6%94%AF%E6%8C%81%E5%93%AA%E4%BA%9B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>FlowPane(流动窗体)</p>
-<p>FlowPane是一个布局组件，它可以垂直或水平地布局其子组件，如果一行中没有足够的空间，它可以将组件包装到下一行或下一列；</p>
-<h3 id="创建流动窗体并将按钮放入其中："><a href="#创建流动窗体并将按钮放入其中：" class="headerlink" title="创建流动窗体并将按钮放入其中："></a>创建流动窗体并将按钮放入其中：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Button button1 = new Button(&quot;Buttoon Number 1&quot;);</span><br><span class="line">Button button2 = new Button(&quot;Buttoon Number 2&quot;);</span><br><span class="line">Button button3 = new Button(&quot;Buttoon Number 3&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">FlowPane flowpane = new FlowPane();</span><br><span class="line"></span><br><span class="line">flowpane.getChildren().add(button1);</span><br><span class="line">flowpane.getChildren().add(button2);</span><br><span class="line">flowpane.getChildren().add(button3);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="完整实例："><a href="#完整实例：" class="headerlink" title="完整实例："></a>完整实例：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">package com.amos.javafx.layouts;</span><br><span class="line"></span><br><span class="line">import javafx.application.Application;</span><br><span class="line">import javafx.geometry.Orientation;</span><br><span class="line">import javafx.scene.Scene;</span><br><span class="line">import javafx.scene.control.Button;</span><br><span class="line">import javafx.scene.layout.FlowPane;</span><br><span class="line">import javafx.stage.Stage;</span><br><span class="line"></span><br><span class="line">public class FlowPaneExample extends Application&#123;</span><br><span class="line">  public static main(String[] args)&#123;</span><br><span class="line">    launch(args);</span><br><span class="line">  &#125;</span><br><span class="line">  @Override</span><br><span class="line">  public void start(Stage primaryStage) throws Exception&#123;</span><br><span class="line">     Button button1 = new Button(&quot;Buttoon Number 1&quot;);</span><br><span class="line">     Button button2 = new Button(&quot;Buttoon Number 2&quot;);</span><br><span class="line">     Button button3 = new Button(&quot;Buttoon Number 3&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     FlowPane flowpane = new FlowPane();</span><br><span class="line"></span><br><span class="line">     flowpane.getChildren().add(button1);</span><br><span class="line">     flowpane.getChildren().add(button2);</span><br><span class="line">     flowpane.getChildren().add(button3);</span><br><span class="line">     </span><br><span class="line">     Scene scene = new Scene(flowpane,200,100);</span><br><span class="line">     primaryStage.setScene(scene);</span><br><span class="line">     primaryStage.show();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上代码运行结果如下：</p>
-<img src="https://s2.loli.net/2021/12/18/xCRTAUXWO6fJyQL.png" alt="image.png" style="zoom: 67%;" />
-
-<p>注意当第一行的宽度容不下三个按钮时，第三个按钮折到了第二行。</p>
-<h3 id="水平与垂直间隔"><a href="#水平与垂直间隔" class="headerlink" title="水平与垂直间隔"></a>水平与垂直间隔</h3><p>您可以在流动窗体中通过setHgap()和setVgap() 方法设置两个组件之间的间隔：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flowpane.setHgap(10);</span><br><span class="line">flowpane.setVgap(10);</span><br></pre></td></tr></table></figure>
-
-<p>代码中如果有以上两句那宽度不够时运行结果会是如下：</p>
-<img src="https://s2.loli.net/2021/12/18/izf75UERFXbCayx.png" alt="image.png" style="zoom:67%;" />
-
-
-
-
-
-<h3 id="Orientation（方向）"><a href="#Orientation（方向）" class="headerlink" title="Orientation（方向）"></a>Orientation（方向）</h3><p>流动窗体默认水平方向布局，当没有足够的宽度展示其子组件时，子组件会自动折行到第二行。但是我们也可以通过setOrientation()方法强制让流动窗体垂直布局：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flowpane.setOrientation(Orientation.VERTICAL);</span><br></pre></td></tr></table></figure>
-
+        <p>redis 5.0 支持 9中数据类型：</p>
+<p>String - 字符串</p>
+<p>Lists - 列表</p>
+<p>Sets - 集合</p>
+<p>Sorted set - 有序集合</p>
+<p>Hash - 哈希</p>
+<p>Bit arrays - 位图</p>
+<p>HyperLogLogs - 基数统计</p>
+<p>Geospatial Indexes - 地理空间索引</p>
+<p>Streams - 流</p>
 
       
 
@@ -762,7 +473,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javafx</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
         		</li>
       		
 		</ul>
@@ -772,7 +483,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/18/javafx_FlowPane/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/redis%E6%94%AF%E6%8C%81%E5%93%AA%E4%BA%9B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
         </p>
       
 
@@ -802,14 +513,14 @@
 
 
   
-    <article id="post-javafx_Separator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-spring相关 " class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/18/javafx_Separator/">javafx - Separator</a>
+      <a class="article-title" href="/2021/12/29/spring%E7%9B%B8%E5%85%B3%20/">spring相关</a>
     </h1>
   
 
@@ -817,22 +528,160 @@
          
 
 
-<a href="/2021/12/18/javafx_Separator/" class="archive-article-date">
-  	<time datetime="2021-12-18T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-18</time>
+<a href="/2021/12/29/spring%E7%9B%B8%E5%85%B3%20/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Separator-可视化分隔符"><a href="#Separator-可视化分隔符" class="headerlink" title="Separator  可视化分隔符"></a>Separator  可视化分隔符</h3><p>这个组件显示组件之间的可视化分隔符，比如VBox中的控件之间的分隔符：</p>
-<p><img src="https://s2.loli.net/2021/12/18/8uUDIiXaSbtckTO.png" alt="image.png"></p>
-<p>代码示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import javafx.application.Application;</span><br><span class="line">import javafx.geometry.Orientation;</span><br><span class="line">import javafx.secene.Scene;</span><br><span class="line">import javafx.scene.control.Label;</span><br><span class="line">import javafx.scene.control.Separator;</span><br><span class="line">import javafx.scene.layout.VBox;</span><br><span class="line">import javafx.stage.Stage;</span><br><span class="line"></span><br><span class="line">public class SeparatorExample extends Application&#123;</span><br><span class="line">   public static void main(String[] args)&#123;</span><br><span class="line">      launch(args);</span><br><span class="line">   &#125;</span><br><span class="line">   public void start(Stage primaryStage)&#123;</span><br><span class="line">     Label label1 = new Label(&quot;Component 1&quot;);</span><br><span class="line">     Label label2 = new Label(&quot;Component 2&quot;);</span><br><span class="line">     </span><br><span class="line">     Separator separator = new Separator(Orientation.HORIZONTAL);</span><br><span class="line">     </span><br><span class="line">     VBox vBox = new VBox(label1,separator,label2);</span><br><span class="line">     Scene scene = new Scene(vBox);</span><br><span class="line">     </span><br><span class="line">     primaryStage.setScene(scene);</span><br><span class="line">     primaryStage.setTitle(&quot;JavaFX App&quot;);</span><br><span class="line">   </span><br><span class="line">     primaryStage.show();</span><br><span class="line">   </span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>1.spring框架是什么？</p>
+<p>spring是一个轻量级的控制翻转（Ioc）和面向切面（AOP）的容器框架，它是为了解决企业应用开发的负责性而创建的。</p>
+<p>spring使用基本的javaBean来完成以前只可能由EJB完成的事情。然而spring的用途不仅限于服务器端的开发。</p>
+<p>从简单性、可测试性和松耦合的角度而言，任何java应用都可以从spring中受益。</p>
+<p>spring的初衷：</p>
+<p>1、JAVA EE 开发应该更加简单。</p>
+<p>2、使用接口而不是使用类，是更好的编程习惯，spring将使用接口的复杂度几乎降低到了0.</p>
+<p>3、为JavaBean提供了一个更好的应用配置框架。</p>
+<p>4、更多地强调面向对象的设计，而不是现行的技术如JAVA EE。</p>
+<p>5、尽量减少不必要的异常捕捉。</p>
+<p>6、使应用程序更加容易测试。</p>
+<p>spring的目标：</p>
+<p>1、可以令人方便愉快地使用spring。</p>
+<p>2、应用程序代码并不依赖于spring APIs。</p>
+<p>3、spring不和现有的解决方案竞争，而是致力于将它们融合在一起。</p>
+<p>spring的基本组成：</p>
+<p>1、最完善的轻量级核心框架。</p>
+<p>2、通用的事务管理抽象层。</p>
+<p>3、JDBC抽象层。</p>
+<p>4、继承了Toplink,Hibernate,JDO,and iBATIS SQL Maps.</p>
+<p>5、AOP功能。</p>
+<p>6、灵活地MVC Web应用框架。</p>
+<p>2.spring常用的注解有哪些？</p>
+<p>常用的一些spring注解：</p>
+<p>@Autowired：注入一个bean。</p>
+<p>@Required：注入bean时，要求bean不能为null，否则抛出BeanInitializationException。</p>
+<p>@Qualifier：当有多个相同类型的bean冲突时，此注解用来指定具体的bean名称进行注入。</p>
+<p>@Configuration：标识一个spirng配置类。</p>
+<p>@ComponentScan:扫描指定包下的所有spring组件。</p>
+<p>@Bean：手动创建一个spring bean。</p>
+<p>@Primary：手动创建spring bean 时，指定当前为默认注入的bean。</p>
+<p>@Scope：配置spring bean的作用域。</p>
+<p>@Lazy：表示延迟注入bean。</p>
+<p>3.spring框架的好处有哪些？</p>
+<ul>
+<li>轻量：spring是轻量的，基本的版本大约2MB</li>
+<li>控制反转：spring通过控制反转实现了松耦合，对象们给出他们的依赖，而不是创建或查找依赖的对象们。</li>
+<li>面向切面的编程（AOP）：spring支持面向切面的编程，并且把应用业务逻辑和系统服务分开。</li>
+<li>容器：spring包含并管理应用中对象的生命周期和配置。</li>
+<li>MVC框架：spring的WEB框架是个精心设计的框架，是Web框架的一个很好的替代品。</li>
+<li>事务管理：spring提供一个持续的事务管理接口，可以扩展到上至本地事务下至全局事务（JTA）</li>
+<li>异常处理：spring提供方便的API把具体技术相关的异常（比如由JDBC，Hibernate or JDO抛出的）转化为一致的unchecked异常。</li>
+</ul>
+<p>4.spring的主要组成模块？</p>
+<p>spring框架是一个轻量级的<em>集成式开发框架</em>，可以和任何一种框架集成在一起使用，可以说是一个大的全家桶。</p>
+<img src="https://s2.loli.net/2022/02/22/UauS2vQnLqRAmK4.png" alt="image.png" style="zoom:67%;" />
 
-<p>注意VBox构造方法中separator是放在第二个，这样可以正好起分隔的作用；</p>
-<h3 id="Separator-Orientation-分隔符方向"><a href="#Separator-Orientation-分隔符方向" class="headerlink" title="Separator Orientation(分隔符方向)"></a>Separator Orientation(分隔符方向)</h3><p>您可以通过给构造方法传递参数指定分隔符是垂直还是水平方向的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Separator separator = new Separator(Orientation.HORIZONTAL);</span><br><span class="line">Separator separator = new Separator(Orientation.VERTICAL);</span><br></pre></td></tr></table></figure>
+<p>1、Core Container - 核心容器</p>
+<p>spring-core: spring中的核心工具类包。</p>
+<p>spring-beans：spring中定义bean的组件。</p>
+<p>spring-context：spring的运行容器。</p>
+<p>spring-context-support：spring容器的扩展支持。</p>
+<p>spring-expression：spring的表达式语言支持。</p>
+<p>2、AOP - 面向切面编程</p>
+<p>spring-aop：基于代理的AOP支持。</p>
+<p>spring-aspects：继承Aspects的AOP支持。</p>
+<p>3、WEB(MVC)</p>
+<p>spring-web：提供web的基础功能。</p>
+<p>spring-webmvc：提供springmvc的功能。</p>
+<p>spring-websocket：提供web socket支持。</p>
+<p>spring-webmvc-portlet：提供portlet环境的支持。</p>
+<p>4、Data Access/Integration -数据访问/集成</p>
+<p>spring-jdbc：提供对jdbc连接的封装功能。</p>
+<p>spring-tx：提供对事物的支持。</p>
+<p>spring-orm：提供对象-关系映射支持。</p>
+<p>spring-oxm：提供对象-XML映射支持。</p>
+<p>spring-jms：提供消息队列的支持。</p>
+<p>5、test-测试</p>
+<p>spring-text：提供对测试功能的支持。</p>
+<p>5.spring IOC 容器是什么？</p>
+<p>spring IOC（控制反转）指的是将创建对象的控制权进行转移，由spring IOC 进行负责创建对象，装配对象，配置对象，管理对象（通过依赖注入（DI））之间的依赖关系，并且管理这些对象的整个生命周期。</p>
+<p>6.spring IOC的好处？</p>
+<p>1、减少代码侵入，实现松耦合。</p>
+<p>2、支持实例延迟加载。</p>
+<p>3、减少冗余代码量。</p>
+<p>4、使应用程序易于测试。</p>
+<p>5、减少内存开销（多次new 对象会过多占用内存）</p>
+<p>7.spring Application context是什么？</p>
+<p>简单说就是spring 中的高级应用容器，可以获取容器中的各种bean组件，注册监听事件，加载资源文件等功能。</p>
+<p>8.BeanFactory和ApplicationContext的区别？</p>
+<p>BeanFactory像一个包含bean集合的工厂类。它会在客户端要求时实例化bean。</p>
+<p>ApplicationContext接口扩展了BeanFactory接口。它在BeanFactory基础上提供了一些额外的功能。</p>
+<p>BeanFactory：懒加载、使用语法显式提供资源对象、不支持国际化、不支持基于依赖的注解；</p>
+<p>ApplicationContext：即时加载、自己创建和管理资源对象、支持国际化、支持基于依赖的注解；</p>
+<p>9.spring获取ApplicationContext的方法？</p>
+<p>1、直接注入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Resource</span><br><span class="line">private ApplicationContext ctx;</span><br></pre></td></tr></table></figure>
+
+<p>2、实现ApplicationContextAware 接口（推荐）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class SpringContextHolder implements ApplicationContextAware&#123;</span><br><span class="line">    public static ApplicationContext applicationContext;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void setAppicationContext(ApplicationContext applicationContext)throws BeansException&#123;</span><br><span class="line">        SpringContextHolder.applicationContext = applicationContext;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public static Object getBean (String beanName)&#123;</span><br><span class="line">        return (Object)applicationContext.getBean(beanName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3、继承WebApplicationObjectSupport、ApplicationObjectSupport</p>
+<p>继承会加强耦合性，不推荐。</p>
+<p>4、WebApplicationContextUtils工具</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext ctx =WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());</span><br></pre></td></tr></table></figure>
+
+<p>5、从当前线程绑定获取</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext ctx = ContextLoader.getCurrentWebApplicationContext();</span><br></pre></td></tr></table></figure>
+
+<p>10.spring依赖注入是什么？</p>
+<p>依赖注入（DI），即不用自己手动创建对象、设置对象的关系，这一切都由spring IOC完成对象创建及spring DI完成依赖注入管理。</p>
+<p>11.spring 依赖注入有哪几种方式？</p>
+<p>set方法注入；</p>
+<p>构造器注入；</p>
+<p>静态工厂注入；</p>
+<p>实例工厂注入；</p>
+<p>12.spring bean 支持几种作用域？</p>
+<p>5种，通过配置scope参数：</p>
+<p>singleton（默认）：bean在每个spring ioc容器中只有一个实例；</p>
+<p>prototype：一个bean的定义可以有多个实例；</p>
+<p>request：每次http请求都会创建一个bean，该作用域仅在基于web 的spring ApplicationContext情形下有效。</p>
+<p>session：在一个HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web 的spring  ApplicationContext情形下有效。</p>
+<p>global-session：在一个全局的HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web 的spring ApplicationContext情形下有效。</p>
+<p>13.spring bean 生命周期是怎样的？</p>
+<p>1、spring 容器根据配置中的bean定义实例化bean。</p>
+<p>2、spring 使用依赖注入填充所有属性，如bean中所定义的配置。</p>
+<p>3、如果bean 实现 BeanNameAware接口，则工厂通过传递bean 的id 来调用setBeanName()。</p>
+<p>4、如果bean 实现BeanFactoryAware 接口，工厂通过传递自身的实例来调用setBeanFactory()。</p>
+<p>5、如果存在与 bean关联的任何 BeanPostProcessers，则调用preProcessBeforeInitialization()方法。</p>
+<p>6、如果为 bean指定了 init方法（的init-method属性），那么将调用它。</p>
+<p>7、最后，如果存在与bean关联的任何BeanPostProcessors，则将调用postProcessAfterInitialization()方法。</p>
+<p>8、如果bean 实现DisposableBean 接口，当spring容器关闭时，会调用destroy()方法。</p>
+<p>9、如果为bean指定了destroy()方法（的 destroy-method属性），那么将调用它。</p>
+<img src="https://s2.loli.net/2022/02/22/wbGZmgIfvho7MTO.png" alt="1645527990_1_.png" style="zoom:67%;" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       
@@ -847,7 +696,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javafx</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
         		</li>
       		
 		</ul>
@@ -857,7 +706,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/18/javafx_Separator/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/spring%E7%9B%B8%E5%85%B3%20/">展开全文 >></a>
         </p>
       
 
@@ -887,14 +736,14 @@
 
 
   
-    <article id="post-javafx_HBox" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-什么情况下应不建或少建索引" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/17/javafx_HBox/">javafx - HBox</a>
+      <a class="article-title" href="/2021/12/29/%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E5%BA%94%E4%B8%8D%E5%BB%BA%E6%88%96%E5%B0%91%E5%BB%BA%E7%B4%A2%E5%BC%95/">索引对数据库有什么负面影响</a>
     </h1>
   
 
@@ -902,161 +751,18 @@
          
 
 
-<a href="/2021/12/17/javafx_HBox/" class="archive-article-date">
-  	<time datetime="2021-12-17T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-17</time>
+<a href="/2021/12/29/%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E5%BA%94%E4%B8%8D%E5%BB%BA%E6%88%96%E5%B0%91%E5%BB%BA%E7%B4%A2%E5%BC%95/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>（文中组件与节点意思等同）</p>
-<p>HBox（javafx.scene.layout.HBox） 是一个将所有子组件派在一个水平行上的布局组件。</p>
-<p>你可以用无参构造构建一个hbox实例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HBox hbox = new HBox();</span><br></pre></td></tr></table></figure>
-
-<p>也可以用带有组件参数的构造器构造实例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Button button1 = new Button(&quot;Button Number1&quot;);</span><br><span class="line">Button button2 = new Button(&quot;Button Number2&quot;);</span><br><span class="line"></span><br><span class="line">HBox hbox = new HBox(button1,button2);</span><br></pre></td></tr></table></figure>
-
-<p>hbox会将两个按钮实例布局到一个水平上。</p>
-<p>把HBox放入场景中：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">package com.amos.javafx.layouts;</span><br><span class="line"></span><br><span class="line">import javafx.application.Application;</span><br><span class="line">import javafx.scene.Scene;</span><br><span class="line">import javafx.scene.control.Button;</span><br><span class="line">import javafx.scene.layout.HBox;</span><br><span class="line">import javafx.stage.Stage;</span><br><span class="line"></span><br><span class="line">public class HBoxExperiment extends Application&#123;</span><br><span class="line"> public static void main(String[] args)&#123;</span><br><span class="line">   Application.launch(args);</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> @Override</span><br><span class="line"> public void start(Stage primaryStage) throws Exception&#123;</span><br><span class="line">   primaryStage.setTitle(&quot;HBox Experiment;</span><br><span class="line">   </span><br><span class="line">   Button button1 = new Button(&quot;Button Number1&quot;);</span><br><span class="line">   Button button2 = new Button(&quot;Button Number2&quot;);</span><br><span class="line"> </span><br><span class="line">   HBox hbox = new HBox(button1,button2);</span><br><span class="line">   </span><br><span class="line">   Scene scene = new Scene(hbox,200,100);</span><br><span class="line">   primaryStage.setScene(scene);</span><br><span class="line">   primaryStage.show();</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>运行以上代码会出现下面的应用场景：</p>
-<p><img src="https://s2.loli.net/2021/12/18/C13roecmdZNPhJi.png" alt="image.png"></p>
-<p>注意两个按钮始终保持在一个水平行上，即使没有足够宽的空间给它们展示自己，它们不会折到下一行。</p>
-<h3 id="子节点间隔"><a href="#子节点间隔" class="headerlink" title="子节点间隔"></a>子节点间隔</h3><p>我们可以通过有间隔参数的构造函数创建一个有间隔的HBox:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HBox hbox = new HBox(20,button1,button2);</span><br></pre></td></tr></table></figure>
-
-<p>上面的代码在两个按钮之间添加了20像素的间隔。</p>
-<p>也可以通过实例方法添加间隔：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hbox.setSpacing(20);</span><br></pre></td></tr></table></figure>
-
-<p>上面两句代码效果等同；</p>
-<h3 id="子节点边距"><a href="#子节点边距" class="headerlink" title="子节点边距"></a>子节点边距</h3><p>你可以通过HBOX的静态方法 setMargin() 设置任意一个子节点的边距：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Button button1 = new Button(&quot;Button 1&quot;);</span><br><span class="line"></span><br><span class="line">HBox hbox = new HBox(button1);</span><br><span class="line"></span><br><span class="line">HBox.setMargin(button1,new Insets(10,10,10,10));</span><br></pre></td></tr></table></figure>
-
-<p>上面的实例将HBox内的按钮button1周围的边距设置为每侧10像素。</p>
-<h3 id="子节点对齐"><a href="#子节点对齐" class="headerlink" title="子节点对齐"></a>子节点对齐</h3><p>由于HBox是一个容器组件，这意味着它可以容纳其他的javafx 组件，你可以通过setAlignment() 指定HBox如何对齐其包含的组件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hbox.setAlignment(Pos.BASELINE_CENTER);</span><br></pre></td></tr></table></figure>
-
-<p>上面实例中hbox会把子节点按基线（水平方向） 布局在中间；</p>
-<p>javafx HBox 与javafx VBox 都有以下位置枚举：</p>
-<table>
-<thead>
-<tr>
-<th align="center">参数</th>
-<th align="left">垂直</th>
-<th align="left">水平</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Pos.BASELINE_LEFT</td>
-<td align="left">Baseline</td>
-<td align="left">Left</td>
-</tr>
-<tr>
-<td align="center">Pos.BASELINE_CENTER</td>
-<td align="left">Baseline</td>
-<td align="left">Center</td>
-</tr>
-<tr>
-<td align="center">Pos.BASELINE_RIGHT</td>
-<td align="left">Baseline</td>
-<td align="left">Right</td>
-</tr>
-<tr>
-<td align="center">Pos.BOTTOM_LEFT</td>
-<td align="left">Bottom</td>
-<td align="left">Left</td>
-</tr>
-<tr>
-<td align="center">Pos.BOTTOM_CENTER</td>
-<td align="left">Bottom</td>
-<td align="left">Center</td>
-</tr>
-<tr>
-<td align="center">Pos.BOTTOM_RIGHT</td>
-<td align="left">Bottom</td>
-<td align="left">Right</td>
-</tr>
-<tr>
-<td align="center">Pos.CENTER_LEFT</td>
-<td align="left">Center</td>
-<td align="left">Left</td>
-</tr>
-<tr>
-<td align="center">Pos.CENTER</td>
-<td align="left">Center</td>
-<td align="left">Center</td>
-</tr>
-<tr>
-<td align="center">Pos.CENTER_RIGHT</td>
-<td align="left">Center</td>
-<td align="left">Right</td>
-</tr>
-<tr>
-<td align="center">Pos.TOP_LEFT</td>
-<td align="left">Top</td>
-<td align="left">Left</td>
-</tr>
-<tr>
-<td align="center">Pos.TOP_CENTER</td>
-<td align="left">Top</td>
-<td align="left">Center</td>
-</tr>
-<tr>
-<td align="center">Pos.TOP_RIGHT</td>
-<td align="left">Top</td>
-<td align="left">Right</td>
-</tr>
-</tbody></table>
-<h3 id="子节点横向增长"><a href="#子节点横向增长" class="headerlink" title="子节点横向增长"></a>子节点横向增长</h3><p>您可以指定HBox的子节点是否应水平增长以填充HBox内的任何可用空间。您可以通过HBox setHgrow（）静态方法执行此操作。必须指定为哪个子节点设置规则。可以通过将子节点作为参数传递给setHgrow（）来实现。您还必须将水平扩展策略作为参数传递给setHgrow（）。下面是一个示例，告诉您，如果HBox内部有可用空间，则子按钮将水平展开：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Button button1   = new Button(&quot;Button 1&quot;);</span><br><span class="line"></span><br><span class="line">HBox hbox = new HBox(button1);</span><br><span class="line"></span><br><span class="line">HBox.setHgrow(button1, Priority.ALWAYS);</span><br></pre></td></tr></table></figure>
-
-<p>增长策略总共有三种：Priority.ALWAYS、Priority.SOMETIMES、Priority.NAVER</p>
-<p>请记住，如果HBox的宽度大于其子项的首选宽度之和，则HBox将只有额外的水平空间可用。</p>
-<h3 id="HBox首选高度"><a href="#HBox首选高度" class="headerlink" title="HBox首选高度"></a>HBox首选高度</h3><p>HBox的默认首选高度设置为与其任何子节点的最大首选高度相同的值。</p>
-<h3 id="填充高度"><a href="#填充高度" class="headerlink" title="填充高度"></a>填充高度</h3><p>JavaFX HBox fillHeight属性可用于告知HBox控件是否应扩展其子项的高度以填充HBox的整个高度，或将其子项保持在其首选高度。</p>
-<p>fillHeight特性仅影响实际可以更改高度的子零部件。例如，默认情况下，按钮不会更改其高度。它的最大高度设置为其首选高度。但是，您可以通过将按钮或要嵌套在HBox内的任何其他组件的最大高度设置为与其首选值不同的值来覆盖该值。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Button button1   = new Button(&quot;Button 1&quot;);</span><br><span class="line">button1.setMaxHeight(99999.0D); //或者设置 Double.MAX_VALUE;</span><br><span class="line"></span><br><span class="line">HBox hbox = new HBox(button1);</span><br><span class="line"></span><br><span class="line">hbox.setFillHeight(true);</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <p><strong>以下几种情况不适合建立索引：</strong></p>
+<p>1、表中数据太少。</p>
+<p>2、经常插入、删除、修改的表。</p>
+<p>3、表数据重复且分布平均的表字段。</p>
 
       
 
@@ -1070,7 +776,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javafx</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -1080,7 +786,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/17/javafx_HBox/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E5%BA%94%E4%B8%8D%E5%BB%BA%E6%88%96%E5%B0%91%E5%BB%BA%E7%B4%A2%E5%BC%95/">展开全文 >></a>
         </p>
       
 
@@ -1110,14 +816,14 @@
 
 
   
-    <article id="post-javafx_pane" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-事务有哪几个特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/17/javafx_pane/">javafx - Pane</a>
+      <a class="article-title" href="/2021/12/29/%E4%BA%8B%E5%8A%A1%E6%9C%89%E5%93%AA%E5%87%A0%E4%B8%AA%E7%89%B9%E6%80%A7/">事务有哪几个特性</a>
     </h1>
   
 
@@ -1125,32 +831,200 @@
          
 
 
-<a href="/2021/12/17/javafx_pane/" class="archive-article-date">
-  	<time datetime="2021-12-17T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-17</time>
+<a href="/2021/12/29/%E4%BA%8B%E5%8A%A1%E6%9C%89%E5%93%AA%E5%87%A0%E4%B8%AA%E7%89%B9%E6%80%A7/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Pane类是一个可以容纳其他javafx组件的布局容器，实际上Pane并没有提供任何布局算法，它只是简单地把组件展示在它们想要被展示的位置，换句话说Pane使用子组件的 layoutX 和 layoutY  来决定在哪里展示这些子组件。</p>
-<p>Pane类，javafx.scene.layout.Pane，是Region的一个子类，所以它继承了Region所有的功能，如borders,padding,background 设置等等。</p>
-<h4 id="使用无参构造创建Pane并添加项进去："><a href="#使用无参构造创建Pane并添加项进去：" class="headerlink" title="使用无参构造创建Pane并添加项进去："></a>使用无参构造创建Pane并添加项进去：</h4><p>我们可以通过getChildren（） 获取 Pane的子项列表，并将这些项添加到列表中，以下是向pane列表添加Label项的示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Pane pane = new Pane();</span><br><span class="line"></span><br><span class="line">pane.getChildren().add(new Label(&quot;hello pane&quot;));</span><br></pre></td></tr></table></figure>
+        <p>数据库事务正确执行的4个特性：ACID，包含：原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）、持久性（Durability）。</p>
+<p>一个支持事务（Transaction）的数据库，必须要具有这四种特性，否则在事务过程（Transaction processing）当中无法保证数据的正确性，交易过程极有可能达不到交易方的要求。</p>
+<p>1、原子性</p>
+<p>事务要么全部被执行，要么就全部不被执行。</p>
+<p>2、一致性</p>
+<p>事务必须始终保持系统处于一致的状态，不管在任何给定的时间<strong>并发</strong>事务有多少。</p>
+<p>3、隔离性</p>
+<p>在事务正确提交之前，不允许把该事务对数据的任何改变提供给任何其他事务。</p>
+<p>4、持久性</p>
+<p>在事务完成以后，该事务对数据库所作的更改便持久地保存在数据库中，并不会被回滚。</p>
 
-<p>如果重复执行第二句代码，那我们会添加多个Label项到Pane中，但需要注意的是，除非你修改了Label的layoutX 或layoutY 属性，否则这些Label项将会重叠在坐标的同一个点上，以至于看起来只有一个Lable项，实则不然。</p>
-<p>最后想要把pane（窗格）展示出来需要把pane 作为根节点 传递给Scene，并将Scene传递给Stage：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import javafx.application.Application;</span><br><span class="line">import javafx.scene.Scene;</span><br><span class="line">import javafx.scene.control.Lable;</span><br><span class="line">import javafx.scene.layout.Pane;</span><br><span class="line">import javafx.stage.Stage;</span><br><span class="line"></span><br><span class="line">public class PaneExample extends Application&#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">        launch(args);</span><br><span class="line">  &#125;</span><br><span class="line">  public void start(Stage primaryStage)&#123;</span><br><span class="line">    Pane pane = new Pane();</span><br><span class="line">    pane.getChildren().add(new Label(&quot;Hello pane&quot;));</span><br><span class="line">    Scene scene = new Scene(pane);</span><br><span class="line">    primaryStage.setScene(scene);</span><br><span class="line">    primaryStage.show();</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/29/%E4%BA%8B%E5%8A%A1%E6%9C%89%E5%93%AA%E5%87%A0%E4%B8%AA%E7%89%B9%E6%80%A7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
 
 
 
 
+  
+    <article id="post-什么是redisson" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/29/%E4%BB%80%E4%B9%88%E6%98%AFredisson/">什么是redisson</a>
+    </h1>
+  
+
+        
+         
 
 
+<a href="/2021/12/29/%E4%BB%80%E4%B9%88%E6%98%AFredisson/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>redisson 是redis 官方推荐的一个高级的分布式协调redis 客户端。</p>
+<p>redisson 在基于NIO 的Netty 框架上，充分地利用了redis键值数据库提供的一系列优势，在java实用工具包中常用接口的基础上，为使用者提供了一系列具有分布式特性的常用工具类。使得原本作为协调单机多线程并发程序的工具包获得了协调分布式多级多线程并发系统的能力，大大降低了设计和研发大规模分布式系统的难度。同时结合各富特色的分布式服务，更进一步简化了分布式环境中程序相互之间的协作。</p>
+<p>兼容 redis 2.6 +  and   jdk1.6 + ，使用Apache License 2.0授权协议。</p>
+<p>适用场景：</p>
+<p>分布式应用，缓存，分布式会话，分布式任务/服务/延迟执行服务，redis客户端等。</p>
+<p>主要特性：</p>
+<p>云redis 管理、多样redis配置支持、丰富连接方式、分布式对象、分布式集合、分布式锁、分布式服务、多种序列化方式、三方框架整合、完善工具等。</p>
+<p>1、支持云托管服务模式（同时支持亚马逊云的ElastiCache redis 和 微软云的 Azure redisCache）：</p>
+<ul>
+<li>自动发现主节点变化</li>
+</ul>
+<p>2、支持redis 集群模式（同时支持亚马逊云的ElastiCache redis Cluster 和微软云的 Azure redisCache):</p>
+<ul>
+<li>自动发现主从节点</li>
+<li>自动更新状态和组态拓扑</li>
+<li>自动发现槽的变化</li>
+</ul>
+<p>3、支持redis 哨兵模式：</p>
+<ul>
+<li>自动发现主、从和哨兵节点</li>
+<li>自动更新状态和组态拓扑</li>
+</ul>
+<p>4、支持redis主从模式</p>
+<p>5、支持redis单节模式</p>
+<p>6、多节点模式均支持读写分离：从读主写，主读主写，主从混读主写</p>
+<p>7、所有对象和接口均支持异步操作</p>
+<p>8、自行管理的弹性异步连接池</p>
+<p>9、所有操作线程安全</p>
+<p>10、支持LUA脚本</p>
+<p>11、提供分布式对象：</p>
+<ul>
+<li>通用对象桶 - Object Bucket</li>
+<li>二进制流 - Binary Stream</li>
+<li>地理空间对象桶 - Geospatial  Bucket</li>
+<li>BitSet</li>
+<li>原子整长形 - AtomicLong</li>
+<li>原子双精度浮点数 - AtomicDouble</li>
+<li>话题（订阅分发)</li>
+<li>布隆过滤器 - Bloom Filter</li>
+<li>基数估计算法 - HyperLogLog</li>
+</ul>
+<p>12、提供分布式集合</p>
+<ul>
+<li>映射 -Map</li>
+<li>多值映射 - Multimap</li>
+<li>集 - Set</li>
+<li>列表 - List</li>
+<li>有序集 - SortedSet</li>
+<li>计分排序集 - ScoredSortedSet</li>
+<li>字典排序集 - LexSortedSet</li>
+<li>队列 - Queue</li>
+<li>双端队列 - Deque</li>
+<li>阻塞队列 - Blocking Queue</li>
+<li>有界阻塞队列 - Bounded Blocking Queue</li>
+<li>阻塞双端队列 - Blocking Deque</li>
+<li>阻塞公平队列 - Blocking Fair Queue</li>
+<li>延迟队列- Delayed Queue </li>
+<li>优先队列 - Priority Queue</li>
+<li>优先双端队列 - Priority Deque</li>
+</ul>
+<p>13、提供分布式锁和同步器：</p>
+<ul>
+<li>可重入锁 - Reentrant Lock</li>
+<li>公平锁 - Fair Lock</li>
+<li>联锁 - MultiLock</li>
+<li>红锁 - RedLock</li>
+<li>读写锁 - ReadWriteLock</li>
+<li>信号量 - Semaphore</li>
+<li>可过期性信号量 - PermitExpirableSemaphore</li>
+<li>闭锁 - CountDownLatch</li>
+</ul>
+<p>14、提供分布式服务</p>
+<ul>
+<li>分布式远程服务 - Remote Service,RPC</li>
+<li>分布式实时对象服务 - Live Object Service</li>
+<li>分布式执行服务 - Executor Service</li>
+<li>分布式调度任务服务 - Scheduler Service</li>
+<li>分布式映射归纳服务 - MapReduce</li>
+</ul>
+<p>15、支持spring 框架</p>
+<p>16、提供spring Cache 集成</p>
+<p>17、提供Hibernate Cache 集成</p>
+<p>18、提供JCache 实现</p>
+<p>19、提供Tomcat Session Manager</p>
+<p>20、提供spring Session 集成</p>
+<p>21、支持异步流方式执行操作</p>
+<p>22、支持redis 管道操作（批量执行）</p>
+<p>23、支持安卓系统</p>
+<p>24、支持断线自动重连</p>
+<p>25、支持命令发送失败自动重试</p>
+<p>26、支持OSGi</p>
+<p>27、支持采用多种方式自动序列化和反序列化（Jackson JSON,Avro,Smile,CBOR,MsgPack,Kryo,FST,LZ4,Snappy和JDK 序列化）</p>
+<p>28、超过1000个单元测试</p>
+<p><strong>与jedis对比</strong></p>
+<p>jedis 是redis 的java实现的客户端，其API 提供了比较全面的redis 命令的支持；redisson实现了分布式和可扩展的java数据结构，和jedis相比，功能较为简单，不支持字符串操作、不支持排序、事务、管道、分区等redis特性。</p>
+<p>redisson 的宗旨是促进使用者对redis 的关注分离，从而让使用者能够将经理更集中地放在处理业务逻辑上。</p>
+<p>快速开始：</p>
+<img src="https://s2.loli.net/2022/01/10/CxE2hWXLRZp5kzV.png" alt="image.png" style="zoom:67%;" />
 
-
-
-
+<img src="https://s2.loli.net/2022/01/10/aixMyAgWSVlnQeK.png" alt="image.png" style="zoom:67%;" />
 
 
 
@@ -1173,7 +1047,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javafx</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
         		</li>
       		
 		</ul>
@@ -1183,7 +1057,177 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/17/javafx_pane/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/12/29/%E4%BB%80%E4%B9%88%E6%98%AFredisson/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-什么是脏读、幻读、不可重复读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/29/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%8F%E8%AF%BB%E3%80%81%E5%B9%BB%E8%AF%BB%E3%80%81%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB/">什么是脏读、幻读、不可重复读</a>
+    </h1>
+  
+
+        
+         
+
+
+<a href="/2021/12/29/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%8F%E8%AF%BB%E3%80%81%E5%B9%BB%E8%AF%BB%E3%80%81%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>脏读</strong></p>
+<p>脏读是指一个事务<strong>读取到</strong>了<strong>其他事务没有提交</strong>的<strong>数据</strong>，如果其他事务失败回滚了，那就是读的脏数据了。</p>
+<p><strong>不可重复读</strong></p>
+<p>不可重复读是指在<strong>同一个事务内</strong>，<strong>同一条SQL</strong>语句的<strong>多次查询</strong>的<strong>同一条记录的值不一致</strong>。可重复读即相反。</p>
+<p><strong>幻读</strong></p>
+<p>幻读是指<strong>一个事务内</strong>，<strong>同一条SQL</strong>语句的<strong>多次查询</strong>的<strong>记录条数不一致</strong>。</p>
+<p>隔离级别与脏读、幻读、不可重复读的关系：</p>
+<p>隔离级别                                                             脏读                                  不可重复读                          幻象读</p>
+<p>READ UNCOMMITED（读未提交）                允许                                      允许                                     允许</p>
+<p>READ COMMITED (读已提交)                        不允许                                    允许                                      允许</p>
+<p>REPEATABLE READ (可重复读)                      不允许                                    不允许                                   允许</p>
+<p>SERIALIZABLE (序列化)                                   不允许                                   不允许                                   不允许</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/29/%E4%BB%80%E4%B9%88%E6%98%AF%E8%84%8F%E8%AF%BB%E3%80%81%E5%B9%BB%E8%AF%BB%E3%80%81%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-反范式化有什么优缺点 " class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/12/29/%E5%8F%8D%E8%8C%83%E5%BC%8F%E5%8C%96%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9%20/">反范式化有什么优缺点</a>
+    </h1>
+  
+
+        
+         
+
+
+<a href="/2021/12/29/%E5%8F%8D%E8%8C%83%E5%BC%8F%E5%8C%96%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9%20/" class="archive-article-date">
+  	<time datetime="2021-12-29T15:58:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>反范式化的优点：</strong></p>
+<p>1、可以避免关联查询；</p>
+<p>2、可以设计有效的索引；</p>
+<p>3、可以提高查询速度；</p>
+<p><strong>反范式化的缺点：</strong></p>
+<p>表内如果有冗余字段，删除被冗余表的数据的时候会造成冗余表有些有用的信息丢失。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/12/29/%E5%8F%8D%E8%8C%83%E5%BC%8F%E5%8C%96%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9%20/">展开全文 >></a>
         </p>
       
 
@@ -1215,7 +1259,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1227,7 +1271,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 Amos
+    		&copy; 2022 Amos
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1329,7 +1373,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">javafx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
